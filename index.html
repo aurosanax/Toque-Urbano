@@ -121,6 +121,15 @@
       margin-bottom: 10px;
     }
 
+    .card img.categoria-img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
     .productos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -230,8 +239,9 @@
       <h2>Categorías</h2>
 
       <div class="categorias">
+
         <div class="card">
-          <span>👗</span>
+          <img src="pantalon.jpg" alt="Pantalones" class="categoria-img">
           <h3>PANTALONES</h3>
         </div>
 
@@ -254,6 +264,7 @@
           <span>👟</span>
           <h3>Calzado</h3>
         </div>
+
       </div>
     </section>
 
