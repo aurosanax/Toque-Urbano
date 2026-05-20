@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tokio Urbano - Boutique</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #222;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      background-color: #fff;
+    }
+
+    .logo-text {
+      font-size: 2.4rem;
+      letter-spacing: 8px;
+      font-weight: bold;
+      margin: 0;
+      color: #111;
+    }
+
+    .logo-sub {
+      font-size: 0.9rem;
+      letter-spacing: 5px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #e75480;
+      margin-top: 1rem;
+    }
+
+    nav {
+      background-color: #111;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 18px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #e75480;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                  url("banner-boutique.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0;
+      letter-spacing: 3px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      border-bottom: 2px solid #e75480;
+      padding-bottom: 6px;
+      color: #111;
+      text-align: center;
+    }
+
+    h3 {
+      color: #e75480;
+    }
+
+    .categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: #f7f7f7;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .card span {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 2rem;
+    }
+
+    .producto {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: #eee;
+    }
+
+    .precio {
+      font-weight: bold;
+      color: #e75480;
+      font-size: 1.1rem;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #111;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background-color: #e75480;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #25d366;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    footer {
+      background-color: #111;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      color: white;
+    }
+
+    footer h4 {
+      margin-top: 1.5rem;
+      color: #e75480;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1 class="logo-text">TOKIO URBANO</h1>
+    <div class="logo-sub">BOUTIQUE</div>
+    <p>Moda urbana, moderna y elegante para cada ocasión</p>
+  </header>
+
+  <nav>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#categorias">Categorías</a>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Nueva Colección</h1>
+    <p>Estilo que te define, moda que te inspira</p>
+    <a href="#catalogo" class="button">Ver Catálogo</a>
+  </section>
+
+  <main>
+
+    <section id="nosotros">
+      <h2>Sobre Tokio Urbano</h2>
+      <p>
+        En Tokio Urbano creemos que la moda es una forma de expresión.
+        Ofrecemos prendas modernas, cómodas y con estilo para mujeres que buscan verse auténticas,
+        seguras y actuales en cada momento.
+      </p>
+    </section>
+
+    <section id="categorias">
+      <h2>Categorías</h2>
+
+      <div class="categorias">
+        <div class="card">
+          <span>👗</span>
+          <h3>Vestidos</h3>
+        </div>
+
+        <div class="card">
+          <span>👚</span>
+          <h3>Blusas</h3>
+        </div>
+
+        <div class="card">
+          <span>👖</span>
+          <h3>Jeans</h3>
+        </div>
+
+        <div class="card">
+          <span>👜</span>
+          <h3>Accesorios</h3>
+        </div>
+
+        <div class="card">
+          <span>👟</span>
+          <h3>Calzado</h3>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo">
+      <h2>Catálogo Destacado</h2>
+
+      <div class="productos">
+        <div class="producto">
+          <img src="vestido.jpg" alt="Vestido elegante">
+          <h3>Vestido Urbano</h3>
+          <p class="precio">$25.00</p>
+          <a href="https://wa.me/593984567660?text=Hola,%20deseo%20información%20sobre%20el%20Vestido%20Urbano%20de%20Tokio%20Urbano." class="button">Consultar</a>
+        </div>
+
+        <div class="producto">
+          <img src="blusa.jpg" alt="Blusa moderna">
+          <h3>Blusa Moderna</h3>
+          <p class="precio">$18.00</p>
+          <a href="https://wa.me/593984567660?text=Hola,%20deseo%20información%20sobre%20la%20Blusa%20Moderna%20de%20Tokio%20Urbano." class="button">Consultar</a>
+        </div>
+
+        <div class="producto">
+          <img src="jean.jpg" alt="Jean casual">
+          <h3>Jean Casual</h3>
+          <p class="precio">$28.00</p>
+          <a href="https://wa.me/593984567660?text=Hola,%20deseo%20información%20sobre%20el%20Jean%20Casual%20de%20Tokio%20Urbano." class="button">Consultar</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Para pedidos, consultas o disponibilidad de prendas, contáctanos por WhatsApp.</p>
+      <a href="https://wa.me/593984567660?text=Hola,%20deseo%20información%20sobre%20las%20prendas%20de%20Tokio%20Urbano." class="button">Escríbenos por WhatsApp</a>
+    </section>
+
+  </main>
+
+  <a href="https://wa.me/593984567660?text=Hola,%20deseo%20información%20sobre%20Tokio%20Urbano." class="whatsapp-float">WhatsApp</a>
+
+  <footer>
+    <h4>Tokio Urbano Boutique</h4>
+    <p>Moda urbana, moderna y femenina.</p>
+
+    <h4>Atención al cliente</h4>
+    <p>Pedidos, consultas y disponibilidad vía WhatsApp.</p>
+
+    <p>&copy; 2025 Tokio Urbano. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
