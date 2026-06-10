@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=9vObmz40RcPhI9taKd_95IKcR3vKRx-4UjQgdT46lIK_1HBF_hfPhtZ12gOMURxMFjrFU4bDkdCMEnEwwagBdwELNXFy-LodufBKVAF_lM9jKykDFiHS2Dv_-eyPTNhzkVFrFXI2qYeeEiFTjNJp3lo0Nz9frU6S8cVxvg5K0nEd8LKiZBARzwZUH3cMMkjYSimiudEktyaf4z_zc2pb_5xvQrLoAv8o8bpGHAsaCiBMwPIDii7eVbYDkHqXdB6XGMuyjbhSKLgLzrd5maQfmg" charset="UTF-8"></script><style>
+  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=DYNUKgRGqiGpghY-MvXrLpgWbh3XwPLy4Zp07mfI0oVcbRNvmShDnMMzkWWHgtQzgitnd6s4K-IbiM3HQDbxB4tG-tPGsQP-VRf-Fr9NitdhcxPayqiC4OVVvVl3wBgvbQENsu8EWq4UeGe03JuovRnrBUUbVLOkoOtnuNH1S-byEyeQpD5-DiBnKwH1bmhtIDPWk31JQQ2WEnA2Z0v5OiKOPPSPNE6eRlZas-_iOPzXS0vroZX4mg6aa6D7lflEUXU0VX14dhySVSlJPkJDkA" charset="UTF-8"></script><style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -214,6 +214,28 @@
       color: #856404;
     }
 
+
+    .estado-eliminado {
+      background: #343a40;
+      color: #ffffff;
+    }
+
+    .filtros-admin {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .filtros-admin button {
+      background: #555;
+      padding: 9px 14px;
+      font-size: 0.85rem;
+    }
+
+    .filtros-admin button.activo {
+      background: #c9a227;
+      color: #111;
+    }
+
     .buscador {
       margin-top: 1rem;
       margin-bottom: 1rem;
@@ -408,6 +430,14 @@
         <input type="text" id="buscarProducto" placeholder="Buscar por nombre, categoría, código o estado" oninput="filtrarTablaProductos()">
       </div>
 
+      <div class="filtros-admin">
+        <button class="activo" onclick="filtrarProductosPorEstado('todos', this)">Todos</button>
+        <button onclick="filtrarProductosPorEstado('activo', this)">Activos</button>
+        <button onclick="filtrarProductosPorEstado('agotado', this)">Agotados</button>
+        <button onclick="filtrarProductosPorEstado('oculto', this)">Ocultos</button>
+        <button onclick="filtrarProductosPorEstado('eliminado', this)">Eliminados</button>
+      </div>
+
       <div class="acciones">
         <button onclick="cargarProductosAdmin()">Actualizar Lista</button>
       </div>
@@ -481,6 +511,13 @@
 
       <h3>Categorías Registradas</h3>
 
+      <div class="filtros-admin">
+        <button class="activo" onclick="filtrarCategoriasPorEstado('todas', this)">Todas</button>
+        <button onclick="filtrarCategoriasPorEstado('activo', this)">Activas</button>
+        <button onclick="filtrarCategoriasPorEstado('oculto', this)">Ocultas</button>
+        <button onclick="filtrarCategoriasPorEstado('eliminado', this)">Eliminadas</button>
+      </div>
+
       <div class="acciones">
         <button onclick="cargarCategoriasAdmin()">Actualizar Categorías</button>
       </div>
@@ -518,6 +555,8 @@
   let imagenTipo = "";
   let productosAdminGlobal = [];
   let categoriasAdminGlobal = [];
+  let filtroProductosActual = "todos";
+  let filtroCategoriasActual = "todas";
 
   async function login() {
     const usuario = document.getElementById("usuario").value.trim();
@@ -610,7 +649,7 @@
       }
 
       productosAdminGlobal = json.data || [];
-      renderizarTablaProductos(productosAdminGlobal);
+      aplicarFiltrosProductos();
 
     } catch (error) {
       tbody.innerHTML = '<tr><td colspan="8">Error de conexión.</td></tr>';
@@ -651,6 +690,7 @@
           <button onclick="cambiarEstadoRapido('${producto.id_producto}', 'activo')" class="btn-ok">Activar</button>
           <button onclick="cambiarEstadoRapido('${producto.id_producto}', 'agotado')" class="btn-secundario">Agotado</button>
           <button onclick="cambiarEstadoRapido('${producto.id_producto}', 'oculto')" class="btn-peligro">Ocultar</button>
+          <button onclick="eliminarProductoLogico('${producto.id_producto}')" class="btn-peligro">Eliminar</button>
         </td>
       `;
 
@@ -662,22 +702,39 @@
     if (estado === "activo") return "estado-activo";
     if (estado === "oculto") return "estado-oculto";
     if (estado === "agotado") return "estado-agotado";
+    if (estado === "eliminado") return "estado-eliminado";
     return "";
   }
 
   function filtrarTablaProductos() {
+    aplicarFiltrosProductos();
+  }
+
+  function filtrarProductosPorEstado(estado, boton) {
+    filtroProductosActual = estado;
+
+    document.querySelectorAll("#seccionProductos .filtros-admin button").forEach(btn => btn.classList.remove("activo"));
+    boton.classList.add("activo");
+
+    aplicarFiltrosProductos();
+  }
+
+  function aplicarFiltrosProductos() {
     const texto = document.getElementById("buscarProducto").value.toLowerCase().trim();
 
-    if (!texto) {
-      renderizarTablaProductos(productosAdminGlobal);
-      return;
-    }
-
     const filtrados = productosAdminGlobal.filter(p => {
-      return String(p.nombre || "").toLowerCase().includes(texto) ||
-             String(p.categoria || "").toLowerCase().includes(texto) ||
-             String(p.codigo_producto || "").toLowerCase().includes(texto) ||
-             String(p.estado || "").toLowerCase().includes(texto);
+      const coincideTexto =
+        !texto ||
+        String(p.nombre || "").toLowerCase().includes(texto) ||
+        String(p.categoria || "").toLowerCase().includes(texto) ||
+        String(p.codigo_producto || "").toLowerCase().includes(texto) ||
+        String(p.estado || "").toLowerCase().includes(texto);
+
+      const coincideEstado =
+        filtroProductosActual === "todos" ||
+        String(p.estado || "").toLowerCase() === filtroProductosActual;
+
+      return coincideTexto && coincideEstado;
     });
 
     renderizarTablaProductos(filtrados);
@@ -761,6 +818,42 @@
     }
   }
 
+
+  async function eliminarProductoLogico(idProducto) {
+    const producto = productosAdminGlobal.find(p => p.id_producto === idProducto);
+    const nombre = producto ? producto.nombre : "este producto";
+
+    if (!confirm("¿Seguro que desea eliminar " + nombre + "?\n\nEl producto no se borrará definitivamente, solo quedará con estado eliminado.")) {
+      return;
+    }
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          accion: "cambiarEstadoProducto",
+          usuario: usuarioActivo || "admin",
+          id_producto: idProducto,
+          estado: "eliminado"
+        })
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeProductos", json.mensaje || "No se pudo eliminar el producto.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajeProductos", "Producto eliminado correctamente.", "ok");
+      cargarProductosAdmin();
+
+    } catch (error) {
+      mostrarMensaje("mensajeProductos", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
   async function cargarCategoriasAdmin() {
     const tbody = document.getElementById("tablaCategorias");
     if (!tbody) return;
@@ -778,7 +871,7 @@
       }
 
       categoriasAdminGlobal = json.data || [];
-      renderizarTablaCategorias(categoriasAdminGlobal);
+      aplicarFiltrosCategorias();
 
     } catch (error) {
       tbody.innerHTML = '<tr><td colspan="5">Error de conexión.</td></tr>';
@@ -812,11 +905,34 @@
           <button onclick="editarCategoria('${categoria.id_categoria}')">Editar</button>
           <button onclick="cambiarEstadoCategoriaRapido('${categoria.id_categoria}', 'activo')" class="btn-ok">Activar</button>
           <button onclick="cambiarEstadoCategoriaRapido('${categoria.id_categoria}', 'oculto')" class="btn-peligro">Ocultar</button>
+          <button onclick="eliminarCategoriaLogica('${categoria.id_categoria}')" class="btn-peligro">Eliminar</button>
         </td>
       `;
 
       tbody.appendChild(tr);
     });
+  }
+
+
+  function filtrarCategoriasPorEstado(estado, boton) {
+    filtroCategoriasActual = estado;
+
+    document.querySelectorAll("#seccionCategorias .filtros-admin button").forEach(btn => btn.classList.remove("activo"));
+    boton.classList.add("activo");
+
+    aplicarFiltrosCategorias();
+  }
+
+  function aplicarFiltrosCategorias() {
+    let categorias = categoriasAdminGlobal;
+
+    if (filtroCategoriasActual !== "todas") {
+      categorias = categoriasAdminGlobal.filter(c =>
+        String(c.estado || "").toLowerCase() === filtroCategoriasActual
+      );
+    }
+
+    renderizarTablaCategorias(categorias);
   }
 
   function editarCategoria(idCategoria) {
@@ -911,6 +1027,43 @@
       }
 
       mostrarMensaje("mensajeCategorias", "Estado de categoría actualizado correctamente.", "ok");
+      await cargarCategoriasAdmin();
+      await cargarCategorias();
+
+    } catch (error) {
+      mostrarMensaje("mensajeCategorias", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+
+  async function eliminarCategoriaLogica(idCategoria) {
+    const categoria = categoriasAdminGlobal.find(c => c.id_categoria === idCategoria);
+    const nombre = categoria ? categoria.nombre : "esta categoría";
+
+    if (!confirm("¿Seguro que desea eliminar " + nombre + "?\n\nLa categoría no se borrará definitivamente, solo quedará con estado eliminado.")) {
+      return;
+    }
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          accion: "cambiarEstadoCategoria",
+          usuario: usuarioActivo || "admin",
+          id_categoria: idCategoria,
+          estado: "eliminado"
+        })
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeCategorias", json.mensaje || "No se pudo eliminar la categoría.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajeCategorias", "Categoría eliminada correctamente.", "ok");
       await cargarCategoriasAdmin();
       await cargarCategorias();
 
