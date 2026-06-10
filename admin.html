@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administrador - Toque Urbano</title>
 
-  <style>
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=dDTJ_tegyhDOowTjnHqFkOu5nrCTdvq1os0MbgJ7zuep8k6ni_SOr6BhdibNGa8HSsM4gA0N8L5cXU359Udj-73p4sXEui7H5vCKbud94QuY_GI_yN1PVpOPnreKs5_x-fEiLTIu2Jz8rXzBax_5PATGlVytxyYTGmBwmQqM1dSS9-7ynY8B-TU8tDcAeeEhtJNA4lVUCwSS-uCPjiTwy6sUiUBUyuLr2T0VQoM4WY_7HA7417E5Yg0Z8kYU41DgrS4M3fskurVcBTrGiYOPVg" charset="UTF-8"></script><style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -269,6 +269,7 @@
     <div class="tabs">
       <button onclick="mostrarSeccion('seccionCrear')">Agregar Producto</button>
       <button onclick="mostrarSeccion('seccionProductos')">Productos Registrados</button>
+      <button onclick="mostrarSeccion('seccionCategorias')">Categorías</button>
       <button onclick="cerrarSesion()" class="btn-peligro">Cerrar Sesión</button>
     </div>
 
@@ -411,6 +412,70 @@
       </div>
     </section>
 
+    <section id="seccionCategorias" class="oculto">
+      <h2>Administrar Categorías</h2>
+
+      <h3 id="tituloFormularioCategoria">Agregar Categoría</h3>
+
+      <input type="hidden" id="modoCategoria" value="crear">
+      <input type="hidden" id="id_categoria">
+
+      <div class="grid">
+        <div>
+          <label>Nombre de la categoría *</label>
+          <input type="text" id="cat_nombre" placeholder="Ejemplo: Vestidos">
+        </div>
+
+        <div>
+          <label>Estado</label>
+          <select id="cat_estado">
+            <option value="activo">Activo</option>
+            <option value="oculto">Oculto</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Orden</label>
+          <input type="number" id="cat_orden" placeholder="Ejemplo: 6">
+        </div>
+      </div>
+
+      <label>Descripción</label>
+      <textarea id="cat_descripcion" placeholder="Descripción breve de la categoría"></textarea>
+
+      <div class="acciones">
+        <button id="btnGuardarCategoria" onclick="guardarCategoria()">Guardar Categoría</button>
+        <button onclick="limpiarFormularioCategoria()" class="btn-secundario">Limpiar / Cancelar</button>
+      </div>
+
+      <div id="mensajeCategorias"></div>
+
+      <h3>Categorías Registradas</h3>
+
+      <div class="acciones">
+        <button onclick="cargarCategoriasAdmin()">Actualizar Categorías</button>
+      </div>
+
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Orden</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaCategorias">
+            <tr>
+              <td colspan="5">Cargando categorías...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </section>
 
 </main>
@@ -423,6 +488,7 @@
   let imagenNombre = "";
   let imagenTipo = "";
   let productosAdminGlobal = [];
+  let categoriasAdminGlobal = [];
 
   async function login() {
     const usuario = document.getElementById("usuario").value.trim();
@@ -457,6 +523,7 @@
 
       await cargarCategorias();
       await cargarProductosAdmin();
+      await cargarCategoriasAdmin();
 
     } catch (error) {
       mostrarMensaje("mensajeLogin", "No se pudo conectar con el servidor.", "error");
@@ -467,10 +534,15 @@
   function mostrarSeccion(id) {
     document.getElementById("seccionCrear").classList.add("oculto");
     document.getElementById("seccionProductos").classList.add("oculto");
+    document.getElementById("seccionCategorias").classList.add("oculto");
     document.getElementById(id).classList.remove("oculto");
 
     if (id === "seccionProductos") {
       cargarProductosAdmin();
+    }
+
+    if (id === "seccionCategorias") {
+      cargarCategoriasAdmin();
     }
   }
 
@@ -656,6 +728,175 @@
       mostrarMensaje("mensajeProductos", "Error al conectar con el servidor.", "error");
       console.error(error);
     }
+  }
+
+  async function cargarCategoriasAdmin() {
+    const tbody = document.getElementById("tablaCategorias");
+    if (!tbody) return;
+
+    tbody.innerHTML = '<tr><td colspan="5">Cargando categorías...</td></tr>';
+
+    try {
+      const res = await fetch(API_URL + "?accion=categoriasAdmin");
+      const json = await res.json();
+
+      if (!json.ok) {
+        tbody.innerHTML = '<tr><td colspan="5">No se pudo cargar categorías.</td></tr>';
+        mostrarMensaje("mensajeCategorias", json.mensaje || "Error al cargar categorías.", "error");
+        return;
+      }
+
+      categoriasAdminGlobal = json.data || [];
+      renderizarTablaCategorias(categoriasAdminGlobal);
+
+    } catch (error) {
+      tbody.innerHTML = '<tr><td colspan="5">Error de conexión.</td></tr>';
+      mostrarMensaje("mensajeCategorias", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+  function renderizarTablaCategorias(categorias) {
+    const tbody = document.getElementById("tablaCategorias");
+    tbody.innerHTML = "";
+
+    if (!categorias || categorias.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5">No hay categorías registradas.</td></tr>';
+      return;
+    }
+
+    categorias.forEach(categoria => {
+      const estadoClase = obtenerClaseEstado(categoria.estado);
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>
+          <strong>${categoria.nombre || ''}</strong><br>
+          <small>${categoria.id_categoria || ''}</small>
+        </td>
+        <td>${categoria.descripcion || ''}</td>
+        <td><span class="estado ${estadoClase}">${categoria.estado || ''}</span></td>
+        <td>${categoria.orden || ''}</td>
+        <td>
+          <button onclick="editarCategoria('${categoria.id_categoria}')">Editar</button>
+          <button onclick="cambiarEstadoCategoriaRapido('${categoria.id_categoria}', 'activo')" class="btn-ok">Activar</button>
+          <button onclick="cambiarEstadoCategoriaRapido('${categoria.id_categoria}', 'oculto')" class="btn-peligro">Ocultar</button>
+        </td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function editarCategoria(idCategoria) {
+    const categoria = categoriasAdminGlobal.find(c => c.id_categoria === idCategoria);
+
+    if (!categoria) {
+      mostrarMensaje("mensajeCategorias", "No se encontró la categoría.", "error");
+      return;
+    }
+
+    document.getElementById("modoCategoria").value = "editar";
+    document.getElementById("id_categoria").value = categoria.id_categoria || "";
+    document.getElementById("cat_nombre").value = categoria.nombre || "";
+    document.getElementById("cat_descripcion").value = categoria.descripcion || "";
+    document.getElementById("cat_estado").value = categoria.estado || "activo";
+    document.getElementById("cat_orden").value = categoria.orden || "";
+
+    document.getElementById("tituloFormularioCategoria").innerText = "Editar Categoría";
+    document.getElementById("btnGuardarCategoria").innerText = "Guardar Cambios";
+
+    mostrarMensaje("mensajeCategorias", "Editando categoría: " + (categoria.nombre || ""), "ok");
+  }
+
+  async function guardarCategoria() {
+    const modo = document.getElementById("modoCategoria").value;
+    const nombre = document.getElementById("cat_nombre").value.trim();
+
+    if (!nombre) {
+      mostrarMensaje("mensajeCategorias", "El nombre de la categoría es obligatorio.", "error");
+      return;
+    }
+
+    const data = {
+      accion: modo === "editar" ? "actualizarCategoria" : "guardarCategoria",
+      usuario: usuarioActivo || "admin",
+      id_categoria: document.getElementById("id_categoria").value,
+      nombre,
+      descripcion: document.getElementById("cat_descripcion").value.trim(),
+      estado: document.getElementById("cat_estado").value,
+      orden: document.getElementById("cat_orden").value
+    };
+
+    mostrarMensaje("mensajeCategorias", modo === "editar" ? "Guardando cambios..." : "Guardando categoría...", "ok");
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeCategorias", json.mensaje || "No se pudo guardar la categoría.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajeCategorias", modo === "editar" ? "Categoría actualizada correctamente." : "Categoría guardada correctamente.", "ok");
+      limpiarFormularioCategoria();
+      await cargarCategoriasAdmin();
+      await cargarCategorias();
+
+    } catch (error) {
+      mostrarMensaje("mensajeCategorias", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+  async function cambiarEstadoCategoriaRapido(idCategoria, estado) {
+    if (!confirm("¿Seguro que desea cambiar la categoría a " + estado + "?")) {
+      return;
+    }
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          accion: "cambiarEstadoCategoria",
+          usuario: usuarioActivo || "admin",
+          id_categoria: idCategoria,
+          estado
+        })
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeCategorias", json.mensaje || "No se pudo cambiar el estado.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajeCategorias", "Estado de categoría actualizado correctamente.", "ok");
+      await cargarCategoriasAdmin();
+      await cargarCategorias();
+
+    } catch (error) {
+      mostrarMensaje("mensajeCategorias", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+  function limpiarFormularioCategoria() {
+    document.getElementById("modoCategoria").value = "crear";
+    document.getElementById("id_categoria").value = "";
+    document.getElementById("cat_nombre").value = "";
+    document.getElementById("cat_descripcion").value = "";
+    document.getElementById("cat_estado").value = "activo";
+    document.getElementById("cat_orden").value = "";
+
+    document.getElementById("tituloFormularioCategoria").innerText = "Agregar Categoría";
+    document.getElementById("btnGuardarCategoria").innerText = "Guardar Categoría";
   }
 
   function previsualizarImagen() {
