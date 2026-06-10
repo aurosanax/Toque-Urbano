@@ -1,1 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador - Toque Urbano</title>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    header h1 {
+      margin: 0;
+      letter-spacing: 4px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    h2 {
+      text-align: center;
+      color: #111;
+      border-bottom: 2px solid #c9a227;
+      padding-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    button {
+      background: #111;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #c9a227;
+      color: #111;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .mensaje {
+      margin-top: 1rem;
+      padding: 12px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .ok {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .acciones {
+      text-align: center;
+    }
+
+    .nota {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>TOQUE URBANO</h1>
+  <p>Panel Administrador</p>
+</header>
+
+<main>
+
+  <section id="loginBox">
+    <h2>Ingreso Administrador</h2>
+
+    <label>Usuario</label>
+    <input type="text" id="usuario" placeholder="Ejemplo: admin">
+
+    <label>Clave</label>
+    <input type="password" id="clave" placeholder="Ingrese su clave">
+
+    <div class="acciones">
+      <button onclick="login()">Ingresar</button>
+    </div>
+
+    <div id="mensajeLogin"></div>
+  </section>
+
+  <section id="adminBox" class="oculto">
+    <h2>Agregar Producto</h2>
+
+    <div class="grid">
+      <div>
+        <label>Nombre del producto *</label>
+        <input type="text" id="nombre" placeholder="Ejemplo: Jean Slim Azul">
+      </div>
+
+      <div>
+        <label>Categoría *</label>
+        <select id="categoria">
+          <option value="">Seleccione categoría</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Marca</label>
+        <input type="text" id="marca" value="Toque Urbano">
+      </div>
+
+      <div>
+        <label>Género</label>
+        <select id="genero">
+          <option value="Unisex">Unisex</option>
+          <option value="Hombre">Hombre</option>
+          <option value="Mujer">Mujer</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Precio *</label>
+        <input type="number" id="precio" placeholder="Ejemplo: 28" step="0.01">
+      </div>
+
+      <div>
+        <label>Precio oferta</label>
+        <input type="number" id="precio_oferta" placeholder="Opcional" step="0.01">
+      </div>
+
+      <div>
+        <label>Stock</label>
+        <input type="number" id="stock" placeholder="Ejemplo: 5">
+      </div>
+
+      <div>
+        <label>Color</label>
+        <input type="text" id="color" placeholder="Ejemplo: Azul">
+      </div>
+
+      <div>
+        <label>Talla</label>
+        <input type="text" id="talla" placeholder="Ejemplo: M">
+      </div>
+
+      <div>
+        <label>Estado</label>
+        <select id="estado">
+          <option value="activo">Activo</option>
+          <option value="agotado">Agotado</option>
+          <option value="oculto">Oculto</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Destacado</label>
+        <select id="destacado">
+          <option value="no">No</option>
+          <option value="si">Sí</option>
+        </select>
+      </div>
+    </div>
+
+    <label>Descripción</label>
+    <textarea id="descripcion" placeholder="Describe brevemente el producto"></textarea>
+
+    <label>URL de imagen</label>
+    <input type="text" id="imagen" placeholder="Pegue enlace de Google Drive o ruta de imagen">
+    <div class="nota">
+      Puede pegar un enlace normal de Google Drive. El sistema lo convertirá automáticamente.
+    </div>
+
+    <label>Observación interna</label>
+    <textarea id="observacion" placeholder="Notas internas opcionales"></textarea>
+
+    <div class="acciones">
+      <button onclick="guardarProducto()">Guardar Producto</button>
+      <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+
+    <div id="mensajeAdmin"></div>
+  </section>
+
+</main>
+
+<script>
+  const API_URL = "https://script.google.com/macros/s/AKfycbwFRRW69sdGzUudNh9SK23v2Fj-5FW5w1MNK62QKWDydbFTb0g_gKEmypBp1oWBl-CI/exec";
+
+  let usuarioActivo = null;
+
+  async function login() {
+    const usuario = document.getElementById("usuario").value.trim();
+    const clave = document.getElementById("clave").value.trim();
+
+    if (!usuario || !clave) {
+      mostrarMensaje("mensajeLogin", "Ingrese usuario y clave.", "error");
+      return;
+    }
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          accion: "login",
+          usuario,
+          clave
+        })
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeLogin", json.mensaje || "Datos incorrectos.", "error");
+        return;
+      }
+
+      usuarioActivo = json.usuario.usuario;
+
+      document.getElementById("loginBox").classList.add("oculto");
+      document.getElementById("adminBox").classList.remove("oculto");
+
+      cargarCategorias();
+
+    } catch (error) {
+      mostrarMensaje("mensajeLogin", "No se pudo conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+  async function cargarCategorias() {
+    try {
+      const res = await fetch(API_URL + "?accion=categorias");
+      const json = await res.json();
+
+      const select = document.getElementById("categoria");
+      select.innerHTML = '<option value="">Seleccione categoría</option>';
+
+      (json.data || []).forEach(cat => {
+        const option = document.createElement("option");
+        option.value = cat.nombre;
+        option.textContent = cat.nombre;
+        select.appendChild(option);
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function guardarProducto() {
+    const nombre = document.getElementById("nombre").value.trim();
+    const categoria = document.getElementById("categoria").value;
+    const precio = document.getElementById("precio").value;
+
+    if (!nombre || !categoria || !precio) {
+      mostrarMensaje("mensajeAdmin", "Nombre, categoría y precio son obligatorios.", "error");
+      return;
+    }
+
+    const data = {
+      accion: "guardarProducto",
+      usuario: usuarioActivo || "admin",
+      nombre,
+      categoria,
+      marca: document.getElementById("marca").value.trim(),
+      genero: document.getElementById("genero").value,
+      descripcion: document.getElementById("descripcion").value.trim(),
+      imagen_principal_url: document.getElementById("imagen").value.trim(),
+      estado: document.getElementById("estado").value,
+      destacado: document.getElementById("destacado").value,
+      precio,
+      precio_oferta: document.getElementById("precio_oferta").value,
+      stock: document.getElementById("stock").value,
+      color: document.getElementById("color").value.trim(),
+      talla: document.getElementById("talla").value.trim(),
+      observacion: document.getElementById("observacion").value.trim()
+    };
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeAdmin", json.mensaje || "No se pudo guardar.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajeAdmin", "Producto guardado correctamente.", "ok");
+      limpiarFormulario();
+
+    } catch (error) {
+      mostrarMensaje("mensajeAdmin", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+  function limpiarFormulario() {
+    document.getElementById("nombre").value = "";
+    document.getElementById("categoria").value = "";
+    document.getElementById("precio").value = "";
+    document.getElementById("precio_oferta").value = "";
+    document.getElementById("stock").value = "";
+    document.getElementById("color").value = "";
+    document.getElementById("talla").value = "";
+    document.getElementById("descripcion").value = "";
+    document.getElementById("imagen").value = "";
+    document.getElementById("observacion").value = "";
+    document.getElementById("estado").value = "activo";
+    document.getElementById("destacado").value = "no";
+  }
+
+  function cerrarSesion() {
+    usuarioActivo = null;
+    document.getElementById("adminBox").classList.add("oculto");
+    document.getElementById("loginBox").classList.remove("oculto");
+    document.getElementById("clave").value = "";
+    mostrarMensaje("mensajeLogin", "Sesión cerrada.", "ok");
+  }
+
+  function mostrarMensaje(id, texto, tipo) {
+    const div = document.getElementById(id);
+    div.className = "mensaje " + tipo;
+    div.innerText = texto;
+  }
+</script>
+
+</body>
+</html>
