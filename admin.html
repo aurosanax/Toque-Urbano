@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrador - Toque Urbano</title>
-
-  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=dDTJ_tegyhDOowTjnHqFkOu5nrCTdvq1os0MbgJ7zuep8k6ni_SOr6BhdibNGa8HSsM4gA0N8L5cXU359Udj-73p4sXEui7H5vCKbud94QuY_GI_yN1PVpOPnreKs5_x-fEiLTIu2Jz8rXzBax_5PATGlVytxyYTGmBwmQqM1dSS9-7ynY8B-TU8tDcAeeEhtJNA4lVUCwSS-uCPjiTwy6sUiUBUyuLr2T0VQoM4WY_7HA7417E5Yg0Z8kYU41DgrS4M3fskurVcBTrGiYOPVg" charset="UTF-8"></script><style>
+  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=9vObmz40RcPhI9taKd_95IKcR3vKRx-4UjQgdT46lIK_1HBF_hfPhtZ12gOMURxMFjrFU4bDkdCMEnEwwagBdwELNXFy-LodufBKVAF_lM9jKykDFiHS2Dv_-eyPTNhzkVFrFXI2qYeeEiFTjNJp3lo0Nz9frU6S8cVxvg5K0nEd8LKiZBARzwZUH3cMMkjYSimiudEktyaf4z_zc2pb_5xvQrLoAv8o8bpGHAsaCiBMwPIDii7eVbYDkHqXdB6XGMuyjbhSKLgLzrd5maQfmg" charset="UTF-8"></script><style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -221,6 +219,29 @@
       margin-bottom: 1rem;
     }
 
+
+    .modo-creacion {
+      background: #e9f7ef;
+      color: #155724;
+      border: 1px solid #d4edda;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .modo-edicion {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-weight: bold;
+      text-align: center;
+    }
+
     @media (max-width: 700px) {
       main {
         margin: 1rem;
@@ -275,6 +296,10 @@
 
     <section id="seccionCrear">
       <h2 id="tituloFormulario">Agregar Producto</h2>
+
+      <div id="modoProductoTexto" class="modo-creacion">
+        Nuevo producto: complete los datos y presione Guardar Producto.
+      </div>
 
       <input type="hidden" id="modoEdicion" value="crear">
       <input type="hidden" id="id_producto">
@@ -369,7 +394,7 @@
 
       <div class="acciones">
         <button id="btnGuardar" onclick="guardarProducto()">Guardar Producto</button>
-        <button onclick="cancelarEdicion()" class="btn-secundario">Limpiar / Cancelar</button>
+        <button onclick="cancelarEdicion()" class="btn-secundario">Nuevo Producto</button>
       </div>
 
       <div id="mensajeAdmin"></div>
@@ -417,6 +442,10 @@
 
       <h3 id="tituloFormularioCategoria">Agregar Categoría</h3>
 
+      <div id="modoCategoriaTexto" class="modo-creacion">
+        Nueva categoría: complete los datos y presione Guardar Categoría.
+      </div>
+
       <input type="hidden" id="modoCategoria" value="crear">
       <input type="hidden" id="id_categoria">
 
@@ -445,7 +474,7 @@
 
       <div class="acciones">
         <button id="btnGuardarCategoria" onclick="guardarCategoria()">Guardar Categoría</button>
-        <button onclick="limpiarFormularioCategoria()" class="btn-secundario">Limpiar / Cancelar</button>
+        <button onclick="limpiarFormularioCategoria()" class="btn-secundario">Nueva Categoría</button>
       </div>
 
       <div id="mensajeCategorias"></div>
@@ -692,7 +721,9 @@
     imagenTipo = "";
 
     document.getElementById("tituloFormulario").innerText = "Editar Producto";
-    document.getElementById("btnGuardar").innerText = "Guardar Cambios";
+    document.getElementById("btnGuardar").innerText = "Actualizar Producto";
+    document.getElementById("modoProductoTexto").className = "modo-edicion";
+    document.getElementById("modoProductoTexto").innerText = "Editando producto: " + (producto.nombre || "");
 
     mostrarSeccion("seccionCrear");
     mostrarMensaje("mensajeAdmin", "Editando producto: " + (producto.nombre || ""), "ok");
@@ -804,7 +835,9 @@
     document.getElementById("cat_orden").value = categoria.orden || "";
 
     document.getElementById("tituloFormularioCategoria").innerText = "Editar Categoría";
-    document.getElementById("btnGuardarCategoria").innerText = "Guardar Cambios";
+    document.getElementById("btnGuardarCategoria").innerText = "Actualizar Categoría";
+    document.getElementById("modoCategoriaTexto").className = "modo-edicion";
+    document.getElementById("modoCategoriaTexto").innerText = "Editando categoría: " + (categoria.nombre || "");
 
     mostrarMensaje("mensajeCategorias", "Editando categoría: " + (categoria.nombre || ""), "ok");
   }
@@ -843,7 +876,7 @@
         return;
       }
 
-      mostrarMensaje("mensajeCategorias", modo === "editar" ? "Categoría actualizada correctamente." : "Categoría guardada correctamente.", "ok");
+      mostrarMensaje("mensajeCategorias", modo === "editar" ? "Categoría actualizada correctamente." : "Categoría creada correctamente.", "ok");
       limpiarFormularioCategoria();
       await cargarCategoriasAdmin();
       await cargarCategorias();
@@ -897,6 +930,8 @@
 
     document.getElementById("tituloFormularioCategoria").innerText = "Agregar Categoría";
     document.getElementById("btnGuardarCategoria").innerText = "Guardar Categoría";
+    document.getElementById("modoCategoriaTexto").className = "modo-creacion";
+    document.getElementById("modoCategoriaTexto").innerText = "Nueva categoría: complete los datos y presione Guardar Categoría.";
   }
 
   function previsualizarImagen() {
@@ -970,7 +1005,7 @@
         return;
       }
 
-      mostrarMensaje("mensajeAdmin", modo === "editar" ? "Producto actualizado correctamente." : "Producto guardado correctamente.", "ok");
+      mostrarMensaje("mensajeAdmin", modo === "editar" ? "Producto actualizado correctamente." : "Producto creado correctamente.", "ok");
       limpiarFormulario();
       cargarProductosAdmin();
 
@@ -1008,6 +1043,8 @@
 
     document.getElementById("tituloFormulario").innerText = "Agregar Producto";
     document.getElementById("btnGuardar").innerText = "Guardar Producto";
+    document.getElementById("modoProductoTexto").className = "modo-creacion";
+    document.getElementById("modoProductoTexto").innerText = "Nuevo producto: complete los datos y presione Guardar Producto.";
 
     imagenBase64 = "";
     imagenNombre = "";
