@@ -1,1 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo - Toque Urbano</title>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #222;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+
+    .logo-text {
+      font-size: 2.2rem;
+      letter-spacing: 7px;
+      font-weight: bold;
+      margin: 0;
+      color: #111;
+    }
+
+    .logo-sub {
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    nav {
+      background: #111;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #c9a227;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      border-bottom: 2px solid #c9a227;
+      padding-bottom: 8px;
+    }
+
+    .filtros {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .filtros button {
+      background: #111;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .filtros button:hover,
+    .filtros button.activo {
+      background: #c9a227;
+      color: #111;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .producto {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #eee;
+    }
+
+    .producto h3 {
+      color: #c9a227;
+      margin-bottom: 5px;
+    }
+
+    .categoria {
+      font-size: 0.85rem;
+      color: #777;
+      font-weight: bold;
+    }
+
+    .descripcion {
+      font-size: 0.9rem;
+      color: #444;
+      min-height: 40px;
+    }
+
+    .precio {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #111;
+    }
+
+    .button {
+      display: inline-block;
+      background: #111;
+      color: white;
+      padding: 11px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #c9a227;
+      color: #111;
+    }
+
+    .mensaje {
+      text-align: center;
+      padding: 2rem;
+      color: #555;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+
+    footer h4 {
+      color: #c9a227;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1 class="logo-text">TOQUE URBANO</h1>
+  <div class="logo-sub">BOUTIQUE</div>
+</header>
+
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="index.html#contacto">Contacto</a>
+</nav>
+
+<main>
+  <h2>Catálogo de Productos</h2>
+
+  <div class="filtros" id="filtros">
+    <button class="activo" onclick="filtrarProductos('todos', this)">Todos</button>
+  </div>
+
+  <div class="productos" id="productos"></div>
+
+  <div class="mensaje" id="mensaje">Cargando catálogo...</div>
+</main>
+
+<footer>
+  <h4>Toque Urbano Boutique</h4>
+  <p>Moda urbana, moderna y elegante.</p>
+  <p>&copy; 2026 Toque Urbano. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  const API_URL = "https://script.google.com/macros/s/AKfycbwFRRW69sdGzUudNh9SK23v2Fj-5FW5w1MNK62QKWDydbFTb0g_gKEmypBp1oWBl-CI/exec";
+
+  let productosGlobal = [];
+  let configuracion = {};
+
+  async function cargarDatos() {
+    try {
+      const configRes = await fetch(API_URL + "?accion=configuracion");
+      const configJson = await configRes.json();
+      configuracion = configJson.data || {};
+
+      const categoriasRes = await fetch(API_URL + "?accion=categorias");
+      const categoriasJson = await categoriasRes.json();
+
+      const productosRes = await fetch(API_URL + "?accion=productos");
+      const productosJson = await productosRes.json();
+
+      productosGlobal = productosJson.data || [];
+
+      cargarCategorias(categoriasJson.data || []);
+      mostrarProductos(productosGlobal);
+
+    } catch (error) {
+      document.getElementById("mensaje").innerText = "No se pudo cargar el catálogo.";
+      console.error(error);
+    }
+  }
+
+  function cargarCategorias(categorias) {
+    const contenedor = document.getElementById("filtros");
+
+    categorias.forEach(cat => {
+      const btn = document.createElement("button");
+      btn.textContent = cat.nombre;
+      btn.onclick = function() {
+        filtrarProductos(cat.nombre, btn);
+      };
+      contenedor.appendChild(btn);
+    });
+  }
+
+  function mostrarProductos(productos) {
+    const contenedor = document.getElementById("productos");
+    const mensaje = document.getElementById("mensaje");
+
+    contenedor.innerHTML = "";
+
+    if (!productos || productos.length === 0) {
+      mensaje.innerText = "Próximamente tendremos productos disponibles.";
+      return;
+    }
+
+    mensaje.innerText = "";
+
+    productos.forEach(producto => {
+      const precio = obtenerPrecioProducto(producto);
+      const imagen = producto.imagen_principal_url || "https://via.placeholder.com/400x500?text=Toque+Urbano";
+      const descripcion = producto.descripcion || "Producto disponible en Toque Urbano.";
+      const categoria = producto.categoria || "General";
+      const nombre = producto.nombre || "Producto";
+
+      const whatsapp = configuracion.whatsapp || "593988951244";
+      const mensajeBase = configuracion.mensaje_whatsapp || "Hola, vengo de la página web de Toque Urbano. Me interesa este producto:";
+      const textoWhatsapp = encodeURIComponent(`${mensajeBase} ${nombre}`);
+      const linkWhatsapp = `https://wa.me/${whatsapp}?text=${textoWhatsapp}`;
+
+      const card = document.createElement("div");
+      card.className = "producto";
+      card.innerHTML = `
+        <img src="${imagen}" alt="${nombre}">
+        <h3>${nombre}</h3>
+        <p class="categoria">${categoria}</p>
+        <p class="descripcion">${descripcion}</p>
+        <p class="precio">${precio}</p>
+        <a href="${linkWhatsapp}" class="button" target="_blank">Consultar por WhatsApp</a>
+      `;
+
+      contenedor.appendChild(card);
+    });
+  }
+
+  function obtenerPrecioProducto(producto) {
+    if (producto.variantes && producto.variantes.length > 0) {
+      const variante = producto.variantes[0];
+      const precioOferta = variante.precio_oferta;
+      const precio = precioOferta || variante.precio;
+
+      if (precio) {
+        return "$" + Number(precio).toFixed(2);
+      }
+    }
+
+    return "Consultar precio";
+  }
+
+  function filtrarProductos(categoria, boton) {
+    document.querySelectorAll(".filtros button").forEach(btn => btn.classList.remove("activo"));
+    boton.classList.add("activo");
+
+    if (categoria === "todos") {
+      mostrarProductos(productosGlobal);
+      return;
+    }
+
+    const filtrados = productosGlobal.filter(p => p.categoria === categoria);
+    mostrarProductos(filtrados);
+  }
+
+  cargarDatos();
+</script>
+
+</body>
+</html>
