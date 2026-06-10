@@ -6,30 +6,185 @@
   <title>Catálogo - Toque Urbano</title>
 
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #ffffff; color: #222; }
-    header { text-align: center; padding: 2rem 1rem 1rem; }
-    .logo-text { font-size: 2.2rem; letter-spacing: 7px; font-weight: bold; margin: 0; color: #111; }
-    .logo-sub { font-size: 0.9rem; letter-spacing: 4px; color: #555; margin-top: 5px; }
-    nav { background: #111; text-align: center; padding: 12px 0; }
-    nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
-    nav a:hover { color: #c9a227; }
-    main { max-width: 1100px; margin: auto; padding: 2rem; }
-    h2 { text-align: center; border-bottom: 2px solid #c9a227; padding-bottom: 8px; }
-    .filtros { text-align: center; margin: 2rem 0; }
-    .filtros button { background: #111; color: white; border: none; padding: 10px 16px; margin: 5px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    .filtros button:hover, .filtros button.activo { background: #c9a227; color: #111; }
-    .productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
-    .producto { border: 1px solid #ddd; border-radius: 12px; padding: 1rem; text-align: center; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
-    .producto img { width: 100%; height: 240px; object-fit: cover; border-radius: 10px; background: #eee; }
-    .producto h3 { color: #c9a227; margin-bottom: 5px; }
-    .categoria { font-size: 0.85rem; color: #777; font-weight: bold; }
-    .descripcion { font-size: 0.9rem; color: #444; min-height: 40px; }
-    .precio { font-weight: bold; font-size: 1.2rem; color: #111; }
-    .button { display: inline-block; background: #111; color: white; padding: 11px 20px; border-radius: 6px; text-decoration: none; margin-top: 10px; font-weight: bold; }
-    .button:hover { background: #c9a227; color: #111; }
-    .mensaje { text-align: center; padding: 2rem; color: #555; }
-    footer { background: #111; color: white; text-align: center; padding: 2rem 1rem; margin-top: 3rem; }
-    footer h4 { color: #c9a227; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #222;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+
+    .logo-text {
+      font-size: 2.2rem;
+      letter-spacing: 7px;
+      font-weight: bold;
+      margin: 0;
+      color: #111;
+    }
+
+    .logo-sub {
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    nav {
+      background: #111;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #c9a227;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      border-bottom: 2px solid #c9a227;
+      padding-bottom: 8px;
+    }
+
+    .filtros {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .filtros button {
+      background: #111;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .filtros button:hover,
+    .filtros button.activo {
+      background: #c9a227;
+      color: #111;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .producto {
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      padding: 1rem;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 330px;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 10px;
+      background: #f4f4f4;
+      display: block;
+    }
+
+    .producto h3 {
+      color: #c9a227;
+      margin-bottom: 5px;
+    }
+
+    .categoria {
+      font-size: 0.85rem;
+      color: #777;
+      font-weight: bold;
+    }
+
+    .descripcion {
+      font-size: 0.9rem;
+      color: #444;
+      min-height: 40px;
+    }
+
+    .precio {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #111;
+    }
+
+    .button {
+      display: inline-block;
+      background: #111;
+      color: white;
+      padding: 11px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #c9a227;
+      color: #111;
+    }
+
+    .mensaje {
+      text-align: center;
+      padding: 2rem;
+      color: #555;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+
+    footer h4 {
+      color: #c9a227;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 1rem;
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+      }
+
+      nav a {
+        margin: 0 8px;
+        font-size: 0.9rem;
+      }
+
+      .producto img {
+        height: 300px;
+      }
+    }
   </style>
 </head>
 
@@ -48,10 +203,13 @@
 
 <main>
   <h2>Catálogo de Productos</h2>
+
   <div class="filtros" id="filtros">
     <button class="activo" onclick="filtrarProductos('todos', this)">Todos</button>
   </div>
+
   <div class="productos" id="productos"></div>
+
   <div class="mensaje" id="mensaje">Cargando catálogo...</div>
 </main>
 
@@ -69,17 +227,16 @@
 
   async function cargarDatos() {
     try {
-      const [configRes, categoriasRes, productosRes] = await Promise.all([
-        fetch(API_URL + "?accion=configuracion"),
-        fetch(API_URL + "?accion=categorias"),
-        fetch(API_URL + "?accion=productos")
-      ]);
-
+      const configRes = await fetch(API_URL + "?accion=configuracion");
       const configJson = await configRes.json();
+      configuracion = configJson.data || {};
+
+      const categoriasRes = await fetch(API_URL + "?accion=categorias");
       const categoriasJson = await categoriasRes.json();
+
+      const productosRes = await fetch(API_URL + "?accion=productos");
       const productosJson = await productosRes.json();
 
-      configuracion = configJson.data || {};
       productosGlobal = productosJson.data || [];
 
       cargarCategorias(categoriasJson.data || []);
@@ -89,26 +246,6 @@
       document.getElementById("mensaje").innerText = "No se pudo cargar el catálogo.";
       console.error(error);
     }
-  }
-
-  function convertirImagenDrive(url) {
-    if (!url) {
-      return "https://via.placeholder.com/400x500?text=Toque+Urbano";
-    }
-
-    let id = "";
-
-    if (url.includes("/file/d/")) {
-      id = url.split("/file/d/")[1].split("/")[0];
-    } else if (url.includes("id=")) {
-      id = url.split("id=")[1].split("&")[0];
-    }
-
-    if (id) {
-      return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
-    }
-
-    return url;
   }
 
   function cargarCategorias(categorias) {
@@ -139,7 +276,7 @@
 
     productos.forEach(producto => {
       const precio = obtenerPrecioProducto(producto);
-      const imagen = convertirImagenDrive(producto.imagen_principal_url);
+      const imagen = producto.imagen_principal_url || "https://via.placeholder.com/400x500?text=Toque+Urbano";
       const descripcion = producto.descripcion || "Producto disponible en Toque Urbano.";
       const categoria = producto.categoria || "General";
       const nombre = producto.nombre || "Producto";
@@ -152,7 +289,7 @@
       const card = document.createElement("div");
       card.className = "producto";
       card.innerHTML = `
-        <img src="${imagen}" alt="${nombre}" onerror="this.src='https://via.placeholder.com/400x500?text=Toque+Urbano'">
+        <img src="${imagen}" alt="${nombre}">
         <h3>${nombre}</h3>
         <p class="categoria">${categoria}</p>
         <p class="descripcion">${descripcion}</p>
@@ -167,9 +304,14 @@
   function obtenerPrecioProducto(producto) {
     if (producto.variantes && producto.variantes.length > 0) {
       const variante = producto.variantes[0];
-      const precio = variante.precio_oferta || variante.precio;
-      if (precio) return "$" + Number(precio).toFixed(2);
+      const precioOferta = variante.precio_oferta;
+      const precio = precioOferta || variante.precio;
+
+      if (precio) {
+        return "$" + Number(precio).toFixed(2);
+      }
     }
+
     return "Consultar precio";
   }
 
