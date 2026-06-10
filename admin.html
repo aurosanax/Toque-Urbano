@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administrador - Toque Urbano</title>
 
-  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=-a1OuZiyDt85Bf9VdA5uQg32qF7HlgUBkPAop8QsxRuxYjveektPu0C-aZc8JE2OMx6IqTfDyPjWPeNEkdbcXbqecCP_N-GlMu1AiN_k_kQ7kO8ZzpfJNnuL_OkrrSLBIPwBxYF7ps1GVimPt57FdRXz2mVqZiaXuo3ixcuP6uHu-40FESygpJs5F2V95Tap34y9-KSLiJSzQhNg7ycMbBEOgZAyaKGPFhBJlyGea_Tg5Zc5pfKDdQXiSSXO5sbpEf_iRowTwgvAi8yWciMGOg" charset="UTF-8"></script><style>
+  <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -26,7 +26,7 @@
     }
 
     main {
-      max-width: 900px;
+      max-width: 1150px;
       margin: 2rem auto;
       background: white;
       padding: 2rem;
@@ -39,6 +39,13 @@
       color: #111;
       border-bottom: 2px solid #c9a227;
       padding-bottom: 8px;
+    }
+
+    h3 {
+      color: #111;
+      margin-top: 2rem;
+      border-left: 5px solid #c9a227;
+      padding-left: 10px;
     }
 
     label {
@@ -68,7 +75,7 @@
       border: none;
       padding: 12px 20px;
       border-radius: 6px;
-      margin-top: 1.5rem;
+      margin: 6px;
       cursor: pointer;
       font-weight: bold;
     }
@@ -76,6 +83,18 @@
     button:hover {
       background: #c9a227;
       color: #111;
+    }
+
+    .btn-secundario {
+      background: #555;
+    }
+
+    .btn-peligro {
+      background: #8b0000;
+    }
+
+    .btn-ok {
+      background: #155724;
     }
 
     .oculto {
@@ -108,6 +127,7 @@
 
     .acciones {
       text-align: center;
+      margin-top: 1.5rem;
     }
 
     .nota {
@@ -130,6 +150,91 @@
       max-height: 280px;
       object-fit: contain;
       border-radius: 10px;
+    }
+
+    .tabs {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .tabs button {
+      margin: 5px;
+    }
+
+    .tabla-contenedor {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #111;
+      color: white;
+    }
+
+    .mini-img {
+      width: 55px;
+      height: 70px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: #eee;
+    }
+
+    .estado {
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .estado-activo {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .estado-oculto {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .estado-agotado {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .buscador {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 700px) {
+      main {
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      header h1 {
+        font-size: 1.4rem;
+      }
+
+      button {
+        width: 100%;
+        margin: 5px 0;
+      }
     }
   </style>
 </head>
@@ -160,102 +265,152 @@
   </section>
 
   <section id="adminBox" class="oculto">
-    <h2>Agregar Producto</h2>
 
-    <div class="grid">
-      <div>
-        <label>Nombre del producto *</label>
-        <input type="text" id="nombre" placeholder="Ejemplo: Jean Slim Azul">
-      </div>
-
-      <div>
-        <label>Categoría *</label>
-        <select id="categoria">
-          <option value="">Seleccione categoría</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Marca</label>
-        <input type="text" id="marca" value="Toque Urbano">
-      </div>
-
-      <div>
-        <label>Género</label>
-        <select id="genero">
-          <option value="Unisex">Unisex</option>
-          <option value="Hombre">Hombre</option>
-          <option value="Mujer">Mujer</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Precio *</label>
-        <input type="number" id="precio" placeholder="Ejemplo: 28" step="0.01">
-      </div>
-
-      <div>
-        <label>Precio oferta</label>
-        <input type="number" id="precio_oferta" placeholder="Opcional" step="0.01">
-      </div>
-
-      <div>
-        <label>Stock</label>
-        <input type="number" id="stock" placeholder="Ejemplo: 5">
-      </div>
-
-      <div>
-        <label>Color</label>
-        <input type="text" id="color" placeholder="Ejemplo: Azul">
-      </div>
-
-      <div>
-        <label>Talla</label>
-        <input type="text" id="talla" placeholder="Ejemplo: M">
-      </div>
-
-      <div>
-        <label>Estado</label>
-        <select id="estado">
-          <option value="activo">Activo</option>
-          <option value="agotado">Agotado</option>
-          <option value="oculto">Oculto</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Destacado</label>
-        <select id="destacado">
-          <option value="no">No</option>
-          <option value="si">Sí</option>
-        </select>
-      </div>
+    <div class="tabs">
+      <button onclick="mostrarSeccion('seccionCrear')">Agregar Producto</button>
+      <button onclick="mostrarSeccion('seccionProductos')">Productos Registrados</button>
+      <button onclick="cerrarSesion()" class="btn-peligro">Cerrar Sesión</button>
     </div>
 
-    <label>Descripción</label>
-    <textarea id="descripcion" placeholder="Describe brevemente el producto"></textarea>
+    <section id="seccionCrear">
+      <h2 id="tituloFormulario">Agregar Producto</h2>
 
-    <label>Imagen del producto</label>
-    <input type="file" id="imagenArchivo" accept="image/*" onchange="previsualizarImagen()">
-    <div class="nota">Seleccione una imagen desde su computadora o celular.</div>
+      <input type="hidden" id="modoEdicion" value="crear">
+      <input type="hidden" id="id_producto">
 
-    <div class="preview" id="previewBox">
-      <img id="previewImg" src="" alt="Vista previa">
-    </div>
+      <div class="grid">
+        <div>
+          <label>Nombre del producto *</label>
+          <input type="text" id="nombre" placeholder="Ejemplo: Jean Slim Azul">
+        </div>
 
-    <label>URL de imagen alternativa</label>
-    <input type="text" id="imagen" placeholder="Opcional: pegue enlace de Google Drive o ruta de imagen">
-    <div class="nota">Use esto solo si no selecciona imagen desde archivo.</div>
+        <div>
+          <label>Categoría *</label>
+          <select id="categoria">
+            <option value="">Seleccione categoría</option>
+          </select>
+        </div>
 
-    <label>Observación interna</label>
-    <textarea id="observacion" placeholder="Notas internas opcionales"></textarea>
+        <div>
+          <label>Marca</label>
+          <input type="text" id="marca" value="Toque Urbano">
+        </div>
 
-    <div class="acciones">
-      <button onclick="guardarProducto()">Guardar Producto</button>
-      <button onclick="cerrarSesion()">Cerrar Sesión</button>
-    </div>
+        <div>
+          <label>Género</label>
+          <select id="genero">
+            <option value="Unisex">Unisex</option>
+            <option value="Hombre">Hombre</option>
+            <option value="Mujer">Mujer</option>
+          </select>
+        </div>
 
-    <div id="mensajeAdmin"></div>
+        <div>
+          <label>Precio *</label>
+          <input type="number" id="precio" placeholder="Ejemplo: 28" step="0.01">
+        </div>
+
+        <div>
+          <label>Precio oferta</label>
+          <input type="number" id="precio_oferta" placeholder="Opcional" step="0.01">
+        </div>
+
+        <div>
+          <label>Stock</label>
+          <input type="number" id="stock" placeholder="Ejemplo: 5">
+        </div>
+
+        <div>
+          <label>Color</label>
+          <input type="text" id="color" placeholder="Ejemplo: Azul">
+        </div>
+
+        <div>
+          <label>Talla</label>
+          <input type="text" id="talla" placeholder="Ejemplo: M">
+        </div>
+
+        <div>
+          <label>Estado</label>
+          <select id="estado">
+            <option value="activo">Activo</option>
+            <option value="agotado">Agotado</option>
+            <option value="oculto">Oculto</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Destacado</label>
+          <select id="destacado">
+            <option value="no">No</option>
+            <option value="si">Sí</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Descripción</label>
+      <textarea id="descripcion" placeholder="Describe brevemente el producto"></textarea>
+
+      <label>Imagen del producto</label>
+      <input type="file" id="imagenArchivo" accept="image/*" onchange="previsualizarImagen()">
+      <div class="nota">Seleccione una imagen desde su computadora o celular.</div>
+
+      <div class="preview" id="previewBox">
+        <img id="previewImg" src="" alt="Vista previa">
+      </div>
+
+      <label>URL de imagen alternativa</label>
+      <input type="text" id="imagen" placeholder="Opcional: pegue enlace de Google Drive o ruta de imagen">
+      <div class="nota">Use esto solo si no selecciona imagen desde archivo.</div>
+
+      <label>Observación interna</label>
+      <textarea id="observacion" placeholder="Notas internas opcionales"></textarea>
+
+      <div class="acciones">
+        <button id="btnGuardar" onclick="guardarProducto()">Guardar Producto</button>
+        <button onclick="cancelarEdicion()" class="btn-secundario">Limpiar / Cancelar</button>
+      </div>
+
+      <div id="mensajeAdmin"></div>
+    </section>
+
+    <section id="seccionProductos" class="oculto">
+      <h2>Productos Registrados</h2>
+
+      <div class="buscador">
+        <label>Buscar producto</label>
+        <input type="text" id="buscarProducto" placeholder="Buscar por nombre, categoría, código o estado" oninput="filtrarTablaProductos()">
+      </div>
+
+      <div class="acciones">
+        <button onclick="cargarProductosAdmin()">Actualizar Lista</button>
+      </div>
+
+      <div id="mensajeProductos"></div>
+
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Estado</th>
+              <th>Destacado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaProductos">
+            <tr>
+              <td colspan="8">Cargando productos...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </section>
 
 </main>
@@ -267,6 +422,7 @@
   let imagenBase64 = "";
   let imagenNombre = "";
   let imagenTipo = "";
+  let productosAdminGlobal = [];
 
   async function login() {
     const usuario = document.getElementById("usuario").value.trim();
@@ -299,11 +455,22 @@
       document.getElementById("loginBox").classList.add("oculto");
       document.getElementById("adminBox").classList.remove("oculto");
 
-      cargarCategorias();
+      await cargarCategorias();
+      await cargarProductosAdmin();
 
     } catch (error) {
       mostrarMensaje("mensajeLogin", "No se pudo conectar con el servidor.", "error");
       console.error(error);
+    }
+  }
+
+  function mostrarSeccion(id) {
+    document.getElementById("seccionCrear").classList.add("oculto");
+    document.getElementById("seccionProductos").classList.add("oculto");
+    document.getElementById(id).classList.remove("oculto");
+
+    if (id === "seccionProductos") {
+      cargarProductosAdmin();
     }
   }
 
@@ -327,55 +494,62 @@
     }
   }
 
-
-  async function cargarCategoriasAdmin() {
-    const tbody = document.getElementById("tablaCategorias");
-    if (!tbody) return;
-
-    tbody.innerHTML = '<tr><td colspan="5">Cargando categorías...</td></tr>';
+  async function cargarProductosAdmin() {
+    const tbody = document.getElementById("tablaProductos");
+    tbody.innerHTML = '<tr><td colspan="8">Cargando productos...</td></tr>';
 
     try {
-      const res = await fetch(API_URL + "?accion=categoriasAdmin");
+      const res = await fetch(API_URL + "?accion=productosAdmin");
       const json = await res.json();
 
       if (!json.ok) {
-        tbody.innerHTML = '<tr><td colspan="5">No se pudo cargar categorías.</td></tr>';
-        mostrarMensaje("mensajeCategorias", json.mensaje || "Error al cargar categorías.", "error");
+        tbody.innerHTML = '<tr><td colspan="8">No se pudo cargar productos.</td></tr>';
+        mostrarMensaje("mensajeProductos", json.mensaje || "Error al cargar productos.", "error");
         return;
       }
 
-      categoriasAdminGlobal = json.data || [];
-      renderizarTablaCategorias(categoriasAdminGlobal);
+      productosAdminGlobal = json.data || [];
+      renderizarTablaProductos(productosAdminGlobal);
 
     } catch (error) {
-      tbody.innerHTML = '<tr><td colspan="5">Error de conexión.</td></tr>';
-      mostrarMensaje("mensajeCategorias", "Error al conectar con el servidor.", "error");
+      tbody.innerHTML = '<tr><td colspan="8">Error de conexión.</td></tr>';
+      mostrarMensaje("mensajeProductos", "Error al conectar con el servidor.", "error");
       console.error(error);
     }
   }
 
-  function renderizarTablaCategorias(categorias) {
-    const tbody = document.getElementById("tablaCategorias");
+  function renderizarTablaProductos(productos) {
+    const tbody = document.getElementById("tablaProductos");
     tbody.innerHTML = "";
 
-    if (!categorias || categorias.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5">No hay categorías registradas.</td></tr>';
+    if (!productos || productos.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8">No hay productos registrados.</td></tr>';
       return;
     }
 
-    categorias.forEach(categoria => {
-      const estadoClase = obtenerClaseEstado(categoria.estado);
+    productos.forEach(producto => {
+      const imagen = convertirImagenDrive(producto.imagen_principal_url || producto.imagen_variante_url);
+      const estadoClase = obtenerClaseEstado(producto.estado);
+      const precio = producto.precio ? "$" + Number(producto.precio).toFixed(2) : "Sin precio";
+      const stock = producto.stock !== "" ? producto.stock : "0";
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td><strong>${categoria.nombre || ''}</strong><br><small>${categoria.id_categoria || ''}</small></td>
-        <td>${categoria.descripcion || ''}</td>
-        <td><span class="estado ${estadoClase}">${categoria.estado || ''}</span></td>
-        <td>${categoria.orden || ''}</td>
+        <td><img src="${imagen}" class="mini-img" alt="${producto.nombre || 'Producto'}"></td>
         <td>
-          <button onclick="editarCategoria('${categoria.id_categoria}')">Editar</button>
-          <button onclick="cambiarEstadoCategoriaRapido('${categoria.id_categoria}', 'activo')" class="btn-ok">Activar</button>
-          <button onclick="cambiarEstadoCategoriaRapido('${categoria.id_categoria}', 'oculto')" class="btn-peligro">Ocultar</button>
+          <strong>${producto.nombre || ''}</strong><br>
+          <small>${producto.codigo_producto || ''}</small>
+        </td>
+        <td>${producto.categoria || ''}</td>
+        <td>${precio}</td>
+        <td>${stock}</td>
+        <td><span class="estado ${estadoClase}">${producto.estado || ''}</span></td>
+        <td>${producto.destacado || 'no'}</td>
+        <td>
+          <button onclick="editarProducto('${producto.id_producto}')">Editar</button>
+          <button onclick="cambiarEstadoRapido('${producto.id_producto}', 'activo')" class="btn-ok">Activar</button>
+          <button onclick="cambiarEstadoRapido('${producto.id_producto}', 'agotado')" class="btn-secundario">Agotado</button>
+          <button onclick="cambiarEstadoRapido('${producto.id_producto}', 'oculto')" class="btn-peligro">Ocultar</button>
         </td>
       `;
 
@@ -383,75 +557,77 @@
     });
   }
 
-  function editarCategoria(idCategoria) {
-    const categoria = categoriasAdminGlobal.find(c => c.id_categoria === idCategoria);
+  function obtenerClaseEstado(estado) {
+    if (estado === "activo") return "estado-activo";
+    if (estado === "oculto") return "estado-oculto";
+    if (estado === "agotado") return "estado-agotado";
+    return "";
+  }
 
-    if (!categoria) {
-      mostrarMensaje("mensajeCategorias", "No se encontró la categoría.", "error");
+  function filtrarTablaProductos() {
+    const texto = document.getElementById("buscarProducto").value.toLowerCase().trim();
+
+    if (!texto) {
+      renderizarTablaProductos(productosAdminGlobal);
       return;
     }
 
-    document.getElementById("modoCategoria").value = "editar";
-    document.getElementById("id_categoria").value = categoria.id_categoria || "";
-    document.getElementById("cat_nombre").value = categoria.nombre || "";
-    document.getElementById("cat_descripcion").value = categoria.descripcion || "";
-    document.getElementById("cat_estado").value = categoria.estado || "activo";
-    document.getElementById("cat_orden").value = categoria.orden || "";
+    const filtrados = productosAdminGlobal.filter(p => {
+      return String(p.nombre || "").toLowerCase().includes(texto) ||
+             String(p.categoria || "").toLowerCase().includes(texto) ||
+             String(p.codigo_producto || "").toLowerCase().includes(texto) ||
+             String(p.estado || "").toLowerCase().includes(texto);
+    });
 
-    document.getElementById("tituloFormularioCategoria").innerText = "Editar Categoría";
-    document.getElementById("btnGuardarCategoria").innerText = "Guardar Cambios";
-
-    mostrarMensaje("mensajeCategorias", "Editando categoría: " + (categoria.nombre || ""), "ok");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    renderizarTablaProductos(filtrados);
   }
 
-  async function guardarCategoria() {
-    const modo = document.getElementById("modoCategoria").value;
-    const nombre = document.getElementById("cat_nombre").value.trim();
+  function editarProducto(idProducto) {
+    const producto = productosAdminGlobal.find(p => p.id_producto === idProducto);
 
-    if (!nombre) {
-      mostrarMensaje("mensajeCategorias", "El nombre de la categoría es obligatorio.", "error");
+    if (!producto) {
+      mostrarMensaje("mensajeProductos", "No se encontró el producto.", "error");
       return;
     }
 
-    const data = {
-      accion: modo === "editar" ? "actualizarCategoria" : "guardarCategoria",
-      usuario: usuarioActivo || "admin",
-      id_categoria: document.getElementById("id_categoria").value,
-      nombre,
-      descripcion: document.getElementById("cat_descripcion").value.trim(),
-      estado: document.getElementById("cat_estado").value,
-      orden: document.getElementById("cat_orden").value
-    };
+    document.getElementById("modoEdicion").value = "editar";
+    document.getElementById("id_producto").value = producto.id_producto || "";
 
-    mostrarMensaje("mensajeCategorias", modo === "editar" ? "Guardando cambios..." : "Guardando categoría...", "ok");
+    document.getElementById("nombre").value = producto.nombre || "";
+    document.getElementById("categoria").value = producto.categoria || "";
+    document.getElementById("marca").value = producto.marca || "Toque Urbano";
+    document.getElementById("genero").value = producto.genero || "Unisex";
+    document.getElementById("precio").value = producto.precio || "";
+    document.getElementById("precio_oferta").value = producto.precio_oferta || "";
+    document.getElementById("stock").value = producto.stock || "";
+    document.getElementById("color").value = producto.color || "";
+    document.getElementById("talla").value = producto.talla || "";
+    document.getElementById("estado").value = producto.estado || "activo";
+    document.getElementById("destacado").value = producto.destacado || "no";
+    document.getElementById("descripcion").value = producto.descripcion || "";
+    document.getElementById("imagen").value = producto.imagen_principal_url || "";
+    document.getElementById("observacion").value = producto.observacion || "";
 
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify(data)
-      });
+    const imagen = convertirImagenDrive(producto.imagen_principal_url || producto.imagen_variante_url);
 
-      const json = await res.json();
-
-      if (!json.ok) {
-        mostrarMensaje("mensajeCategorias", json.mensaje || "No se pudo guardar la categoría.", "error");
-        return;
-      }
-
-      mostrarMensaje("mensajeCategorias", modo === "editar" ? "Categoría actualizada correctamente." : "Categoría guardada correctamente.", "ok");
-      limpiarFormularioCategoria();
-      await cargarCategoriasAdmin();
-      await cargarCategorias();
-
-    } catch (error) {
-      mostrarMensaje("mensajeCategorias", "Error al conectar con el servidor.", "error");
-      console.error(error);
+    if (imagen) {
+      document.getElementById("previewImg").src = imagen;
+      document.getElementById("previewBox").style.display = "block";
     }
+
+    imagenBase64 = "";
+    imagenNombre = "";
+    imagenTipo = "";
+
+    document.getElementById("tituloFormulario").innerText = "Editar Producto";
+    document.getElementById("btnGuardar").innerText = "Guardar Cambios";
+
+    mostrarSeccion("seccionCrear");
+    mostrarMensaje("mensajeAdmin", "Editando producto: " + (producto.nombre || ""), "ok");
   }
 
-  async function cambiarEstadoCategoriaRapido(idCategoria, estado) {
-    if (!confirm("¿Seguro que desea cambiar la categoría a " + estado + "?")) {
+  async function cambiarEstadoRapido(idProducto, estado) {
+    if (!confirm("¿Seguro que desea cambiar el estado a " + estado + "?")) {
       return;
     }
 
@@ -459,9 +635,9 @@
       const res = await fetch(API_URL, {
         method: "POST",
         body: JSON.stringify({
-          accion: "cambiarEstadoCategoria",
+          accion: "cambiarEstadoProducto",
           usuario: usuarioActivo || "admin",
-          id_categoria: idCategoria,
+          id_producto: idProducto,
           estado: estado
         })
       });
@@ -469,31 +645,18 @@
       const json = await res.json();
 
       if (!json.ok) {
-        mostrarMensaje("mensajeCategorias", json.mensaje || "No se pudo cambiar el estado.", "error");
+        mostrarMensaje("mensajeProductos", json.mensaje || "No se pudo cambiar el estado.", "error");
         return;
       }
 
-      mostrarMensaje("mensajeCategorias", "Estado de categoría actualizado correctamente.", "ok");
-      await cargarCategoriasAdmin();
-      await cargarCategorias();
+      mostrarMensaje("mensajeProductos", "Estado actualizado correctamente.", "ok");
+      cargarProductosAdmin();
 
     } catch (error) {
-      mostrarMensaje("mensajeCategorias", "Error al conectar con el servidor.", "error");
+      mostrarMensaje("mensajeProductos", "Error al conectar con el servidor.", "error");
       console.error(error);
     }
   }
-
-  function limpiarFormularioCategoria() {
-    document.getElementById("modoCategoria").value = "crear";
-    document.getElementById("id_categoria").value = "";
-    document.getElementById("cat_nombre").value = "";
-    document.getElementById("cat_descripcion").value = "";
-    document.getElementById("cat_estado").value = "activo";
-    document.getElementById("cat_orden").value = "";
-    document.getElementById("tituloFormularioCategoria").innerText = "Agregar Categoría";
-    document.getElementById("btnGuardarCategoria").innerText = "Guardar Categoría";
-  }
-
 
   function previsualizarImagen() {
     const archivo = document.getElementById("imagenArchivo").files[0];
@@ -517,6 +680,7 @@
   }
 
   async function guardarProducto() {
+    const modo = document.getElementById("modoEdicion").value;
     const nombre = document.getElementById("nombre").value.trim();
     const categoria = document.getElementById("categoria").value;
     const precio = document.getElementById("precio").value;
@@ -526,11 +690,10 @@
       return;
     }
 
-    mostrarMensaje("mensajeAdmin", "Guardando producto, espere...", "ok");
-
     const data = {
-      accion: "guardarProducto",
+      accion: modo === "editar" ? "actualizarProducto" : "guardarProducto",
       usuario: usuarioActivo || "admin",
+      id_producto: document.getElementById("id_producto").value,
       nombre,
       categoria,
       marca: document.getElementById("marca").value.trim(),
@@ -547,8 +710,11 @@
       stock: document.getElementById("stock").value,
       color: document.getElementById("color").value.trim(),
       talla: document.getElementById("talla").value.trim(),
+      estado_variante: "activo",
       observacion: document.getElementById("observacion").value.trim()
     };
+
+    mostrarMensaje("mensajeAdmin", modo === "editar" ? "Guardando cambios..." : "Guardando producto, espere...", "ok");
 
     try {
       const res = await fetch(API_URL, {
@@ -563,8 +729,9 @@
         return;
       }
 
-      mostrarMensaje("mensajeAdmin", "Producto guardado correctamente.", "ok");
+      mostrarMensaje("mensajeAdmin", modo === "editar" ? "Producto actualizado correctamente." : "Producto guardado correctamente.", "ok");
       limpiarFormulario();
+      cargarProductosAdmin();
 
     } catch (error) {
       mostrarMensaje("mensajeAdmin", "Error al conectar con el servidor.", "error");
@@ -572,9 +739,18 @@
     }
   }
 
+  function cancelarEdicion() {
+    limpiarFormulario();
+    mostrarMensaje("mensajeAdmin", "Formulario limpio.", "ok");
+  }
+
   function limpiarFormulario() {
+    document.getElementById("modoEdicion").value = "crear";
+    document.getElementById("id_producto").value = "";
     document.getElementById("nombre").value = "";
     document.getElementById("categoria").value = "";
+    document.getElementById("marca").value = "Toque Urbano";
+    document.getElementById("genero").value = "Unisex";
     document.getElementById("precio").value = "";
     document.getElementById("precio_oferta").value = "";
     document.getElementById("stock").value = "";
@@ -588,6 +764,9 @@
     document.getElementById("destacado").value = "no";
     document.getElementById("previewImg").src = "";
     document.getElementById("previewBox").style.display = "none";
+
+    document.getElementById("tituloFormulario").innerText = "Agregar Producto";
+    document.getElementById("btnGuardar").innerText = "Guardar Producto";
 
     imagenBase64 = "";
     imagenNombre = "";
@@ -606,6 +785,26 @@
     const div = document.getElementById(id);
     div.className = "mensaje " + tipo;
     div.innerText = texto;
+  }
+
+  function convertirImagenDrive(url) {
+    if (!url) {
+      return "https://via.placeholder.com/500x650?text=Toque+Urbano";
+    }
+
+    let id = "";
+
+    if (url.includes("/file/d/")) {
+      id = url.split("/file/d/")[1].split("/")[0];
+    } else if (url.includes("id=")) {
+      id = url.split("id=")[1].split("&")[0];
+    }
+
+    if (id) {
+      return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+    }
+
+    return url;
   }
 </script>
 
