@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=DYNUKgRGqiGpghY-MvXrLpgWbh3XwPLy4Zp07mfI0oVcbRNvmShDnMMzkWWHgtQzgitnd6s4K-IbiM3HQDbxB4tG-tPGsQP-VRf-Fr9NitdhcxPayqiC4OVVvVl3wBgvbQENsu8EWq4UeGe03JuovRnrBUUbVLOkoOtnuNH1S-byEyeQpD5-DiBnKwH1bmhtIDPWk31JQQ2WEnA2Z0v5OiKOPPSPNE6eRlZas-_iOPzXS0vroZX4mg6aa6D7lflEUXU0VX14dhySVSlJPkJDkA" charset="UTF-8"></script><style>
+  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Z5PmLu02_i37-IOuHCJo1eRAiReRq7_eDDew0EzX7L7AeX9xsYFRopblyaYyD8Bs9bRSYHC-oUMSTM7Z9kAMeYUYv_3ERXO9VYr7gyaPtA0m5KTVqyjRg1eg7U5rk4ZjmiMxaqHxwXlLgTlYHvJ3uawISKQQngk-FagqrQh2Qve5u6y5t2nKFqGuGBDDJ4NlZUgznTwgjOVK2Um_dFs8qez4GfnFsg_g5eBq6jkIuijGkresB_7RYVMMQQi6ho50-ViT0-_LrtqmV1vuA18-JQ" charset="UTF-8"></script><style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -264,6 +264,46 @@
       text-align: center;
     }
 
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 2rem 0;
+    }
+
+    .dashboard-card {
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      border-left: 5px solid #c9a227;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .dashboard-card .numero {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    .dashboard-card .texto {
+      font-size: 0.95rem;
+      color: #555;
+      font-weight: bold;
+    }
+
+    .dashboard-nota {
+      background: #f4f4f4;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
     @media (max-width: 700px) {
       main {
         margin: 1rem;
@@ -310,13 +350,73 @@
   <section id="adminBox" class="oculto">
 
     <div class="tabs">
+      <button onclick="mostrarSeccion('seccionDashboard')">Dashboard</button>
       <button onclick="mostrarSeccion('seccionCrear')">Agregar Producto</button>
       <button onclick="mostrarSeccion('seccionProductos')">Productos Registrados</button>
       <button onclick="mostrarSeccion('seccionCategorias')">Categorías</button>
       <button onclick="cerrarSesion()" class="btn-peligro">Cerrar Sesión</button>
     </div>
 
-    <section id="seccionCrear">
+
+    <section id="seccionDashboard">
+      <h2>Dashboard Administrativo</h2>
+
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <span class="numero" id="dashProductosTotal">0</span>
+          <span class="texto">Productos totales</span>
+        </div>
+
+        <div class="dashboard-card">
+          <span class="numero" id="dashProductosActivos">0</span>
+          <span class="texto">Productos activos</span>
+        </div>
+
+        <div class="dashboard-card">
+          <span class="numero" id="dashProductosAgotados">0</span>
+          <span class="texto">Productos agotados</span>
+        </div>
+
+        <div class="dashboard-card">
+          <span class="numero" id="dashProductosOcultos">0</span>
+          <span class="texto">Productos ocultos</span>
+        </div>
+
+        <div class="dashboard-card">
+          <span class="numero" id="dashProductosEliminados">0</span>
+          <span class="texto">Productos eliminados</span>
+        </div>
+
+        <div class="dashboard-card">
+          <span class="numero" id="dashProductosDestacados">0</span>
+          <span class="texto">Productos destacados</span>
+        </div>
+
+        <div class="dashboard-card">
+          <span class="numero" id="dashCategoriasTotal">0</span>
+          <span class="texto">Categorías totales</span>
+        </div>
+
+        <div class="dashboard-card">
+          <span class="numero" id="dashCategoriasActivas">0</span>
+          <span class="texto">Categorías activas</span>
+        </div>
+      </div>
+
+      <div class="acciones">
+        <button onclick="actualizarDashboard()">Actualizar Dashboard</button>
+        <button onclick="mostrarSeccion('seccionProductos')" class="btn-secundario">Ver Productos</button>
+        <button onclick="mostrarSeccion('seccionCategorias')" class="btn-secundario">Ver Categorías</button>
+      </div>
+
+      <div id="mensajeDashboard"></div>
+
+      <div class="dashboard-nota">
+        Este panel resume el estado general del catálogo. No modifica información; solo muestra conteos para controlar productos, categorías, agotados, ocultos, eliminados y destacados.
+      </div>
+    </section>
+
+    <section id="seccionCrear" class="oculto">
       <h2 id="tituloFormulario">Agregar Producto</h2>
 
       <div id="modoProductoTexto" class="modo-creacion">
@@ -592,6 +692,7 @@
       await cargarCategorias();
       await cargarProductosAdmin();
       await cargarCategoriasAdmin();
+      actualizarDashboard();
 
     } catch (error) {
       mostrarMensaje("mensajeLogin", "No se pudo conectar con el servidor.", "error");
@@ -600,10 +701,15 @@
   }
 
   function mostrarSeccion(id) {
+    document.getElementById("seccionDashboard").classList.add("oculto");
     document.getElementById("seccionCrear").classList.add("oculto");
     document.getElementById("seccionProductos").classList.add("oculto");
     document.getElementById("seccionCategorias").classList.add("oculto");
     document.getElementById(id).classList.remove("oculto");
+
+    if (id === "seccionDashboard") {
+      actualizarDashboard();
+    }
 
     if (id === "seccionProductos") {
       cargarProductosAdmin();
@@ -1085,6 +1191,49 @@
     document.getElementById("btnGuardarCategoria").innerText = "Guardar Categoría";
     document.getElementById("modoCategoriaTexto").className = "modo-creacion";
     document.getElementById("modoCategoriaTexto").innerText = "Nueva categoría: complete los datos y presione Guardar Categoría.";
+  }
+
+
+  async function actualizarDashboard() {
+    try {
+      if (!productosAdminGlobal || productosAdminGlobal.length === 0) {
+        await cargarProductosAdmin();
+      }
+
+      if (!categoriasAdminGlobal || categoriasAdminGlobal.length === 0) {
+        await cargarCategoriasAdmin();
+      }
+
+      const productos = productosAdminGlobal || [];
+      const categorias = categoriasAdminGlobal || [];
+
+      const contarProductos = estado => productos.filter(p =>
+        String(p.estado || "").toLowerCase() === estado
+      ).length;
+
+      const productosDestacados = productos.filter(p =>
+        String(p.destacado || "no").toLowerCase() === "si"
+      ).length;
+
+      const categoriasActivas = categorias.filter(c =>
+        String(c.estado || "").toLowerCase() === "activo"
+      ).length;
+
+      document.getElementById("dashProductosTotal").innerText = productos.length;
+      document.getElementById("dashProductosActivos").innerText = contarProductos("activo");
+      document.getElementById("dashProductosAgotados").innerText = contarProductos("agotado");
+      document.getElementById("dashProductosOcultos").innerText = contarProductos("oculto");
+      document.getElementById("dashProductosEliminados").innerText = contarProductos("eliminado");
+      document.getElementById("dashProductosDestacados").innerText = productosDestacados;
+      document.getElementById("dashCategoriasTotal").innerText = categorias.length;
+      document.getElementById("dashCategoriasActivas").innerText = categoriasActivas;
+
+      mostrarMensaje("mensajeDashboard", "Dashboard actualizado correctamente.", "ok");
+
+    } catch (error) {
+      mostrarMensaje("mensajeDashboard", "No se pudo actualizar el dashboard.", "error");
+      console.error(error);
+    }
   }
 
   function previsualizarImagen() {
