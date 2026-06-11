@@ -650,6 +650,18 @@
       <label>Descripción</label>
       <textarea id="cat_descripcion" placeholder="Descripción breve de la categoría"></textarea>
 
+      <label>Imagen de categoría</label>
+      <input type="file" id="cat_imagenArchivo" accept="image/*" onchange="previsualizarImagenCategoria()">
+      <div class="nota">Opcional: seleccione una imagen desde su computadora o celular.</div>
+
+      <div class="preview" id="catPreviewBox">
+        <img id="catPreviewImg" src="" alt="Vista previa categoría">
+      </div>
+
+      <label>Imagen URL (Opcional)</label>
+      <input type="text" id="cat_imagen_url" placeholder="Opcional: pegue enlace de Google Drive o URL de imagen">
+      <div class="nota">Use esto solo si no selecciona imagen desde archivo.</div>
+
       <div class="acciones">
         <button id="btnGuardarCategoria" onclick="guardarCategoria()">Guardar Categoría</button>
         <button onclick="limpiarFormularioCategoria()" class="btn-secundario">Nueva Categoría</button>
@@ -960,6 +972,9 @@
   let filtroDestacadosActual = "todos";
   let usuariosAdminGlobal = [];
   let filtroUsuariosActual = "todos";
+  let catImagenBase64 = "";
+  let catImagenNombre = "";
+  let catImagenTipo = "";
 
   async function login() {
     const usuario = document.getElementById("usuario").value.trim();
@@ -1364,8 +1379,19 @@
     document.getElementById("id_categoria").value = categoria.id_categoria || "";
     document.getElementById("cat_nombre").value = categoria.nombre || "";
     document.getElementById("cat_descripcion").value = categoria.descripcion || "";
+    document.getElementById("cat_imagen_url").value = categoria.imagen_url || "";
     document.getElementById("cat_estado").value = categoria.estado || "activo";
     document.getElementById("cat_orden").value = categoria.orden || "";
+
+    const imagenCategoria = convertirImagenDrive(categoria.imagen_url || "");
+    if (categoria.imagen_url) {
+      document.getElementById("catPreviewImg").src = imagenCategoria;
+      document.getElementById("catPreviewBox").style.display = "block";
+    }
+
+    catImagenBase64 = "";
+    catImagenNombre = "";
+    catImagenTipo = "";
 
     document.getElementById("tituloFormularioCategoria").innerText = "Editar Categoría";
     document.getElementById("btnGuardarCategoria").innerText = "Actualizar Categoría";
@@ -1390,6 +1416,10 @@
       id_categoria: document.getElementById("id_categoria").value,
       nombre,
       descripcion: document.getElementById("cat_descripcion").value.trim(),
+      imagen_url: document.getElementById("cat_imagen_url").value.trim(),
+      imagen_base64: catImagenBase64,
+      imagen_nombre: catImagenNombre,
+      imagen_tipo: catImagenTipo,
       estado: document.getElementById("cat_estado").value,
       orden: document.getElementById("cat_orden").value
     };
@@ -1495,13 +1525,46 @@
     document.getElementById("id_categoria").value = "";
     document.getElementById("cat_nombre").value = "";
     document.getElementById("cat_descripcion").value = "";
+    document.getElementById("cat_imagenArchivo").value = "";
+    document.getElementById("cat_imagen_url").value = "";
+    document.getElementById("catPreviewImg").src = "";
+    document.getElementById("catPreviewBox").style.display = "none";
     document.getElementById("cat_estado").value = "activo";
     document.getElementById("cat_orden").value = "";
+
+    catImagenBase64 = "";
+    catImagenNombre = "";
+    catImagenTipo = "";
 
     document.getElementById("tituloFormularioCategoria").innerText = "Agregar Categoría";
     document.getElementById("btnGuardarCategoria").innerText = "Guardar Categoría";
     document.getElementById("modoCategoriaTexto").className = "modo-creacion";
     document.getElementById("modoCategoriaTexto").innerText = "Nueva categoría: complete los datos y presione Guardar Categoría.";
+  }
+
+
+  function previsualizarImagenCategoria() {
+    const archivo = document.getElementById("cat_imagenArchivo").files[0];
+
+    if (!archivo) return;
+
+    catImagenNombre = archivo.name;
+    catImagenTipo = archivo.type;
+
+    const lector = new FileReader();
+
+    lector.onload = function(e) {
+      const resultado = e.target.result;
+      document.getElementById("catPreviewImg").src = resultado;
+      document.getElementById("catPreviewBox").style.display = "block";
+
+      catImagenBase64 = resultado.split(",")[1];
+
+      // Si se selecciona archivo, dejamos la URL opcional vacía para evitar confusión.
+      document.getElementById("cat_imagen_url").value = "";
+    };
+
+    lector.readAsDataURL(archivo);
   }
 
   function previsualizarImagen() {
