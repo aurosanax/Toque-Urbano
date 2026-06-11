@@ -63,17 +63,17 @@
 
     .social-top {
       position: absolute;
-      top: 18px;
-      right: 24px;
+      top: 16px;
+      right: 22px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       z-index: 30;
     }
 
     .social-top a {
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
       border: 1px solid rgba(214,169,58,.75);
       color: var(--dorado2);
@@ -99,20 +99,20 @@
 
     .social-top .instagram::before {
       content: "◎";
-      font-size: 1.35rem;
+      font-size: 1.12rem;
       line-height: 1;
     }
 
     .social-top .tiktok::before {
       content: "♪";
-      font-size: 1.32rem;
+      font-size: 1.1rem;
       line-height: 1;
     }
 
     .social-top .facebook::before {
       content: "f";
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 1.35rem;
+      font-size: 1.12rem;
       line-height: 1;
       font-weight: 900;
     }
@@ -465,7 +465,7 @@
       color: var(--blanco);
       text-transform: uppercase;
       font-size: 1rem;
-      min-height: 38px;
+      min-height: 34px;
     }
 
     .precio {
@@ -588,40 +588,42 @@
     }
 
     @media (max-width: 760px) {
-      header { padding: 1.25rem 5.8rem .9rem .8rem; }
+      header { padding: 1.35rem 4.2rem .9rem .8rem; }
 
       .social-top {
-        top: 10px;
-        right: 10px;
-        gap: 7px;
+        top: 8px;
+        right: 8px;
+        gap: 5px;
       }
 
       .social-top a {
-        width: 31px;
-        height: 31px;
-        background: rgba(0,0,0,.48);
+        width: 24px;
+        height: 24px;
+        border-width: 1px;
+        background: rgba(0,0,0,.42);
+        box-shadow: none;
       }
 
       .social-top .instagram::before,
       .social-top .tiktok::before,
       .social-top .facebook::before {
-        font-size: 1.05rem;
+        font-size: .78rem;
       }
 
   
     .social-top {
       position: absolute;
-      top: 18px;
-      right: 24px;
+      top: 16px;
+      right: 22px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       z-index: 30;
     }
 
     .social-top a {
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
       border: 1px solid rgba(214,169,58,.75);
       color: var(--dorado2);
@@ -647,25 +649,35 @@
 
     .social-top .instagram::before {
       content: "◎";
-      font-size: 1.35rem;
+      font-size: 1.12rem;
       line-height: 1;
     }
 
     .social-top .tiktok::before {
       content: "♪";
-      font-size: 1.32rem;
+      font-size: 1.1rem;
       line-height: 1;
     }
 
     .social-top .facebook::before {
       content: "f";
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 1.35rem;
+      font-size: 1.12rem;
       line-height: 1;
       font-weight: 900;
     }
 
     #sloganHeader { display: none; }
+
+      .logo-text {
+        font-size: clamp(1.75rem, 7.5vw, 2.6rem);
+        letter-spacing: clamp(5px, 2vw, 10px);
+      }
+
+      .logo-sub {
+        font-size: .68rem;
+        letter-spacing: 5px;
+      }
 
       .hero {
         min-height: 500px;
