@@ -102,6 +102,8 @@
 <script>
   const API_URL = "https://script.google.com/macros/s/AKfycbwFRRW69sdGzUudNh9SK23v2Fj-5FW5w1MNK62QKWDydbFTb0g_gKEmypBp1oWBl-CI/exec";
 
+  const IMAGEN_PLACEHOLDER = "https://via.placeholder.com/500x650?text=Toque+Urbano";
+
   let configuracion = {
     whatsapp: "593988951244",
     mensaje_whatsapp: "Hola, deseo información sobre Toque Urbano.",
@@ -111,9 +113,9 @@
 
   async function iniciarIndex() {
     await cargarConfiguracion();
+    aplicarConfiguracion();
     await cargarCategorias();
     await cargarDestacados();
-    aplicarConfiguracion();
   }
 
   async function cargarConfiguracion() {
@@ -148,12 +150,21 @@
       }
 
       categorias.forEach(cat => {
-        const imagen = convertirImagenDrive(cat.imagen_url) || "https://via.placeholder.com/300x300?text=Toque+Urbano";
+        const imagenOriginal =
+          cat.imagen_url ||
+          cat.imagen ||
+          cat.url_imagen ||
+          "";
+
+        const imagen = convertirImagenDrive(imagenOriginal);
 
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-          <img src="${imagen}" alt="${cat.nombre || 'Categoría'}" class="categoria-img">
+          <img src="${imagen}" 
+               alt="${cat.nombre || 'Categoría'}" 
+               class="categoria-img"
+               onerror="this.onerror=null;this.src='${IMAGEN_PLACEHOLDER}';">
           <h3>${(cat.nombre || '').toUpperCase()}</h3>
         `;
 
@@ -185,7 +196,15 @@
       }
 
       productos.slice(0, 6).forEach(producto => {
-        const imagen = convertirImagenDrive(producto.imagen_principal_url || producto.imagen_variante_url);
+        const imagenOriginal =
+          producto.imagen_principal_url ||
+          producto.imagen_url ||
+          producto.imagen ||
+          producto.imagen_variante_url ||
+          obtenerImagenDesdeVariante(producto);
+
+        const imagen = convertirImagenDrive(imagenOriginal);
+
         const precio = obtenerPrecioProducto(producto);
         const nombre = producto.nombre || "Producto";
 
@@ -195,7 +214,10 @@
         const card = document.createElement("div");
         card.className = "producto";
         card.innerHTML = `
-          <img src="${imagen}" alt="${nombre}" loading="lazy">
+          <img src="${imagen}" 
+               alt="${nombre}" 
+               loading="lazy"
+               onerror="this.onerror=null;this.src='${IMAGEN_PLACEHOLDER}';">
           <h3>${nombre}</h3>
           <p class="precio">${precio}</p>
           <a href="${linkWhatsapp}" class="button" target="_blank">Consultar</a>
@@ -208,6 +230,14 @@
       contenedor.innerHTML = '<div class="mensaje">No se pudieron cargar los productos destacados.</div>';
       console.error("Error destacados:", error);
     }
+  }
+
+  function obtenerImagenDesdeVariante(producto) {
+    if (producto.variantes && producto.variantes.length > 0) {
+      return producto.variantes[0].imagen_url || "";
+    }
+
+    return "";
   }
 
   function obtenerPrecioProducto(producto) {
@@ -229,22 +259,27 @@
 
   function convertirImagenDrive(url) {
     if (!url) {
-      return "https://via.placeholder.com/500x650?text=Toque+Urbano";
+      return IMAGEN_PLACEHOLDER;
     }
+
+    const texto = String(url).trim();
 
     let id = "";
 
-    if (url.includes("/file/d/")) {
-      id = url.split("/file/d/")[1].split("/")[0];
-    } else if (url.includes("id=")) {
-      id = url.split("id=")[1].split("&")[0];
+    if (texto.includes("/file/d/")) {
+      id = texto.split("/file/d/")[1].split("/")[0];
+    } else if (texto.includes("id=")) {
+      id = texto.split("id=")[1].split("&")[0];
+    } else if (texto.includes("/open?")) {
+      const params = new URLSearchParams(texto.split("?")[1]);
+      id = params.get("id") || "";
     }
 
     if (id) {
       return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
     }
 
-    return url;
+    return texto;
   }
 
   function aplicarConfiguracion() {
