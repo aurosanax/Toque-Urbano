@@ -60,6 +60,63 @@
       font-weight: 700;
     }
 
+
+    .social-top {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 30;
+    }
+
+    .social-top a {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,169,58,.75);
+      color: var(--dorado2);
+      text-decoration: none;
+      display: grid;
+      place-items: center;
+      font-size: .92rem;
+      font-weight: 900;
+      background: rgba(0,0,0,.36);
+      box-shadow: 0 8px 18px rgba(0,0,0,.28);
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .social-top a:hover {
+      transform: translateY(-2px) scale(1.04);
+      background: rgba(214,169,58,.16);
+      color: #fff;
+    }
+
+    .social-top a span {
+      font-size: 0;
+    }
+
+    .social-top .instagram::before {
+      content: "◎";
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .social-top .tiktok::before {
+      content: "♪";
+      font-size: 1.32rem;
+      line-height: 1;
+    }
+
+    .social-top .facebook::before {
+      content: "f";
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.35rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
     #sloganHeader {
       margin: .9rem auto 0;
       color: rgba(255,255,255,.74);
@@ -531,8 +588,84 @@
     }
 
     @media (max-width: 760px) {
-      header { padding: 1rem .8rem .8rem; }
-      #sloganHeader { display: none; }
+      header { padding: 1.25rem 5.8rem .9rem .8rem; }
+
+      .social-top {
+        top: 10px;
+        right: 10px;
+        gap: 7px;
+      }
+
+      .social-top a {
+        width: 31px;
+        height: 31px;
+        background: rgba(0,0,0,.48);
+      }
+
+      .social-top .instagram::before,
+      .social-top .tiktok::before,
+      .social-top .facebook::before {
+        font-size: 1.05rem;
+      }
+
+  
+    .social-top {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 30;
+    }
+
+    .social-top a {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,169,58,.75);
+      color: var(--dorado2);
+      text-decoration: none;
+      display: grid;
+      place-items: center;
+      font-size: .92rem;
+      font-weight: 900;
+      background: rgba(0,0,0,.36);
+      box-shadow: 0 8px 18px rgba(0,0,0,.28);
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .social-top a:hover {
+      transform: translateY(-2px) scale(1.04);
+      background: rgba(214,169,58,.16);
+      color: #fff;
+    }
+
+    .social-top a span {
+      font-size: 0;
+    }
+
+    .social-top .instagram::before {
+      content: "◎";
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .social-top .tiktok::before {
+      content: "♪";
+      font-size: 1.32rem;
+      line-height: 1;
+    }
+
+    .social-top .facebook::before {
+      content: "f";
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.35rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    #sloganHeader { display: none; }
 
       .hero {
         min-height: 500px;
@@ -629,6 +762,12 @@
 <body>
 
 <header>
+
+  <div class="social-top" aria-label="Redes sociales">
+    <a class="instagram" href="#" target="_blank" rel="noopener" title="Instagram"><span>Instagram</span></a>
+    <a class="tiktok" href="#" target="_blank" rel="noopener" title="TikTok"><span>TikTok</span></a>
+    <a class="facebook" href="#" target="_blank" rel="noopener" title="Facebook"><span>Facebook</span></a>
+  </div>
   <h1 class="logo-text">TOQUE<br>URBANO</h1>
   <div class="logo-sub">BOUTIQUE</div>
   <p id="sloganHeader">Moda urbana, moderna y elegante para cada ocasión</p>
