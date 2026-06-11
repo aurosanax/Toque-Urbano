@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=zPonqOSEIO0UnGOnJqNdFAuRC7INyEv6W3u3HheaLZn37f4KrSDII1Vu5pN6S88P-NSk9h9ONhLlY9uCfmAm7MeUm7QMoIIFdcpB66xSaFLm7Hffdlvf2LhNRGM4FpDu5eL2VSdHH4U_6HynWVX8jKTCxRTN_cb-vNLmrx6Qr6UFRpnhb4PK8BEPkwrLqfxri78oY5tCkDqTBB8V8SKEe5Nnk5OsMKYOtxer7G2ZbRegXLzh14cBC_SQtwmKVwbj3hAETr7yF0owCNErPLuZSA" charset="UTF-8"></script><style>
+  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Khnbg7V6qI4tKftDBkXHw3Sc7BtGkrUdMv2jV2kBDAcY7WPyBxOH0smNs1BrHVNR0pihzkJmedWmsePJjAlkJy_zPWVwVmzqZsEjOpvc97Xq6PJ0q-o0F8XQdjkLmVYLnCxn7X6TFYXs30rD6XqsXIwZnQn4t-IyaylBm47yy1L8XWymUtPKQI7CyBkqkjecjtvS_Dm_GG0FrVcWLE54cFiChfhHjhJq0EIhEYQ5qfZd6H6BDG2UOknOysAIP_YTEew4-qPFVq4LS0AdtMOLyg" charset="UTF-8"></script><style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -304,7 +304,6 @@
       line-height: 1.5;
     }
 
-
     .resumen-destacados {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -324,6 +323,22 @@
     .estrella {
       color: #c9a227;
       font-weight: bold;
+    }
+
+    .config-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .papelera-resumen {
+      background: #f7f7f7;
+      border-left: 5px solid #8b0000;
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      font-weight: bold;
+      color: #555;
     }
 
     @media (max-width: 700px) {
@@ -377,6 +392,8 @@
       <button onclick="mostrarSeccion('seccionProductos')">Productos Registrados</button>
       <button onclick="mostrarSeccion('seccionCategorias')">Categorías</button>
       <button onclick="mostrarSeccion('seccionDestacados')">Destacados</button>
+      <button onclick="mostrarSeccion('seccionPapelera')">Papelera</button>
+      <button onclick="mostrarSeccion('seccionConfiguracion')">Configuración</button>
       <button onclick="cerrarSesion()" class="btn-peligro">Cerrar Sesión</button>
     </div>
 
@@ -385,45 +402,14 @@
       <h2>Dashboard Administrativo</h2>
 
       <div class="dashboard-grid">
-        <div class="dashboard-card">
-          <span class="numero" id="dashProductosTotal">0</span>
-          <span class="texto">Productos totales</span>
-        </div>
-
-        <div class="dashboard-card">
-          <span class="numero" id="dashProductosActivos">0</span>
-          <span class="texto">Productos activos</span>
-        </div>
-
-        <div class="dashboard-card">
-          <span class="numero" id="dashProductosAgotados">0</span>
-          <span class="texto">Productos agotados</span>
-        </div>
-
-        <div class="dashboard-card">
-          <span class="numero" id="dashProductosOcultos">0</span>
-          <span class="texto">Productos ocultos</span>
-        </div>
-
-        <div class="dashboard-card">
-          <span class="numero" id="dashProductosEliminados">0</span>
-          <span class="texto">Productos eliminados</span>
-        </div>
-
-        <div class="dashboard-card">
-          <span class="numero" id="dashProductosDestacados">0</span>
-          <span class="texto">Productos destacados</span>
-        </div>
-
-        <div class="dashboard-card">
-          <span class="numero" id="dashCategoriasTotal">0</span>
-          <span class="texto">Categorías totales</span>
-        </div>
-
-        <div class="dashboard-card">
-          <span class="numero" id="dashCategoriasActivas">0</span>
-          <span class="texto">Categorías activas</span>
-        </div>
+        <div class="dashboard-card"><span class="numero" id="dashProductosTotal">0</span><span class="texto">Productos totales</span></div>
+        <div class="dashboard-card"><span class="numero" id="dashProductosActivos">0</span><span class="texto">Productos activos</span></div>
+        <div class="dashboard-card"><span class="numero" id="dashProductosAgotados">0</span><span class="texto">Productos agotados</span></div>
+        <div class="dashboard-card"><span class="numero" id="dashProductosOcultos">0</span><span class="texto">Productos ocultos</span></div>
+        <div class="dashboard-card"><span class="numero" id="dashProductosEliminados">0</span><span class="texto">Productos eliminados</span></div>
+        <div class="dashboard-card"><span class="numero" id="dashProductosDestacados">0</span><span class="texto">Productos destacados</span></div>
+        <div class="dashboard-card"><span class="numero" id="dashCategoriasTotal">0</span><span class="texto">Categorías totales</span></div>
+        <div class="dashboard-card"><span class="numero" id="dashCategoriasActivas">0</span><span class="texto">Categorías activas</span></div>
       </div>
 
       <div class="acciones">
@@ -708,12 +694,116 @@
             </tr>
           </thead>
           <tbody id="tablaDestacados">
-            <tr>
-              <td colspan="6">Cargando productos...</td>
-            </tr>
+            <tr><td colspan="6">Cargando productos...</td></tr>
           </tbody>
         </table>
       </div>
+    </section>
+
+    <section id="seccionPapelera" class="oculto">
+      <h2>Papelera</h2>
+
+      <div class="papelera-resumen" id="resumenPapelera">
+        Productos eliminados: 0 | Categorías eliminadas: 0
+      </div>
+
+      <p class="nota">
+        La papelera muestra productos y categorías con estado eliminado. Desde aquí puedes restaurarlos sin entrar a Google Sheets.
+      </p>
+
+      <div class="acciones">
+        <button onclick="cargarPapelera()">Actualizar Papelera</button>
+      </div>
+
+      <div id="mensajePapelera"></div>
+
+      <h3>Productos Eliminados</h3>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaPapeleraProductos">
+            <tr><td colspan="5">Cargando productos eliminados...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Categorías Eliminadas</h3>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Descripción</th>
+              <th>Orden</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaPapeleraCategorias">
+            <tr><td colspan="4">Cargando categorías eliminadas...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="seccionConfiguracion" class="oculto">
+      <h2>Configuración General</h2>
+
+      <p class="nota">
+        Esta sección permite cambiar datos generales de la tienda sin tocar código ni Google Sheets.
+      </p>
+
+      <div class="config-grid">
+        <div>
+          <label>Nombre de la tienda</label>
+          <input type="text" id="config_nombre_tienda" placeholder="Toque Urbano Boutique">
+        </div>
+
+        <div>
+          <label>WhatsApp</label>
+          <input type="text" id="config_whatsapp" placeholder="593988951244">
+        </div>
+
+        <div>
+          <label>Correo</label>
+          <input type="text" id="config_correo" placeholder="correo@empresa.com">
+        </div>
+
+        <div>
+          <label>Instagram</label>
+          <input type="text" id="config_instagram" placeholder="https://instagram.com/...">
+        </div>
+
+        <div>
+          <label>Facebook</label>
+          <input type="text" id="config_facebook" placeholder="https://facebook.com/...">
+        </div>
+
+        <div>
+          <label>TikTok</label>
+          <input type="text" id="config_tiktok" placeholder="https://tiktok.com/@...">
+        </div>
+      </div>
+
+      <label>Mensaje de WhatsApp</label>
+      <textarea id="config_mensaje_whatsapp" placeholder="Hola, deseo información sobre Toque Urbano."></textarea>
+
+      <label>Texto principal / slogan</label>
+      <textarea id="config_slogan" placeholder="Moda urbana, moderna y elegante para cada ocasión"></textarea>
+
+      <div class="acciones">
+        <button onclick="guardarConfiguracion()">Guardar Configuración</button>
+        <button onclick="cargarConfiguracionAdmin()" class="btn-secundario">Recargar Configuración</button>
+      </div>
+
+      <div id="mensajeConfiguracion"></div>
     </section>
 
 
@@ -777,28 +867,29 @@
   }
 
   function mostrarSeccion(id) {
-    document.getElementById("seccionDashboard").classList.add("oculto");
-    document.getElementById("seccionCrear").classList.add("oculto");
-    document.getElementById("seccionProductos").classList.add("oculto");
-    document.getElementById("seccionCategorias").classList.add("oculto");
-    document.getElementById("seccionDestacados").classList.add("oculto");
+    const secciones = [
+      "seccionDashboard",
+      "seccionCrear",
+      "seccionProductos",
+      "seccionCategorias",
+      "seccionDestacados",
+      "seccionPapelera",
+      "seccionConfiguracion"
+    ];
+
+    secciones.forEach(seccion => {
+      const elemento = document.getElementById(seccion);
+      if (elemento) elemento.classList.add("oculto");
+    });
+
     document.getElementById(id).classList.remove("oculto");
 
-    if (id === "seccionDashboard") {
-      actualizarDashboard();
-    }
-
-    if (id === "seccionProductos") {
-      cargarProductosAdmin();
-    }
-
-    if (id === "seccionCategorias") {
-      cargarCategoriasAdmin();
-    }
-
-    if (id === "seccionDestacados") {
-      cargarDestacados();
-    }
+    if (id === "seccionDashboard") actualizarDashboard();
+    if (id === "seccionProductos") cargarProductosAdmin();
+    if (id === "seccionCategorias") cargarCategoriasAdmin();
+    if (id === "seccionDestacados") cargarDestacados();
+    if (id === "seccionPapelera") cargarPapelera();
+    if (id === "seccionConfiguracion") cargarConfiguracionAdmin();
   }
 
   async function cargarCategorias() {
@@ -1274,49 +1365,6 @@
     document.getElementById("modoCategoriaTexto").innerText = "Nueva categoría: complete los datos y presione Guardar Categoría.";
   }
 
-
-  async function actualizarDashboard() {
-    try {
-      if (!productosAdminGlobal || productosAdminGlobal.length === 0) {
-        await cargarProductosAdmin();
-      }
-
-      if (!categoriasAdminGlobal || categoriasAdminGlobal.length === 0) {
-        await cargarCategoriasAdmin();
-      }
-
-      const productos = productosAdminGlobal || [];
-      const categorias = categoriasAdminGlobal || [];
-
-      const contarProductos = estado => productos.filter(p =>
-        String(p.estado || "").toLowerCase() === estado
-      ).length;
-
-      const productosDestacados = productos.filter(p =>
-        String(p.destacado || "no").toLowerCase() === "si"
-      ).length;
-
-      const categoriasActivas = categorias.filter(c =>
-        String(c.estado || "").toLowerCase() === "activo"
-      ).length;
-
-      document.getElementById("dashProductosTotal").innerText = productos.length;
-      document.getElementById("dashProductosActivos").innerText = contarProductos("activo");
-      document.getElementById("dashProductosAgotados").innerText = contarProductos("agotado");
-      document.getElementById("dashProductosOcultos").innerText = contarProductos("oculto");
-      document.getElementById("dashProductosEliminados").innerText = contarProductos("eliminado");
-      document.getElementById("dashProductosDestacados").innerText = productosDestacados;
-      document.getElementById("dashCategoriasTotal").innerText = categorias.length;
-      document.getElementById("dashCategoriasActivas").innerText = categoriasActivas;
-
-      mostrarMensaje("mensajeDashboard", "Dashboard actualizado correctamente.", "ok");
-
-    } catch (error) {
-      mostrarMensaje("mensajeDashboard", "No se pudo actualizar el dashboard.", "error");
-      console.error(error);
-    }
-  }
-
   function previsualizarImagen() {
     const archivo = document.getElementById("imagenArchivo").files[0];
 
@@ -1449,6 +1497,35 @@
   }
 
 
+  async function actualizarDashboard() {
+    try {
+      if (!productosAdminGlobal || productosAdminGlobal.length === 0) await cargarProductosAdmin();
+      if (!categoriasAdminGlobal || categoriasAdminGlobal.length === 0) await cargarCategoriasAdmin();
+
+      const productos = productosAdminGlobal || [];
+      const categorias = categoriasAdminGlobal || [];
+
+      const contarProductos = estado => productos.filter(p => String(p.estado || "").toLowerCase() === estado).length;
+      const productosDestacados = productos.filter(p => String(p.destacado || "no").toLowerCase() === "si").length;
+      const categoriasActivas = categorias.filter(c => String(c.estado || "").toLowerCase() === "activo").length;
+
+      document.getElementById("dashProductosTotal").innerText = productos.length;
+      document.getElementById("dashProductosActivos").innerText = contarProductos("activo");
+      document.getElementById("dashProductosAgotados").innerText = contarProductos("agotado");
+      document.getElementById("dashProductosOcultos").innerText = contarProductos("oculto");
+      document.getElementById("dashProductosEliminados").innerText = contarProductos("eliminado");
+      document.getElementById("dashProductosDestacados").innerText = productosDestacados;
+      document.getElementById("dashCategoriasTotal").innerText = categorias.length;
+      document.getElementById("dashCategoriasActivas").innerText = categoriasActivas;
+
+      mostrarMensaje("mensajeDashboard", "Dashboard actualizado correctamente.", "ok");
+
+    } catch (error) {
+      mostrarMensaje("mensajeDashboard", "No se pudo actualizar el dashboard.", "error");
+      console.error(error);
+    }
+  }
+
   async function cargarDestacados() {
     const tbody = document.getElementById("tablaDestacados");
     if (!tbody) return;
@@ -1459,7 +1536,6 @@
       await cargarProductosAdmin();
       aplicarFiltrosDestacados();
       actualizarResumenDestacados(productosAdminGlobal);
-
     } catch (error) {
       tbody.innerHTML = '<tr><td colspan="6">Error al cargar destacados.</td></tr>';
       mostrarMensaje("mensajeDestacados", "Error al cargar productos destacados.", "error");
@@ -1485,10 +1561,7 @@
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td><img src="${imagen}" class="mini-img" alt="${producto.nombre || 'Producto'}"></td>
-        <td>
-          <strong>${producto.nombre || ''}</strong><br>
-          <small>${producto.codigo_producto || ''}</small>
-        </td>
+        <td><strong>${producto.nombre || ''}</strong><br><small>${producto.codigo_producto || ''}</small></td>
         <td>${producto.categoria || ''}</td>
         <td><span class="estado ${estadoClase}">${producto.estado || ''}</span></td>
         <td>${esDestacado ? '<span class="estrella">⭐ Sí</span>' : 'No'}</td>
@@ -1508,10 +1581,8 @@
 
   function filtrarDestacadosPorTipo(tipo, boton) {
     filtroDestacadosActual = tipo;
-
     document.querySelectorAll("#seccionDestacados .filtros-admin button").forEach(btn => btn.classList.remove("activo"));
     boton.classList.add("activo");
-
     aplicarFiltrosDestacados();
   }
 
@@ -1530,10 +1601,7 @@
         String(p.codigo_producto || "").toLowerCase().includes(texto);
 
       const destacado = String(p.destacado || "no").toLowerCase();
-
-      const coincideDestacado =
-        filtroDestacadosActual === "todos" ||
-        destacado === filtroDestacadosActual;
+      const coincideDestacado = filtroDestacadosActual === "todos" || destacado === filtroDestacadosActual;
 
       return coincideTexto && coincideDestacado;
     });
@@ -1561,10 +1629,7 @@
     }
 
     const textoAccion = destacado === "si" ? "marcar como destacado" : "quitar de destacados";
-
-    if (!confirm("¿Seguro que desea " + textoAccion + " este producto?")) {
-      return;
-    }
+    if (!confirm("¿Seguro que desea " + textoAccion + " este producto?")) return;
 
     const data = {
       accion: "actualizarProducto",
@@ -1588,11 +1653,7 @@
     };
 
     try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify(data)
-      });
-
+      const res = await fetch(API_URL, { method: "POST", body: JSON.stringify(data) });
       const json = await res.json();
 
       if (!json.ok) {
@@ -1601,13 +1662,210 @@
       }
 
       mostrarMensaje("mensajeDestacados", destacado === "si" ? "Producto marcado como destacado." : "Producto quitado de destacados.", "ok");
-
       await cargarProductosAdmin();
       aplicarFiltrosDestacados();
       actualizarDashboard();
 
     } catch (error) {
       mostrarMensaje("mensajeDestacados", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+  async function cargarPapelera() {
+    try {
+      await cargarProductosAdmin();
+      await cargarCategoriasAdmin();
+
+      const productosEliminados = productosAdminGlobal.filter(p => String(p.estado || "").toLowerCase() === "eliminado");
+      const categoriasEliminadas = categoriasAdminGlobal.filter(c => String(c.estado || "").toLowerCase() === "eliminado");
+
+      document.getElementById("resumenPapelera").innerText =
+        "Productos eliminados: " + productosEliminados.length +
+        " | Categorías eliminadas: " + categoriasEliminadas.length;
+
+      renderizarPapeleraProductos(productosEliminados);
+      renderizarPapeleraCategorias(categoriasEliminadas);
+
+    } catch (error) {
+      mostrarMensaje("mensajePapelera", "No se pudo cargar la papelera.", "error");
+      console.error(error);
+    }
+  }
+
+  function renderizarPapeleraProductos(productos) {
+    const tbody = document.getElementById("tablaPapeleraProductos");
+    tbody.innerHTML = "";
+
+    if (!productos || productos.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5">No hay productos eliminados.</td></tr>';
+      return;
+    }
+
+    productos.forEach(producto => {
+      const imagen = convertirImagenDrive(producto.imagen_principal_url || producto.imagen_variante_url);
+      const precio = producto.precio ? "$" + Number(producto.precio).toFixed(2) : "Sin precio";
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><img src="${imagen}" class="mini-img" alt="${producto.nombre || 'Producto'}"></td>
+        <td><strong>${producto.nombre || ''}</strong><br><small>${producto.codigo_producto || ''}</small></td>
+        <td>${producto.categoria || ''}</td>
+        <td>${precio}</td>
+        <td><button onclick="restaurarProducto('${producto.id_producto}')" class="btn-ok">Restaurar</button></td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function renderizarPapeleraCategorias(categorias) {
+    const tbody = document.getElementById("tablaPapeleraCategorias");
+    tbody.innerHTML = "";
+
+    if (!categorias || categorias.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4">No hay categorías eliminadas.</td></tr>';
+      return;
+    }
+
+    categorias.forEach(categoria => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><strong>${categoria.nombre || ''}</strong><br><small>${categoria.id_categoria || ''}</small></td>
+        <td>${categoria.descripcion || ''}</td>
+        <td>${categoria.orden || ''}</td>
+        <td><button onclick="restaurarCategoria('${categoria.id_categoria}')" class="btn-ok">Restaurar</button></td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function restaurarProducto(idProducto) {
+    if (!confirm("¿Seguro que desea restaurar este producto?")) return;
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          accion: "cambiarEstadoProducto",
+          usuario: usuarioActivo || "admin",
+          id_producto: idProducto,
+          estado: "activo"
+        })
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajePapelera", json.mensaje || "No se pudo restaurar el producto.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajePapelera", "Producto restaurado correctamente.", "ok");
+      await cargarPapelera();
+      actualizarDashboard();
+
+    } catch (error) {
+      mostrarMensaje("mensajePapelera", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+  async function restaurarCategoria(idCategoria) {
+    if (!confirm("¿Seguro que desea restaurar esta categoría?")) return;
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          accion: "cambiarEstadoCategoria",
+          usuario: usuarioActivo || "admin",
+          id_categoria: idCategoria,
+          estado: "activo"
+        })
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajePapelera", json.mensaje || "No se pudo restaurar la categoría.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajePapelera", "Categoría restaurada correctamente.", "ok");
+      await cargarPapelera();
+      await cargarCategorias();
+      actualizarDashboard();
+
+    } catch (error) {
+      mostrarMensaje("mensajePapelera", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
+  }
+
+  async function cargarConfiguracionAdmin() {
+    try {
+      const res = await fetch(API_URL + "?accion=configuracion");
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeConfiguracion", json.mensaje || "No se pudo cargar configuración.", "error");
+        return;
+      }
+
+      const config = json.data || {};
+
+      document.getElementById("config_nombre_tienda").value = config.nombre_tienda || "";
+      document.getElementById("config_whatsapp").value = config.whatsapp || "";
+      document.getElementById("config_correo").value = config.correo || "";
+      document.getElementById("config_instagram").value = config.instagram || "";
+      document.getElementById("config_facebook").value = config.facebook || "";
+      document.getElementById("config_tiktok").value = config.tiktok || "";
+      document.getElementById("config_mensaje_whatsapp").value = config.mensaje_whatsapp || "";
+      document.getElementById("config_slogan").value = config.slogan || "";
+
+      mostrarMensaje("mensajeConfiguracion", "Configuración cargada correctamente.", "ok");
+
+    } catch (error) {
+      mostrarMensaje("mensajeConfiguracion", "Error al cargar configuración.", "error");
+      console.error(error);
+    }
+  }
+
+  async function guardarConfiguracion() {
+    const valores = {
+      nombre_tienda: document.getElementById("config_nombre_tienda").value.trim(),
+      whatsapp: document.getElementById("config_whatsapp").value.trim(),
+      correo: document.getElementById("config_correo").value.trim(),
+      instagram: document.getElementById("config_instagram").value.trim(),
+      facebook: document.getElementById("config_facebook").value.trim(),
+      tiktok: document.getElementById("config_tiktok").value.trim(),
+      mensaje_whatsapp: document.getElementById("config_mensaje_whatsapp").value.trim(),
+      slogan: document.getElementById("config_slogan").value.trim()
+    };
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          accion: "actualizarConfiguracion",
+          usuario: usuarioActivo || "admin",
+          valores
+        })
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeConfiguracion", json.mensaje || "No se pudo guardar configuración.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajeConfiguracion", "Configuración guardada correctamente.", "ok");
+
+    } catch (error) {
+      mostrarMensaje("mensajeConfiguracion", "Error al conectar con el servidor.", "error");
       console.error(error);
     }
   }
