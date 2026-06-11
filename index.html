@@ -109,6 +109,21 @@
       line-height: 1;
     }
 
+    
+.social-mobile a{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(214,169,58,.75);
+  display:grid;
+  place-items:center;
+  color:#d6a93a;
+  text-decoration:none;
+}
+.social-mobile .instagram::before{content:"◎";}
+.social-mobile .tiktok::before{content:"♪";}
+.social-mobile .facebook::before{content:"f";font-weight:bold;}
+
     .social-top .facebook::before {
       content: "f";
       font-family: Arial, Helvetica, sans-serif;
@@ -591,9 +606,14 @@
       header { padding: 1.35rem 4.2rem .9rem .8rem; }
 
       .social-top {
-        top: 8px;
-        right: 8px;
-        gap: 5px;
+        display:none;
+      }
+
+      .social-mobile{
+        display:flex !important;
+        justify-content:center;
+        gap:14px;
+        margin:14px 0 8px;
       }
 
       .social-top a {
@@ -606,7 +626,22 @@
 
       .social-top .instagram::before,
       .social-top .tiktok::before,
-      .social-top .facebook::before {
+      
+.social-mobile a{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(214,169,58,.75);
+  display:grid;
+  place-items:center;
+  color:#d6a93a;
+  text-decoration:none;
+}
+.social-mobile .instagram::before{content:"◎";}
+.social-mobile .tiktok::before{content:"♪";}
+.social-mobile .facebook::before{content:"f";font-weight:bold;}
+
+    .social-top .facebook::before {
         font-size: .78rem;
       }
 
@@ -658,6 +693,21 @@
       font-size: 1.1rem;
       line-height: 1;
     }
+
+    
+.social-mobile a{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(214,169,58,.75);
+  display:grid;
+  place-items:center;
+  color:#d6a93a;
+  text-decoration:none;
+}
+.social-mobile .instagram::before{content:"◎";}
+.social-mobile .tiktok::before{content:"♪";}
+.social-mobile .facebook::before{content:"f";font-weight:bold;}
 
     .social-top .facebook::before {
       content: "f";
@@ -791,6 +841,13 @@
   <a href="catalogo.html">Catálogo</a>
   <a href="#contacto">Contacto</a>
 </nav>
+
+
+<div class="social-mobile" style="display:none">
+  <a class="instagram" href="#" title="Instagram"></a>
+  <a class="tiktok" href="#" title="TikTok"></a>
+  <a class="facebook" href="#" title="Facebook"></a>
+</div>
 
 <section class="hero">
   <div class="hero-content">
