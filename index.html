@@ -132,6 +132,47 @@
       font-weight: 900;
     }
 
+
+    .social-mobile {
+      display: none;
+    }
+
+    .social-mobile a {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,169,58,.75);
+      color: var(--dorado2);
+      text-decoration: none;
+      place-items: center;
+      background: rgba(0,0,0,.42);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    }
+
+    .social-mobile a span {
+      font-size: 0;
+    }
+
+    .social-mobile .instagram::before {
+      content: "◎";
+      font-size: 1.12rem;
+      line-height: 1;
+    }
+
+    .social-mobile .tiktok::before {
+      content: "♪";
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .social-mobile .facebook::before {
+      content: "f";
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.12rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
     #sloganHeader {
       margin: .9rem auto 0;
       color: rgba(255,255,255,.74);
@@ -603,20 +644,8 @@
     }
 
     @media (max-width: 760px) {
-      header { padding: 1.35rem 4.2rem .9rem .8rem; }
-
-      .social-top {
-        display:none;
-      }
-
-      .social-mobile{
-        display:flex !important;
-        justify-content:center;
-        gap:14px;
-        margin:14px 0 8px;
-      }
-
-      .social-top a {
+      header { padding: 1.15rem .8rem .9rem; }
+.social-top a {
         width: 24px;
         height: 24px;
         border-width: 1px;
@@ -710,6 +739,47 @@
 .social-mobile .facebook::before{content:"f";font-weight:bold;}
 
     .social-top .facebook::before {
+      content: "f";
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.12rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+
+    .social-mobile {
+      display: none;
+    }
+
+    .social-mobile a {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,169,58,.75);
+      color: var(--dorado2);
+      text-decoration: none;
+      place-items: center;
+      background: rgba(0,0,0,.42);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    }
+
+    .social-mobile a span {
+      font-size: 0;
+    }
+
+    .social-mobile .instagram::before {
+      content: "◎";
+      font-size: 1.12rem;
+      line-height: 1;
+    }
+
+    .social-mobile .tiktok::before {
+      content: "♪";
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .social-mobile .facebook::before {
       content: "f";
       font-family: Arial, Helvetica, sans-serif;
       font-size: 1.12rem;
@@ -818,6 +888,83 @@
         bottom: 14px;
       }
     }
+  
+    /* === CORRECCIÓN FINAL REDES SOCIALES RESPONSIVE === */
+    .social-mobile {
+      display: none !important;
+    }
+
+    .social-mobile a span {
+      font-size: 0 !important;
+    }
+
+    .social-mobile .instagram::before {
+      content: "◎" !important;
+      font-size: 1.05rem !important;
+      line-height: 1 !important;
+    }
+
+    .social-mobile .tiktok::before {
+      content: "♪" !important;
+      font-size: 1.05rem !important;
+      line-height: 1 !important;
+    }
+
+    .social-mobile .facebook::before {
+      content: "f" !important;
+      font-family: Arial, Helvetica, sans-serif !important;
+      font-size: 1.05rem !important;
+      line-height: 1 !important;
+      font-weight: 900 !important;
+    }
+
+    @media (max-width: 760px) {
+      header {
+        padding: 1.15rem .8rem .9rem !important;
+      }
+
+      header .social-top {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+
+      .hero .social-mobile {
+        display: flex !important;
+        position: absolute !important;
+        top: 38px !important;
+        left: 34px !important;
+        z-index: 8 !important;
+        gap: 12px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .hero .social-mobile a {
+        display: grid !important;
+        place-items: center !important;
+        width: 34px !important;
+        height: 34px !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(214,169,58,.72) !important;
+        color: var(--dorado2) !important;
+        background: rgba(0,0,0,.32) !important;
+        text-decoration: none !important;
+        box-shadow: 0 8px 18px rgba(0,0,0,.25) !important;
+      }
+    }
+
+    @media (min-width: 761px) {
+      .hero .social-mobile {
+        display: none !important;
+      }
+
+      header .social-top {
+        display: flex !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -843,13 +990,13 @@
 </nav>
 
 
-<div class="social-mobile" style="display:none">
-  <a class="instagram" href="#" title="Instagram"></a>
-  <a class="tiktok" href="#" title="TikTok"></a>
-  <a class="facebook" href="#" title="Facebook"></a>
-</div>
-
 <section class="hero">
+  <div class="social-mobile" aria-label="Redes sociales móvil">
+    <a class="instagram" href="#" target="_blank" rel="noopener" title="Instagram"><span>Instagram</span></a>
+    <a class="tiktok" href="#" target="_blank" rel="noopener" title="TikTok"><span>TikTok</span></a>
+    <a class="facebook" href="#" target="_blank" rel="noopener" title="Facebook"><span>Facebook</span></a>
+  </div>
+
   <div class="hero-content">
     <div class="hero-line"></div>
     <h1>Nueva <span>Colección</span></h1>
