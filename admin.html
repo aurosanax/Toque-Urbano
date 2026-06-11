@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Z5PmLu02_i37-IOuHCJo1eRAiReRq7_eDDew0EzX7L7AeX9xsYFRopblyaYyD8Bs9bRSYHC-oUMSTM7Z9kAMeYUYv_3ERXO9VYr7gyaPtA0m5KTVqyjRg1eg7U5rk4ZjmiMxaqHxwXlLgTlYHvJ3uawISKQQngk-FagqrQh2Qve5u6y5t2nKFqGuGBDDJ4NlZUgznTwgjOVK2Um_dFs8qez4GfnFsg_g5eBq6jkIuijGkresB_7RYVMMQQi6ho50-ViT0-_LrtqmV1vuA18-JQ" charset="UTF-8"></script><style>
+  <title>Administrador - Toque Urbano</title><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=zPonqOSEIO0UnGOnJqNdFAuRC7INyEv6W3u3HheaLZn37f4KrSDII1Vu5pN6S88P-NSk9h9ONhLlY9uCfmAm7MeUm7QMoIIFdcpB66xSaFLm7Hffdlvf2LhNRGM4FpDu5eL2VSdHH4U_6HynWVX8jKTCxRTN_cb-vNLmrx6Qr6UFRpnhb4PK8BEPkwrLqfxri78oY5tCkDqTBB8V8SKEe5Nnk5OsMKYOtxer7G2ZbRegXLzh14cBC_SQtwmKVwbj3hAETr7yF0owCNErPLuZSA" charset="UTF-8"></script><style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -304,6 +304,28 @@
       line-height: 1.5;
     }
 
+
+    .resumen-destacados {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 1.5rem 0;
+    }
+
+    .resumen-destacado-card {
+      background: #f7f7f7;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      border-left: 5px solid #c9a227;
+      font-weight: bold;
+    }
+
+    .estrella {
+      color: #c9a227;
+      font-weight: bold;
+    }
+
     @media (max-width: 700px) {
       main {
         margin: 1rem;
@@ -354,6 +376,7 @@
       <button onclick="mostrarSeccion('seccionCrear')">Agregar Producto</button>
       <button onclick="mostrarSeccion('seccionProductos')">Productos Registrados</button>
       <button onclick="mostrarSeccion('seccionCategorias')">Categorías</button>
+      <button onclick="mostrarSeccion('seccionDestacados')">Destacados</button>
       <button onclick="cerrarSesion()" class="btn-peligro">Cerrar Sesión</button>
     </div>
 
@@ -642,6 +665,58 @@
       </div>
     </section>
 
+    <section id="seccionDestacados" class="oculto">
+      <h2>Administrar Productos Destacados</h2>
+
+      <p class="nota">
+        En esta sección no se crean productos nuevos. Aquí se marca o se quita un producto como destacado para usarlo luego en la página principal.
+      </p>
+
+      <div class="resumen-destacados">
+        <div class="resumen-destacado-card" id="resumenDestacadosTotal">Productos: 0</div>
+        <div class="resumen-destacado-card" id="resumenDestacadosSi">Destacados: 0</div>
+        <div class="resumen-destacado-card" id="resumenDestacadosNo">No destacados: 0</div>
+      </div>
+
+      <div class="buscador">
+        <label>Buscar producto</label>
+        <input type="text" id="buscarDestacado" placeholder="Buscar por nombre, categoría o código" oninput="filtrarTablaDestacados()">
+      </div>
+
+      <div class="filtros-admin">
+        <button class="activo" onclick="filtrarDestacadosPorTipo('todos', this)">Todos</button>
+        <button onclick="filtrarDestacadosPorTipo('si', this)">Destacados</button>
+        <button onclick="filtrarDestacadosPorTipo('no', this)">No destacados</button>
+      </div>
+
+      <div class="acciones">
+        <button onclick="cargarDestacados()">Actualizar Destacados</button>
+      </div>
+
+      <div id="mensajeDestacados"></div>
+
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Estado</th>
+              <th>Destacado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaDestacados">
+            <tr>
+              <td colspan="6">Cargando productos...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
   </section>
 
 </main>
@@ -657,6 +732,7 @@
   let categoriasAdminGlobal = [];
   let filtroProductosActual = "todos";
   let filtroCategoriasActual = "todas";
+  let filtroDestacadosActual = "todos";
 
   async function login() {
     const usuario = document.getElementById("usuario").value.trim();
@@ -705,6 +781,7 @@
     document.getElementById("seccionCrear").classList.add("oculto");
     document.getElementById("seccionProductos").classList.add("oculto");
     document.getElementById("seccionCategorias").classList.add("oculto");
+    document.getElementById("seccionDestacados").classList.add("oculto");
     document.getElementById(id).classList.remove("oculto");
 
     if (id === "seccionDashboard") {
@@ -717,6 +794,10 @@
 
     if (id === "seccionCategorias") {
       cargarCategoriasAdmin();
+    }
+
+    if (id === "seccionDestacados") {
+      cargarDestacados();
     }
   }
 
@@ -1365,6 +1446,170 @@
     const div = document.getElementById(id);
     div.className = "mensaje " + tipo;
     div.innerText = texto;
+  }
+
+
+  async function cargarDestacados() {
+    const tbody = document.getElementById("tablaDestacados");
+    if (!tbody) return;
+
+    tbody.innerHTML = '<tr><td colspan="6">Cargando productos...</td></tr>';
+
+    try {
+      await cargarProductosAdmin();
+      aplicarFiltrosDestacados();
+      actualizarResumenDestacados(productosAdminGlobal);
+
+    } catch (error) {
+      tbody.innerHTML = '<tr><td colspan="6">Error al cargar destacados.</td></tr>';
+      mostrarMensaje("mensajeDestacados", "Error al cargar productos destacados.", "error");
+      console.error(error);
+    }
+  }
+
+  function renderizarTablaDestacados(productos) {
+    const tbody = document.getElementById("tablaDestacados");
+    tbody.innerHTML = "";
+
+    if (!productos || productos.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6">No hay productos para mostrar.</td></tr>';
+      return;
+    }
+
+    productos.forEach(producto => {
+      const imagen = convertirImagenDrive(producto.imagen_principal_url || producto.imagen_variante_url);
+      const estadoClase = obtenerClaseEstado(producto.estado);
+      const destacado = String(producto.destacado || "no").toLowerCase();
+      const esDestacado = destacado === "si";
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><img src="${imagen}" class="mini-img" alt="${producto.nombre || 'Producto'}"></td>
+        <td>
+          <strong>${producto.nombre || ''}</strong><br>
+          <small>${producto.codigo_producto || ''}</small>
+        </td>
+        <td>${producto.categoria || ''}</td>
+        <td><span class="estado ${estadoClase}">${producto.estado || ''}</span></td>
+        <td>${esDestacado ? '<span class="estrella">⭐ Sí</span>' : 'No'}</td>
+        <td>
+          ${
+            esDestacado
+              ? `<button onclick="cambiarDestacadoRapido('${producto.id_producto}', 'no')" class="btn-secundario">Quitar destacado</button>`
+              : `<button onclick="cambiarDestacadoRapido('${producto.id_producto}', 'si')" class="btn-ok">Marcar destacado</button>`
+          }
+          <button onclick="editarProducto('${producto.id_producto}')">Editar producto</button>
+        </td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function filtrarDestacadosPorTipo(tipo, boton) {
+    filtroDestacadosActual = tipo;
+
+    document.querySelectorAll("#seccionDestacados .filtros-admin button").forEach(btn => btn.classList.remove("activo"));
+    boton.classList.add("activo");
+
+    aplicarFiltrosDestacados();
+  }
+
+  function filtrarTablaDestacados() {
+    aplicarFiltrosDestacados();
+  }
+
+  function aplicarFiltrosDestacados() {
+    const texto = document.getElementById("buscarDestacado").value.toLowerCase().trim();
+
+    const productos = productosAdminGlobal.filter(p => {
+      const coincideTexto =
+        !texto ||
+        String(p.nombre || "").toLowerCase().includes(texto) ||
+        String(p.categoria || "").toLowerCase().includes(texto) ||
+        String(p.codigo_producto || "").toLowerCase().includes(texto);
+
+      const destacado = String(p.destacado || "no").toLowerCase();
+
+      const coincideDestacado =
+        filtroDestacadosActual === "todos" ||
+        destacado === filtroDestacadosActual;
+
+      return coincideTexto && coincideDestacado;
+    });
+
+    renderizarTablaDestacados(productos);
+    actualizarResumenDestacados(productosAdminGlobal);
+  }
+
+  function actualizarResumenDestacados(productos) {
+    const total = productos.length;
+    const destacados = productos.filter(p => String(p.destacado || "no").toLowerCase() === "si").length;
+    const noDestacados = total - destacados;
+
+    document.getElementById("resumenDestacadosTotal").innerText = "Productos: " + total;
+    document.getElementById("resumenDestacadosSi").innerText = "Destacados: " + destacados;
+    document.getElementById("resumenDestacadosNo").innerText = "No destacados: " + noDestacados;
+  }
+
+  async function cambiarDestacadoRapido(idProducto, destacado) {
+    const producto = productosAdminGlobal.find(p => p.id_producto === idProducto);
+
+    if (!producto) {
+      mostrarMensaje("mensajeDestacados", "No se encontró el producto.", "error");
+      return;
+    }
+
+    const textoAccion = destacado === "si" ? "marcar como destacado" : "quitar de destacados";
+
+    if (!confirm("¿Seguro que desea " + textoAccion + " este producto?")) {
+      return;
+    }
+
+    const data = {
+      accion: "actualizarProducto",
+      usuario: usuarioActivo || "admin",
+      id_producto: producto.id_producto,
+      nombre: producto.nombre || "",
+      categoria: producto.categoria || "",
+      marca: producto.marca || "Toque Urbano",
+      genero: producto.genero || "Unisex",
+      descripcion: producto.descripcion || "",
+      imagen_principal_url: producto.imagen_principal_url || producto.imagen_variante_url || "",
+      estado: producto.estado || "activo",
+      destacado: destacado,
+      precio: producto.precio || 0,
+      precio_oferta: producto.precio_oferta || "",
+      stock: producto.stock || 0,
+      color: producto.color || "",
+      talla: producto.talla || "",
+      estado_variante: producto.estado_variante || "activo",
+      observacion: producto.observacion || ""
+    };
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      const json = await res.json();
+
+      if (!json.ok) {
+        mostrarMensaje("mensajeDestacados", json.mensaje || "No se pudo actualizar destacado.", "error");
+        return;
+      }
+
+      mostrarMensaje("mensajeDestacados", destacado === "si" ? "Producto marcado como destacado." : "Producto quitado de destacados.", "ok");
+
+      await cargarProductosAdmin();
+      aplicarFiltrosDestacados();
+      actualizarDashboard();
+
+    } catch (error) {
+      mostrarMensaje("mensajeDestacados", "Error al conectar con el servidor.", "error");
+      console.error(error);
+    }
   }
 
   function convertirImagenDrive(url) {
