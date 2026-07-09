@@ -1,1 +1,1475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joseph Albert - Boutique</title>
 
+  <style>
+    :root {
+      --negro: #050505;
+      --grafito: #0d0f10;
+      --dorado: #d6a93a;
+      --dorado2: #f3c95a;
+      --blanco: #ffffff;
+      --linea: rgba(255,255,255,.16);
+      --sombra: 0 18px 40px rgba(0,0,0,.45);
+      --radio: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(214,169,58,.08), transparent 35%),
+        linear-gradient(180deg, #000 0%, #090909 45%, #030303 100%);
+      color: var(--blanco);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(0,0,0,.96);
+      border-bottom: 1px solid var(--linea);
+      padding: 1.2rem 1rem 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo-text {
+      margin: 0;
+      color: var(--blanco);
+      font-size: clamp(2rem, 8vw, 3.7rem);
+      letter-spacing: clamp(7px, 2.6vw, 16px);
+      line-height: .92;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow: 0 0 18px rgba(255,255,255,.12);
+    }
+
+    .logo-sub {
+      margin-top: .55rem;
+      color: var(--dorado);
+      font-size: .8rem;
+      letter-spacing: 7px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+
+    .social-top {
+      position: absolute;
+      top: 16px;
+      right: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    .social-top a {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,169,58,.75);
+      color: var(--dorado2);
+      text-decoration: none;
+      display: grid;
+      place-items: center;
+      font-size: .92rem;
+      font-weight: 900;
+      background: rgba(0,0,0,.36);
+      box-shadow: 0 8px 18px rgba(0,0,0,.28);
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .social-top a:hover {
+      transform: translateY(-2px) scale(1.04);
+      background: rgba(214,169,58,.16);
+      color: #fff;
+    }
+
+    .social-top a span {
+      font-size: 0;
+    }
+
+    .social-top .instagram::before {
+      content: "◎";
+      font-size: 1.12rem;
+      line-height: 1;
+    }
+
+    .social-top .tiktok::before {
+      content: "♪";
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    
+.social-mobile a{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(214,169,58,.75);
+  display:grid;
+  place-items:center;
+  color:#d6a93a;
+  text-decoration:none;
+}
+.social-mobile .instagram::before{content:"◎";}
+.social-mobile .tiktok::before{content:"♪";}
+.social-mobile .facebook::before{content:"f";font-weight:bold;}
+
+    .social-top .facebook::before {
+      content: "f";
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.12rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+
+    .social-mobile {
+      display: none;
+    }
+
+    .social-mobile a {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,169,58,.75);
+      color: var(--dorado2);
+      text-decoration: none;
+      place-items: center;
+      background: rgba(0,0,0,.42);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    }
+
+    .social-mobile a span {
+      font-size: 0;
+    }
+
+    .social-mobile .instagram::before {
+      content: "◎";
+      font-size: 1.12rem;
+      line-height: 1;
+    }
+
+    .social-mobile .tiktok::before {
+      content: "♪";
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .social-mobile .facebook::before {
+      content: "f";
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.12rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    #sloganHeader {
+      margin: .9rem auto 0;
+      color: rgba(255,255,255,.74);
+      max-width: 720px;
+      font-size: clamp(.9rem, 3.5vw, 1.05rem);
+      line-height: 1.4;
+    }
+
+    nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(0,0,0,.94);
+      border-bottom: 1px solid var(--linea);
+      border-top: 1px solid rgba(214,169,58,.22);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    nav a {
+      padding: 1rem .35rem;
+      text-decoration: none;
+      text-align: center;
+      color: var(--blanco);
+      font-size: clamp(.76rem, 3vw, .95rem);
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+
+    nav a:last-child { border-right: 0; }
+    nav a:hover { color: var(--dorado2); background: rgba(214,169,58,.08); }
+
+    .hero {
+      min-height: 560px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.68) 40%, rgba(0,0,0,.15) 100%),
+        url("imagenes/banner-joseph-albert.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      padding: 4.8rem clamp(1.35rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--linea);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 28% 45%, rgba(214,169,58,.18), transparent 25%),
+        linear-gradient(180deg, transparent 70%, #050505 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 650px;
+      z-index: 2;
+    }
+
+    .hero-line {
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--dorado), transparent);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      margin: 0;
+      text-transform: uppercase;
+      font-size: clamp(3.6rem, 13vw, 7.2rem);
+      line-height: .86;
+      letter-spacing: -2px;
+      color: var(--blanco);
+      text-shadow: 0 8px 25px rgba(0,0,0,.8);
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--dorado2);
+      text-shadow: 0 0 10px rgba(214,169,58,.55), 0 8px 25px rgba(0,0,0,.85);
+    }
+
+    .hero p {
+      margin: 1.4rem 0 0;
+      color: var(--blanco);
+      font-size: clamp(1rem, 4vw, 1.45rem);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.4;
+      max-width: 520px;
+    }
+
+    .hero p strong { color: var(--dorado2); font-weight: 900; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      min-height: 46px;
+      padding: .85rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: .5px;
+      background: linear-gradient(135deg, var(--dorado2), var(--dorado));
+      color: #050505;
+      border: 1px solid rgba(214,169,58,.85);
+      box-shadow: 0 10px 26px rgba(214,169,58,.22);
+      transition: transform .18s ease, filter .18s ease, background .18s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); filter: brightness(1.08); }
+
+    .button-outline {
+      background: transparent;
+      color: var(--dorado2);
+      border: 1px solid var(--dorado);
+      box-shadow: none;
+    }
+
+    .button-outline:hover { background: rgba(214,169,58,.12); }
+
+    .quick-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(0,0,0,.92);
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .quick-nav a {
+      text-align: center;
+      text-decoration: none;
+      padding: 1.1rem .3rem;
+      border-right: 1px solid rgba(255,255,255,.14);
+      color: var(--blanco);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: .86rem;
+    }
+
+    .quick-nav a:last-child { border-right: 0; }
+    .quick-nav span {
+      display: block;
+      color: var(--dorado2);
+      font-size: 1.55rem;
+      margin-bottom: .35rem;
+    }
+
+    main {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 2.3rem clamp(1rem, 4vw, 2rem);
+    }
+
+    section {
+      margin-bottom: 3.2rem;
+      content-visibility: auto;
+      contain-intrinsic-size: 600px;
+    }
+
+    .hero,
+    header,
+    nav {
+      content-visibility: visible;
+    }
+
+    #nosotros {
+      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
+      border: 1px solid var(--linea);
+      border-radius: var(--radio);
+      padding: 1.3rem 1.2rem;
+      color: rgba(255,255,255,.78);
+      box-shadow: var(--sombra);
+    }
+
+    #nosotros p { line-height: 1.7; margin: 0; }
+
+    h2 {
+      margin: 0 0 1.2rem;
+      color: var(--blanco);
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: clamp(1.45rem, 5.2vw, 2.25rem);
+      border: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 70px;
+      height: 3px;
+      background: var(--dorado);
+      margin-top: .55rem;
+      border-radius: 999px;
+    }
+
+    h3 { color: var(--blanco); }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-head .see-all {
+      color: var(--dorado2);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: .9rem;
+      letter-spacing: .5px;
+      white-space: nowrap;
+    }
+
+    .categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 1rem;
+      margin-top: 0;
+    }
+
+    .card { background: #111; }
+
+    .categoria-card {
+      position: relative;
+      height: 245px;
+      overflow: hidden;
+      padding: 0;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.26);
+      box-shadow: var(--sombra);
+      isolation: isolate;
+    }
+
+    .categoria-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.72));
+      z-index: 1;
+    }
+
+    .categoria-media, .categoria-media img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .categoria-img {
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(.92) contrast(1.06);
+      transition: transform .28s ease;
+    }
+
+    .categoria-card:hover .categoria-img { transform: scale(1.06); }
+
+    .categoria-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 1rem .75rem;
+      text-align: center;
+    }
+
+    .categoria-icon {
+      color: var(--dorado2);
+      font-size: 1.25rem;
+      display: inline-block;
+      margin-bottom: .3rem;
+    }
+
+    .categoria-card h3 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--blanco);
+      text-shadow: 0 3px 8px rgba(0,0,0,.8);
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.15rem;
+      margin-top: 0;
+    }
+
+    .producto-card {
+      overflow: hidden;
+      padding: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      text-align: left;
+    }
+
+    .producto-media {
+      background: #f3f3f3;
+      height: 265px;
+      overflow: hidden;
+    }
+
+    .producto-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      transition: transform .25s ease;
+    }
+
+    .producto-card:hover .producto-media img { transform: scale(1.035); }
+
+    .producto-info {
+      padding: 1rem;
+      background: linear-gradient(180deg, #101010, #050505);
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .producto-info h3 {
+      margin: 0 0 .65rem;
+      color: var(--blanco);
+      text-transform: uppercase;
+      font-size: 1rem;
+      min-height: 34px;
+    }
+
+    .precio {
+      margin: 0 0 .85rem;
+      font-weight: 900;
+      color: var(--dorado2);
+      font-size: 1.25rem;
+    }
+
+    .producto-info .button {
+      width: 100%;
+      min-height: 42px;
+      font-size: .88rem;
+    }
+
+    #contacto {
+      background: linear-gradient(135deg, rgba(214,169,58,.14), rgba(255,255,255,.03));
+      border: 1px solid rgba(214,169,58,.35);
+      border-radius: var(--radio);
+      padding: 1.4rem;
+      box-shadow: var(--sombra);
+    }
+
+    #contacto p {
+      color: rgba(255,255,255,.75);
+      line-height: 1.55;
+    }
+
+    .beneficios {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--linea);
+      border-bottom: 1px solid var(--linea);
+      background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      margin-top: 1rem;
+    }
+
+    .beneficio {
+      padding: 1.25rem 1rem;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.14);
+    }
+
+    .beneficio:last-child { border-right: 0; }
+
+    .beneficio .ico {
+      color: var(--dorado2);
+      font-size: 2rem;
+      display: block;
+      margin-bottom: .35rem;
+    }
+
+    .beneficio strong {
+      display: block;
+      color: var(--blanco);
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+
+    .beneficio small {
+      display: block;
+      color: rgba(255,255,255,.63);
+      text-transform: uppercase;
+      margin-top: .25rem;
+      font-size: .73rem;
+      line-height: 1.35;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 50;
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 0;
+      box-shadow: 0 10px 28px rgba(37,211,102,.42);
+    }
+
+    .whatsapp-float::before {
+      content: "☏";
+      font-size: 2.15rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      padding: 2.2rem 1rem 2.6rem;
+      background: #000;
+      color: rgba(255,255,255,.72);
+      border-top: 1px solid var(--linea);
+      text-align: center;
+      font-size: .95rem;
+    }
+
+    footer h4 {
+      margin: 0 0 .55rem;
+      color: var(--dorado2);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    footer p { margin: .35rem 0; }
+
+    .mensaje {
+      color: rgba(255,255,255,.75);
+      text-align: center;
+      padding: 1.2rem;
+      border: 1px solid var(--linea);
+      border-radius: var(--radio);
+      background: rgba(255,255,255,.04);
+      width: 100%;
+    }
+
+    @media (max-width: 760px) {
+      header { padding: 1.15rem .8rem .9rem; }
+.social-top a {
+        width: 24px;
+        height: 24px;
+        border-width: 1px;
+        background: rgba(0,0,0,.42);
+        box-shadow: none;
+      }
+
+      .social-top .instagram::before,
+      .social-top .tiktok::before,
+      
+.social-mobile a{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(214,169,58,.75);
+  display:grid;
+  place-items:center;
+  color:#d6a93a;
+  text-decoration:none;
+}
+.social-mobile .instagram::before{content:"◎";}
+.social-mobile .tiktok::before{content:"♪";}
+.social-mobile .facebook::before{content:"f";font-weight:bold;}
+
+    .social-top .facebook::before {
+        font-size: .78rem;
+      }
+
+  
+    .social-top {
+      position: absolute;
+      top: 16px;
+      right: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    .social-top a {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,169,58,.75);
+      color: var(--dorado2);
+      text-decoration: none;
+      display: grid;
+      place-items: center;
+      font-size: .92rem;
+      font-weight: 900;
+      background: rgba(0,0,0,.36);
+      box-shadow: 0 8px 18px rgba(0,0,0,.28);
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .social-top a:hover {
+      transform: translateY(-2px) scale(1.04);
+      background: rgba(214,169,58,.16);
+      color: #fff;
+    }
+
+    .social-top a span {
+      font-size: 0;
+    }
+
+    .social-top .instagram::before {
+      content: "◎";
+      font-size: 1.12rem;
+      line-height: 1;
+    }
+
+    .social-top .tiktok::before {
+      content: "♪";
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    
+.social-mobile a{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid rgba(214,169,58,.75);
+  display:grid;
+  place-items:center;
+  color:#d6a93a;
+  text-decoration:none;
+}
+.social-mobile .instagram::before{content:"◎";}
+.social-mobile .tiktok::before{content:"♪";}
+.social-mobile .facebook::before{content:"f";font-weight:bold;}
+
+    .social-top .facebook::before {
+      content: "f";
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.12rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+
+    .social-mobile {
+      display: none;
+    }
+
+    .social-mobile a {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,169,58,.75);
+      color: var(--dorado2);
+      text-decoration: none;
+      place-items: center;
+      background: rgba(0,0,0,.42);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    }
+
+    .social-mobile a span {
+      font-size: 0;
+    }
+
+    .social-mobile .instagram::before {
+      content: "◎";
+      font-size: 1.12rem;
+      line-height: 1;
+    }
+
+    .social-mobile .tiktok::before {
+      content: "♪";
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .social-mobile .facebook::before {
+      content: "f";
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.12rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    #sloganHeader { display: none; }
+
+      .logo-text {
+        font-size: clamp(1.75rem, 7.5vw, 2.6rem);
+        letter-spacing: clamp(5px, 2vw, 10px);
+      }
+
+      .logo-sub {
+        font-size: .68rem;
+        letter-spacing: 5px;
+      }
+
+      .hero {
+        min-height: 500px;
+        padding: 2.6rem 1rem;
+        background-position: 64% center;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 16vw, 5rem);
+      }
+
+      .hero p {
+        max-width: 310px;
+      }
+
+      .hero-actions {
+        gap: .75rem;
+      }
+
+      .hero-actions .button {
+        flex: 1 1 145px;
+        padding-left: .7rem;
+        padding-right: .7rem;
+        font-size: .88rem;
+      }
+
+      .quick-nav { grid-template-columns: repeat(4, 1fr); }
+
+      .quick-nav a {
+        font-size: .7rem;
+        padding: .9rem .2rem;
+      }
+
+      .quick-nav span { font-size: 1.25rem; }
+
+      main { padding: 1.65rem .95rem; }
+      #nosotros { display: none; }
+
+      .categorias {
+        display: flex;
+        gap: .85rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: .4rem;
+      }
+
+      .categoria-card {
+        min-width: 145px;
+        height: 205px;
+        scroll-snap-align: start;
+      }
+
+      .productos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .85rem;
+      }
+
+      .producto-media { height: 175px; }
+      .producto-info { padding: .8rem; }
+
+      .producto-info h3 {
+        font-size: .82rem;
+        min-height: 34px;
+      }
+
+      .precio { font-size: 1.02rem; }
+
+      .producto-info .button {
+        font-size: .75rem;
+        padding: .65rem .3rem;
+      }
+
+      .beneficios {
+        grid-template-columns: 1fr;
+      }
+
+      .beneficio {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.12);
+      }
+
+      .beneficio:last-child { border-bottom: 0; }
+
+      .whatsapp-float {
+        width: 62px;
+        height: 62px;
+        right: 14px;
+        bottom: 14px;
+      }
+    }
+  
+    /* === CORRECCIÓN FINAL REDES SOCIALES RESPONSIVE === */
+    .social-mobile {
+      display: none !important;
+    }
+
+    .social-mobile a span {
+      font-size: 0 !important;
+    }
+
+    .social-mobile .instagram::before {
+      content: "◎" !important;
+      font-size: 1.05rem !important;
+      line-height: 1 !important;
+    }
+
+    .social-mobile .tiktok::before {
+      content: "♪" !important;
+      font-size: 1.05rem !important;
+      line-height: 1 !important;
+    }
+
+    .social-mobile .facebook::before {
+      content: "f" !important;
+      font-family: Arial, Helvetica, sans-serif !important;
+      font-size: 1.05rem !important;
+      line-height: 1 !important;
+      font-weight: 900 !important;
+    }
+
+    @media (max-width: 760px) {
+      header {
+        padding: 1.15rem .8rem .9rem !important;
+      }
+
+      header .social-top {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+
+      .hero .social-mobile {
+        display: flex !important;
+        position: absolute !important;
+        top: 38px !important;
+        left: 34px !important;
+        z-index: 8 !important;
+        gap: 12px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .hero .social-mobile a {
+        display: grid !important;
+        place-items: center !important;
+        width: 34px !important;
+        height: 34px !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(214,169,58,.72) !important;
+        color: var(--dorado2) !important;
+        background: rgba(0,0,0,.32) !important;
+        text-decoration: none !important;
+        box-shadow: 0 8px 18px rgba(0,0,0,.25) !important;
+      }
+    }
+
+    @media (min-width: 761px) {
+      .hero .social-mobile {
+        display: none !important;
+      }
+
+      header .social-top {
+        display: flex !important;
+      }
+    }
+
+  
+    /* === UBICACIÓN PREMIUM JOSEPH ALBERT === */
+    #ubicacion {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(214,169,58,.16), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.018));
+      border: 1px solid rgba(214,169,58,.35);
+      border-radius: var(--radio);
+      padding: 1.4rem;
+      box-shadow: var(--sombra);
+      overflow: hidden;
+    }
+
+    .ubicacion-wrap {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .ubicacion-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: .4rem;
+    }
+
+    .ubicacion-etiqueta {
+      color: var(--dorado2);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .78rem;
+      font-weight: 900;
+      margin-bottom: .65rem;
+    }
+
+    .ubicacion-info p {
+      color: rgba(255,255,255,.74);
+      line-height: 1.6;
+      margin: 0 0 1.15rem;
+      max-width: 520px;
+    }
+
+    .map-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(214,169,58,.45);
+      min-height: 320px;
+      background: #050505;
+      box-shadow:
+        0 18px 42px rgba(0,0,0,.48),
+        inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+
+    .map-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      box-shadow: inset 0 0 34px rgba(0,0,0,.42);
+      border-radius: 16px;
+    }
+
+    .map-card iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      border: 0;
+      display: block;
+      filter: saturate(.85) contrast(1.04);
+    }
+
+    .btn-como-llegar {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      width: fit-content;
+      min-height: 50px;
+      padding: .95rem 1.35rem;
+      border-radius: 999px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 950;
+      letter-spacing: .8px;
+      color: #050505;
+      background: linear-gradient(135deg, #f7d879 0%, var(--dorado2) 35%, var(--dorado) 100%);
+      border: 1px solid rgba(255,225,130,.86);
+      box-shadow:
+        0 14px 30px rgba(214,169,58,.22),
+        0 0 0 1px rgba(255,255,255,.06) inset;
+      overflow: hidden;
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+    }
+
+    .btn-como-llegar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -80%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.48), transparent);
+      transform: skewX(-20deg);
+      transition: left .55s ease;
+    }
+
+    .btn-como-llegar:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+      box-shadow:
+        0 18px 38px rgba(214,169,58,.32),
+        0 0 22px rgba(243,201,90,.20);
+    }
+
+    .btn-como-llegar:hover::before {
+      left: 130%;
+    }
+
+    .btn-como-llegar .pin {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    @media (max-width: 760px) {
+      #ubicacion {
+        padding: 1.05rem;
+      }
+
+      .ubicacion-wrap {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .ubicacion-info {
+        padding: 0;
+      }
+
+      .map-card,
+      .map-card iframe {
+        min-height: 290px;
+      }
+
+      .btn-como-llegar {
+        width: 100%;
+        min-height: 48px;
+        font-size: .86rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="social-top" aria-label="Redes sociales">
+    <a class="instagram" href="#" target="_blank" rel="noopener" title="Instagram"><span>Instagram</span></a>
+    <a class="tiktok" href="#" target="_blank" rel="noopener" title="TikTok"><span>TikTok</span></a>
+    <a class="facebook" href="#" target="_blank" rel="noopener" title="Facebook"><span>Facebook</span></a>
+  </div>
+  <h1 class="logo-text">JOSEPH<br>ALBERT</h1>
+  <div class="logo-sub">BOUTIQUE</div>
+  <p id="sloganHeader">La elegancia del buen vestir</p>
+</header>
+
+<nav>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#categorias">Categorías</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+
+<section class="hero">
+  <div class="social-mobile" aria-label="Redes sociales móvil">
+    <a class="instagram" href="#" target="_blank" rel="noopener" title="Instagram"><span>Instagram</span></a>
+    <a class="tiktok" href="#" target="_blank" rel="noopener" title="TikTok"><span>TikTok</span></a>
+    <a class="facebook" href="#" target="_blank" rel="noopener" title="Facebook"><span>Facebook</span></a>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-line"></div>
+    <h1>Estilo <span>Premium</span></h1>
+    <p>La elegancia del buen vestir,<br><strong>exclusividad para cada ocasión.</strong></p>
+    <div class="hero-actions">
+      <a href="catalogo.html" class="button">Ver Catálogo ›</a>
+      <a id="btnHeroWhatsapp" href="#contacto" class="button button-outline">WhatsApp ☏</a>
+    </div>
+  </div>
+</section>
+
+<div class="quick-nav">
+  <a href="#nosotros"><span>♙</span>Nosotros</a>
+  <a href="#categorias"><span>♕</span>Categorías</a>
+  <a href="catalogo.html"><span>▣</span>Catálogo</a>
+  <a href="#contacto"><span>☏</span>Contacto</a>
+</div>
+
+<main>
+
+  <section id="nosotros">
+    <h2>Sobre Joseph Albert Boutique</h2>
+    <p>
+      En Joseph Albert Boutique seleccionamos prendas, calzado, perfumes y accesorios para el caballero que busca vestir con elegancia, seguridad y distinción en cada ocasión.
+    </p>
+  </section>
+
+  <section id="categorias">
+    <div class="section-head">
+      <h2>Categorías</h2>
+      <a href="catalogo.html" class="see-all">Ver todas ›</a>
+    </div>
+    <div class="categorias" id="contenedorCategorias">
+      <div class="mensaje">Cargando categorías...</div>
+    </div>
+  </section>
+
+  <section id="catalogo">
+    <div class="section-head">
+      <h2>Selección Destacada</h2>
+      <a href="catalogo.html" class="see-all">Ver todos ›</a>
+    </div>
+    <div class="productos" id="contenedorDestacados">
+      <div class="mensaje">Cargando productos destacados...</div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>Para pedidos, consultas o disponibilidad de prendas, contáctenos por WhatsApp. Próximamente activaremos el número oficial.</p>
+    <a id="btnContacto" href="#" class="button">WhatsApp próximamente</a>
+  </section>
+
+
+
+  <section id="ubicacion">
+    <div class="ubicacion-wrap">
+      <div class="ubicacion-info">
+        <div class="ubicacion-etiqueta">Ubicación</div>
+        <h2>Visítenos</h2>
+        <p>Encuentre nuestra boutique en Quevedo. Dejamos esta sección lista para colocar el mapa definitivo y la ruta directa.</p>
+        <a class="btn-como-llegar" href="#" target="_blank" rel="noopener">
+          <span class="pin">📍</span>
+          <span>Cómo llegar</span>
+        </a>
+      </div>
+
+      <div class="map-card">
+        <iframe
+          src="about:blank"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="beneficios">
+  <div class="beneficio">
+    <span class="ico">▸</span>
+    <strong>Envíos a todo el país</strong>
+    <small>Pago contra entrega</small>
+  </div>
+  <div class="beneficio">
+    <span class="ico">◇</span>
+    <strong>Compra 100% segura</strong>
+    <small>Protegemos tu compra</small>
+  </div>
+  <div class="beneficio">
+    <span class="ico">☏</span>
+    <strong>Atención por WhatsApp</strong>
+    <small>Estamos para ayudarte</small>
+  </div>
+</div>
+
+<a id="whatsappFloat" href="#" class="whatsapp-float">WhatsApp</a>
+
+<footer>
+  <h4 id="footerNombre">Joseph Albert Boutique</h4>
+  <p id="footerSlogan">La elegancia del buen vestir.</p>
+  <p>Pedidos, consultas y disponibilidad vía WhatsApp.</p>
+  <p>&copy; 2026 Joseph Albert. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+
+  const API_URL = "https://script.google.com/macros/s/AKfycbwFRRW69sdGzUudNh9SK23v2Fj-5FW5w1MNK62QKWDydbFTb0g_gKEmypBp1oWBl-CI/exec";
+
+  const IMAGEN_PLACEHOLDER = "https://via.placeholder.com/500x650?text=Toque+Urbano";
+
+  let configuracion = {
+    whatsapp: "",
+    mensaje_whatsapp: "Hola, deseo información sobre Joseph Albert.",
+    nombre_tienda: "Joseph Albert Boutique",
+    slogan: "La elegancia del buen vestir"
+  };
+
+  async function iniciarIndex() {
+    await cargarConfiguracion();
+    aplicarConfiguracion();
+    await cargarCategorias();
+    await cargarDestacados();
+  }
+
+  async function cargarConfiguracion() {
+    try {
+      const res = await fetch(API_URL + "?accion=configuracion");
+      const json = await res.json();
+
+      if (json.ok && json.data) {
+        configuracion = {
+          ...configuracion,
+          ...json.data
+        };
+      }
+    } catch (error) {
+      console.error("Error configuración:", error);
+    }
+  }
+
+  async function cargarCategorias() {
+    const contenedor = document.getElementById("contenedorCategorias");
+
+    try {
+      const res = await fetch(API_URL + "?accion=categorias");
+      const json = await res.json();
+
+      const categorias = json.data || [];
+      contenedor.innerHTML = "";
+
+      if (categorias.length === 0) {
+        contenedor.innerHTML = '<div class="mensaje">Próximamente nuevas categorías.</div>';
+        return;
+      }
+
+      categorias.forEach(cat => {
+        const imagenOriginal =
+          cat.imagen_url ||
+          cat.imagen ||
+          cat.url_imagen ||
+          "";
+
+        const imagen = convertirImagenDrive(imagenOriginal);
+
+        const card = document.createElement("div");
+        card.className = "card categoria-card";
+        card.innerHTML = `
+          <div class="categoria-media">
+            <img src="${imagen}" 
+                 alt="${cat.nombre || 'Categoría'}" 
+                 class="categoria-img"
+                 loading="lazy"
+                 onerror="this.onerror=null;this.src='${IMAGEN_PLACEHOLDER}';">
+          </div>
+          <div class="categoria-overlay">
+            <span class="categoria-icon">▣</span>
+            <h3>${(cat.nombre || '').toUpperCase()}</h3>
+          </div>
+        `;
+
+        contenedor.appendChild(card);
+      });
+
+    } catch (error) {
+      contenedor.innerHTML = '<div class="mensaje">No se pudieron cargar las categorías.</div>';
+      console.error("Error categorías:", error);
+    }
+  }
+
+  async function cargarDestacados() {
+    const contenedor = document.getElementById("contenedorDestacados");
+
+    try {
+      const res = await fetch(API_URL + "?accion=productos");
+      const json = await res.json();
+
+      const productos = (json.data || []).filter(p =>
+        String(p.destacado || "no").toLowerCase() === "si"
+      );
+
+      contenedor.innerHTML = "";
+
+      if (productos.length === 0) {
+        contenedor.innerHTML = '<div class="mensaje">Próximamente productos destacados.</div>';
+        return;
+      }
+
+      productos.slice(0, 6).forEach(producto => {
+        const imagenOriginal =
+          producto.imagen_principal_url ||
+          producto.imagen_url ||
+          producto.imagen ||
+          producto.imagen_variante_url ||
+          obtenerImagenDesdeVariante(producto);
+
+        const imagen = convertirImagenDrive(imagenOriginal);
+
+        const precio = obtenerPrecioProducto(producto);
+        const nombre = producto.nombre || "Producto";
+
+        const textoWhatsapp = encodeURIComponent(`${configuracion.mensaje_whatsapp} ${nombre}`);
+        const linkWhatsapp = `https://wa.me/${configuracion.whatsapp}?text=${textoWhatsapp}`;
+
+        const card = document.createElement("div");
+        card.className = "producto producto-card";
+        card.innerHTML = `
+          <div class="producto-media">
+            <img src="${imagen}" 
+                 alt="${nombre}" 
+                 loading="lazy"
+                 onerror="this.onerror=null;this.src='${IMAGEN_PLACEHOLDER}';">
+          </div>
+          <div class="producto-info">
+            <h3>${nombre}</h3>
+            <p class="precio">${precio}</p>
+            <a href="${linkWhatsapp}" class="button button-outline" target="_blank">Consultar <span>☏</span></a>
+          </div>
+        `;
+
+        contenedor.appendChild(card);
+      });
+
+    } catch (error) {
+      contenedor.innerHTML = '<div class="mensaje">No se pudieron cargar los productos destacados.</div>';
+      console.error("Error destacados:", error);
+    }
+  }
+
+  function obtenerImagenDesdeVariante(producto) {
+    if (producto.variantes && producto.variantes.length > 0) {
+      return producto.variantes[0].imagen_url || "";
+    }
+
+    return "";
+  }
+
+  function obtenerPrecioProducto(producto) {
+    if (producto.variantes && producto.variantes.length > 0) {
+      const variante = producto.variantes[0];
+      const precio = variante.precio_oferta || variante.precio;
+
+      if (precio) {
+        return "$" + Number(precio).toFixed(2);
+      }
+    }
+
+    if (producto.precio) {
+      return "$" + Number(producto.precio).toFixed(2);
+    }
+
+    return "Consultar precio";
+  }
+
+  function convertirImagenDrive(url) {
+    if (!url) {
+      return IMAGEN_PLACEHOLDER;
+    }
+
+    const texto = String(url).trim();
+
+    let id = "";
+
+    if (texto.includes("/file/d/")) {
+      id = texto.split("/file/d/")[1].split("/")[0];
+    } else if (texto.includes("id=")) {
+      id = texto.split("id=")[1].split("&")[0];
+    } else if (texto.includes("/open?")) {
+      const params = new URLSearchParams(texto.split("?")[1]);
+      id = params.get("id") || "";
+    }
+
+    if (id) {
+      return `https://drive.google.com/thumbnail?id=${id}&sz=w600`;
+    }
+
+    return texto;
+  }
+
+  function aplicarConfiguracion() {
+    const whatsapp = configuracion.whatsapp || "";
+    const mensaje = encodeURIComponent(configuracion.mensaje_whatsapp || "Hola, deseo información sobre Joseph Albert.");
+
+    document.getElementById("btnContacto").href = `https://wa.me/${whatsapp}?text=${mensaje}`;
+    document.getElementById("whatsappFloat").href = `https://wa.me/${whatsapp}?text=${mensaje}`;
+
+    const heroWhatsapp = document.getElementById("btnHeroWhatsapp");
+    if (heroWhatsapp) {
+      heroWhatsapp.href = `https://wa.me/${whatsapp}?text=${mensaje}`;
+    }
+
+    document.getElementById("sloganHeader").innerText = configuracion.slogan || "La elegancia del buen vestir";
+    document.getElementById("footerNombre").innerText = configuracion.nombre_tienda || "Joseph Albert Boutique";
+    document.getElementById("footerSlogan").innerText = configuracion.slogan || "La elegancia del buen vestir.";
+  }
+
+  iniciarIndex();
+
+</script>
+
+</body>
+</html>
