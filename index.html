@@ -4,20 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joseph Albert Boutique | La elegancia del buen vestir</title>
-  <meta name="description" content="Joseph Albert Boutique en Quevedo. Ropa de marca, calzado, relojes, perfumes y accesorios para caballero." />
+  <meta name="description" content="Joseph Albert Boutique en Quevedo. Moda masculina premium, prendas originales, calzado, relojes, perfumes y accesorios." />
 
   <style>
     :root {
-      --negro: #070707;
-      --carbon: #111111;
-      --marfil: #f7f3ec;
-      --marfil2: #eee6da;
-      --champagne: #c7a76b;
-      --champagne2: #e5c88a;
-      --gris: #5d5a55;
-      --linea: rgba(17,17,17,.14);
-      --linea-oscura: rgba(255,255,255,.16);
-      --sombra: 0 22px 55px rgba(0,0,0,.18);
+      --marfil: #f7f2e8;
+      --marfil2: #fffaf1;
+      --negro: #0b0b0b;
+      --grafito: #171717;
+      --gris: #6d675f;
+      --dorado: #b98a32;
+      --dorado2: #d7b56d;
+      --linea: rgba(28, 23, 18, .12);
+      --sombra: 0 22px 55px rgba(30, 24, 18, .14);
       --radio: 22px;
     }
 
@@ -26,22 +25,23 @@
 
     body {
       margin: 0;
+      background:
+        radial-gradient(circle at 18% 5%, rgba(185,138,50,.11), transparent 26%),
+        linear-gradient(180deg, var(--marfil2) 0%, var(--marfil) 52%, #eee5d6 100%);
       color: var(--negro);
-      background: var(--marfil);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Georgia", "Times New Roman", serif;
       overflow-x: hidden;
     }
 
-    img { max-width: 100%; display: block; }
     a { color: inherit; }
 
-    .top-strip {
+    .topbar {
       background: var(--negro);
-      color: rgba(255,255,255,.76);
+      color: rgba(255,255,255,.78);
       text-align: center;
       padding: .55rem 1rem;
-      font-size: .78rem;
-      letter-spacing: 2px;
+      font: 700 .72rem Arial, Helvetica, sans-serif;
+      letter-spacing: 2.4px;
       text-transform: uppercase;
     }
 
@@ -49,595 +49,538 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(247,243,236,.94);
+      background: rgba(255,250,241,.96);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--linea);
     }
 
     .header-inner {
-      width: min(1180px, calc(100% - 28px));
+      width: min(1220px, 100%);
       margin: auto;
-      min-height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-      text-decoration: none;
-      min-width: 0;
-    }
-
-    .brand-logo {
-      width: 54px;
-      height: 54px;
-      border-radius: 999px;
-      border: 1px solid rgba(199,167,107,.75);
-      background: var(--negro);
+      padding: .82rem clamp(1rem, 4vw, 2rem);
       display: grid;
-      place-items: center;
-      color: var(--champagne2);
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.32rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      flex: 0 0 auto;
-      overflow: hidden;
-    }
-
-    .brand-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 4px;
-    }
-
-    .brand-text strong {
-      display: block;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(1.18rem, 4vw, 1.75rem);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    .brand-text small {
-      display: block;
-      margin-top: .22rem;
-      color: var(--gris);
-      font-size: .72rem;
-      text-transform: uppercase;
-      letter-spacing: 2.4px;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1rem;
     }
 
     nav {
       display: flex;
+      gap: 1.15rem;
       align-items: center;
-      gap: 1.3rem;
+      font: 800 .72rem Arial, Helvetica, sans-serif;
       text-transform: uppercase;
-      font-size: .77rem;
-      letter-spacing: 1.4px;
-      font-weight: 700;
+      letter-spacing: 1.3px;
     }
 
     nav a {
       text-decoration: none;
-      color: #1b1b1b;
-      position: relative;
-      padding: .35rem 0;
+      color: var(--grafito);
+      opacity: .82;
+      padding: .45rem 0;
+      border-bottom: 1px solid transparent;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 1px;
-      background: var(--champagne);
-      transition: width .2s ease;
+    nav a:hover {
+      color: var(--dorado);
+      border-color: var(--dorado);
     }
 
-    nav a:hover::after { width: 100%; }
+    .brand {
+      text-align: center;
+      text-decoration: none;
+      display: grid;
+      place-items: center;
+      gap: .14rem;
+      min-width: 230px;
+    }
 
-    .social-top {
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--negro);
+      color: var(--dorado2);
+      font: 900 1.05rem Arial, Helvetica, sans-serif;
+      letter-spacing: -1px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.12);
+    }
+
+    .brand-name {
+      font: 900 1.14rem Arial, Helvetica, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .brand-sub {
+      color: var(--dorado);
+      font-size: .78rem;
+      font-style: italic;
+      line-height: 1;
+    }
+
+    .header-actions {
+      justify-content: flex-end;
       display: flex;
       align-items: center;
       gap: .55rem;
     }
 
-    .social-top a,
-    .social-mobile a {
+    .social {
       width: 34px;
       height: 34px;
       border-radius: 999px;
+      border: 1px solid var(--linea);
       display: grid;
       place-items: center;
       text-decoration: none;
-      border: 1px solid rgba(199,167,107,.5);
-      color: var(--negro);
-      font-weight: 900;
-      background: rgba(255,255,255,.45);
+      font: 800 .85rem Arial, Helvetica, sans-serif;
+      background: #fff;
+      transition: .2s ease;
     }
 
-    .social-top a span,
-    .social-mobile a span { font-size: 0; }
-    .instagram::before { content: "◎"; font-size: 1.05rem; }
-    .tiktok::before { content: "♪"; font-size: 1.05rem; }
-    .facebook::before { content: "f"; font-size: 1.05rem; font-family: Arial, Helvetica, sans-serif; }
-    .social-mobile { display: none; }
+    .social:hover {
+      border-color: var(--dorado);
+      color: var(--dorado);
+      transform: translateY(-2px);
+    }
 
     .hero {
-      background:
-        linear-gradient(90deg, rgba(7,7,7,.88) 0%, rgba(7,7,7,.70) 38%, rgba(7,7,7,.10) 100%),
-        url("imagenes/banner-joseph-albert.jpg");
-      background-size: cover;
-      background-position: center;
-      min-height: 650px;
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 78% 24%, rgba(229,200,138,.18), transparent 30%),
-        linear-gradient(180deg, transparent 70%, rgba(7,7,7,.86) 100%);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      width: min(1180px, calc(100% - 28px));
-      min-height: 650px;
+      width: min(1220px, 100%);
       margin: auto;
+      padding: clamp(2.2rem, 5vw, 4.8rem) clamp(1rem, 4vw, 2rem) 2.3rem;
       display: grid;
-      grid-template-columns: 1fr .86fr;
-      gap: 2rem;
+      grid-template-columns: .92fr 1.08fr;
+      gap: clamp(1.4rem, 5vw, 4rem);
       align-items: center;
+      min-height: 680px;
     }
 
-    .eyebrow {
-      color: var(--champagne2);
-      letter-spacing: 4px;
+    .hero-kicker {
+      color: var(--dorado);
+      font: 900 .74rem Arial, Helvetica, sans-serif;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      font-size: .78rem;
-      font-weight: 800;
       margin-bottom: 1rem;
     }
 
     .hero h1 {
       margin: 0;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(3.1rem, 8vw, 6.6rem);
-      line-height: .92;
-      letter-spacing: -1px;
-      max-width: 720px;
+      color: var(--negro);
+      font-size: clamp(3.2rem, 8vw, 7.7rem);
+      line-height: .86;
+      letter-spacing: -3px;
       font-weight: 500;
     }
 
     .hero h1 span {
       display: block;
-      color: var(--champagne2);
+      color: var(--dorado);
       font-style: italic;
     }
 
     .hero p {
-      margin: 1.45rem 0 0;
-      max-width: 560px;
-      color: rgba(255,255,255,.82);
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      line-height: 1.62;
+      max-width: 520px;
+      color: var(--gris);
+      line-height: 1.75;
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      margin: 1.35rem 0 0;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: .9rem;
-      margin-top: 2rem;
+      gap: .85rem;
+      margin-top: 1.7rem;
     }
 
     .button {
-      min-height: 48px;
-      padding: .86rem 1.25rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: .55rem;
+      min-height: 46px;
+      padding: .9rem 1.18rem;
       border-radius: 999px;
       text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      font-size: .78rem;
-      font-weight: 900;
       background: var(--negro);
-      color: white;
+      color: #fff;
       border: 1px solid var(--negro);
-      transition: transform .18s ease, background .18s ease, color .18s ease, border .18s ease;
+      font: 900 .78rem Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: .2s ease;
     }
 
-    .button:hover { transform: translateY(-2px); }
-
-    .button-gold {
-      background: linear-gradient(135deg, var(--champagne2), var(--champagne));
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--dorado);
+      border-color: var(--dorado);
       color: var(--negro);
-      border-color: rgba(229,200,138,.8);
     }
 
-    .button-outline {
+    .button-light {
       background: transparent;
       color: var(--negro);
-      border-color: rgba(7,7,7,.35);
+      border-color: var(--dorado);
     }
 
-    .hero .button-outline {
-      color: white;
-      border-color: rgba(255,255,255,.42);
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
     }
 
-    .editorial-card {
-      justify-self: end;
-      width: min(430px, 100%);
-      background: rgba(247,243,236,.92);
-      color: var(--negro);
-      border-radius: 28px;
-      padding: 1.3rem;
-      box-shadow: 0 28px 80px rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.45);
-    }
-
-    .editorial-photo {
-      min-height: 290px;
-      border-radius: 22px;
+    .look-card {
+      width: min(100%, 650px);
+      min-height: 505px;
+      border-radius: 32px;
       background:
-        linear-gradient(135deg, rgba(7,7,7,.12), rgba(199,167,107,.24)),
-        url("imagenes/look-joseph-albert.jpg");
-      background-size: cover;
-      background-position: center;
-      border: 1px solid rgba(7,7,7,.12);
-    }
-
-    .editorial-card h3 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.65rem;
-      font-weight: 500;
-      margin: 1rem 0 .35rem;
-    }
-
-    .editorial-card p {
-      color: #5a554e;
-      margin: 0;
-      line-height: 1.55;
-      font-size: .95rem;
-    }
-
-    .brand-strip {
-      background: var(--negro);
-      color: white;
-      padding: 1rem 0;
-      overflow: hidden;
-      border-top: 1px solid var(--linea-oscura);
-      border-bottom: 1px solid var(--linea-oscura);
-    }
-
-    .brand-marquee {
-      width: min(1180px, calc(100% - 28px));
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
+        linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.58)),
+        radial-gradient(circle at 70% 20%, rgba(185,138,50,.18), transparent 36%);
+      border: 1px solid rgba(185,138,50,.24);
+      box-shadow: var(--sombra);
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
       gap: 1rem;
-      color: rgba(255,255,255,.72);
+      overflow: hidden;
+    }
+
+    .look-main,
+    .look-small {
+      border-radius: 24px;
+      overflow: hidden;
+      background: #e8dfd0;
+      position: relative;
+      min-height: 100%;
+    }
+
+    .look-main img,
+    .look-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(.95) contrast(1.03);
+    }
+
+    .look-stack {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .look-label {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      background: rgba(11,11,11,.76);
+      color: #fff;
+      border: 1px solid rgba(215,181,109,.4);
+      border-radius: 999px;
+      padding: .55rem .8rem;
+      font: 800 .68rem Arial, Helvetica, sans-serif;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: .76rem;
-      font-weight: 800;
-      flex-wrap: wrap;
+      letter-spacing: 1.2px;
+    }
+
+    .trust-row {
+      border-top: 1px solid var(--linea);
+      border-bottom: 1px solid var(--linea);
+      background: rgba(255,255,255,.48);
+    }
+
+    .trust-inner {
+      width: min(1220px, 100%);
+      margin: auto;
+      padding: 1.05rem clamp(1rem, 4vw, 2rem);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .trust-item {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      border-right: 1px solid var(--linea);
+      padding: .5rem;
+    }
+
+    .trust-item:last-child { border-right: 0; }
+    .trust-item strong {
+      display: block;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .trust-item small {
+      color: var(--gris);
+      font-size: .72rem;
+      text-transform: uppercase;
     }
 
     main {
-      width: min(1180px, calc(100% - 28px));
+      width: min(1220px, 100%);
       margin: auto;
-      padding: 4rem 0 2rem;
+      padding: 2.5rem clamp(1rem, 4vw, 2rem);
     }
 
-    section { margin-bottom: 4.5rem; }
+    section { margin-bottom: 3.4rem; }
 
     .section-head {
       display: flex;
-      align-items: end;
       justify-content: space-between;
+      align-items: end;
       gap: 1rem;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.2rem;
     }
 
-    .section-kicker {
-      color: var(--champagne);
-      text-transform: uppercase;
+    .eyebrow {
+      color: var(--dorado);
+      font: 900 .68rem Arial, Helvetica, sans-serif;
       letter-spacing: 3px;
-      font-size: .72rem;
-      font-weight: 900;
-      margin-bottom: .55rem;
+      text-transform: uppercase;
+      margin-bottom: .35rem;
     }
 
     h2 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 500;
-      line-height: 1;
       margin: 0;
-    }
-
-    .lead {
-      color: var(--gris);
-      line-height: 1.8;
-      max-width: 720px;
-      margin: 1rem 0 0;
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      line-height: .94;
+      font-weight: 500;
+      letter-spacing: -1.5px;
     }
 
     .see-all {
-      color: var(--negro);
       text-decoration: none;
-      border-bottom: 1px solid var(--champagne);
-      padding-bottom: .25rem;
+      font: 900 .75rem Arial, Helvetica, sans-serif;
       text-transform: uppercase;
-      font-size: .78rem;
-      letter-spacing: 1.4px;
-      font-weight: 900;
+      letter-spacing: 1.2px;
+      color: var(--dorado);
       white-space: nowrap;
     }
 
-    .about-panel {
+    .about {
       display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 2rem;
-      align-items: center;
-      background: white;
-      border-radius: var(--radio);
-      padding: clamp(1.2rem, 4vw, 2.4rem);
-      box-shadow: var(--sombra);
-      border: 1px solid var(--linea);
+      grid-template-columns: .8fr 1.2fr;
+      gap: 1.2rem;
+      align-items: stretch;
     }
 
-    .about-signature {
+    .about-card {
+      border-radius: 28px;
+      border: 1px solid var(--linea);
+      background: #fff8ec;
+      padding: clamp(1.2rem, 4vw, 2.4rem);
+      box-shadow: var(--sombra);
+    }
+
+    .about-dark {
       background: var(--negro);
-      color: white;
-      min-height: 330px;
-      border-radius: 20px;
-      padding: 2rem;
+      color: #fff;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      overflow: hidden;
+      min-height: 270px;
     }
 
-    .about-signature::after {
-      content: "JA";
-      position: absolute;
-      right: -8px;
-      bottom: -30px;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 10rem;
-      color: rgba(229,200,138,.12);
+    .about-dark .eyebrow { color: var(--dorado2); }
+    .about p {
+      margin: .8rem 0 0;
+      color: var(--gris);
+      line-height: 1.75;
+      font-family: Arial, Helvetica, sans-serif;
     }
-
-    .about-signature strong {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 2rem;
-      color: var(--champagne2);
-      font-weight: 500;
-      position: relative;
-      z-index: 2;
-    }
-
-    .about-signature small {
-      color: rgba(255,255,255,.72);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      position: relative;
-      z-index: 2;
-    }
+    .about-dark p { color: rgba(255,255,255,.72); }
 
     .categorias {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 1rem;
+      gap: .9rem;
     }
 
     .categoria-card {
-      min-height: 210px;
+      text-decoration: none;
       border-radius: 22px;
-      overflow: hidden;
-      position: relative;
-      background: white;
+      background: #fffaf1;
       border: 1px solid var(--linea);
-      box-shadow: 0 14px 38px rgba(0,0,0,.10);
-      transition: transform .18s ease, box-shadow .18s ease;
+      overflow: hidden;
+      box-shadow: 0 14px 32px rgba(30,24,18,.09);
+      transition: .22s ease;
     }
 
     .categoria-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 24px 55px rgba(0,0,0,.16);
+      box-shadow: var(--sombra);
     }
 
     .categoria-media {
-      height: 130px;
-      background:
-        linear-gradient(135deg, rgba(7,7,7,.88), rgba(199,167,107,.32)),
-        url("imagenes/categoria-joseph.jpg");
-      background-size: cover;
-      background-position: center;
+      height: 155px;
+      background: linear-gradient(135deg, #efe3d1, #fffaf1);
+      overflow: hidden;
     }
 
     .categoria-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-
-    .categoria-overlay {
-      padding: 1rem;
-      background: white;
-      min-height: 80px;
-    }
-
-    .categoria-icon {
-      color: var(--champagne);
-      font-size: .9rem;
       display: block;
-      margin-bottom: .3rem;
     }
 
-    .categoria-card h3 {
-      margin: 0;
-      color: var(--negro);
-      font-size: .86rem;
+    .categoria-title {
+      padding: .9rem .75rem 1rem;
+      text-align: center;
+      font: 900 .76rem Arial, Helvetica, sans-serif;
       letter-spacing: 1px;
       text-transform: uppercase;
-      line-height: 1.3;
+    }
+
+    .brands {
+      border: 1px solid rgba(185,138,50,.22);
+      border-radius: 28px;
+      background: rgba(255,255,255,.5);
+      padding: 1.2rem;
+      box-shadow: var(--sombra);
+      display: grid;
+      grid-template-columns: .65fr 1.35fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+    }
+
+    .brand-pill {
+      border-radius: 18px;
+      background: #fffaf1;
+      border: 1px solid var(--linea);
+      padding: 1rem .7rem;
+      text-align: center;
+      font: 900 .82rem Arial, Helvetica, sans-serif;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--grafito);
     }
 
     .productos {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
     }
 
     .producto-card {
-      background: white;
+      background: #fffaf1;
       border: 1px solid var(--linea);
-      border-radius: 24px;
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: var(--sombra);
+      box-shadow: 0 14px 32px rgba(30,24,18,.09);
     }
 
     .producto-media {
-      height: 330px;
-      background: #f2eee7;
+      height: 245px;
+      background: #f1e7d7;
       display: grid;
       place-items: center;
-      overflow: hidden;
     }
 
     .producto-media img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transition: transform .22s ease;
+      display: block;
+      padding: .7rem;
     }
 
-    .producto-card:hover .producto-media img { transform: scale(1.035); }
-
     .producto-info {
-      padding: 1.05rem;
-      border-top: 1px solid var(--linea);
+      padding: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .producto-info h3 {
-      margin: 0 0 .55rem;
-      color: var(--negro);
-      font-size: .98rem;
-      line-height: 1.35;
-      min-height: 42px;
+      margin: 0 0 .5rem;
+      font-size: .9rem;
       text-transform: uppercase;
-      letter-spacing: .6px;
+      min-height: 38px;
     }
 
     .precio {
-      margin: 0 0 .95rem;
-      color: var(--champagne);
+      color: var(--dorado);
       font-weight: 900;
-      font-size: 1.18rem;
+      margin: 0 0 .8rem;
+      font-size: 1.08rem;
     }
 
     .producto-info .button {
       width: 100%;
-      min-height: 44px;
+      min-height: 42px;
+      font-size: .72rem;
     }
 
-    .contact-grid {
+    .location {
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 1.4rem;
-      align-items: stretch;
-    }
-
-    #contacto, #ubicacion {
-      background: var(--negro);
-      color: white;
-      border-radius: var(--radio);
-      padding: clamp(1.3rem, 4vw, 2.2rem);
-      box-shadow: var(--sombra);
-      border: 1px solid rgba(255,255,255,.10);
-    }
-
-    #contacto p, #ubicacion p {
-      color: rgba(255,255,255,.72);
-      line-height: 1.7;
-    }
-
-    #contacto .button, #ubicacion .button {
-      background: var(--champagne2);
-      color: var(--negro);
-      border-color: var(--champagne2);
-    }
-
-    .map-placeholder {
-      min-height: 230px;
-      border-radius: 18px;
-      border: 1px dashed rgba(229,200,138,.5);
-      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(229,200,138,.08));
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 1.2rem;
-      color: rgba(255,255,255,.68);
-      margin-top: 1rem;
-    }
-
-    .beneficios {
-      width: min(1180px, calc(100% - 28px));
-      margin: 0 auto 3rem;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
 
-    .beneficio {
-      background: white;
-      border: 1px solid var(--linea);
-      border-radius: 18px;
-      padding: 1.2rem;
-      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+    .location-box {
+      border-radius: 28px;
+      background: var(--negro);
+      color: #fff;
+      padding: 2rem;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .beneficio .ico {
-      color: var(--champagne);
-      font-size: 1.4rem;
-      display: block;
-      margin-bottom: .5rem;
+    .location-box p {
+      color: rgba(255,255,255,.7);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
     }
 
-    .beneficio strong {
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: .9px;
-      font-size: .92rem;
-      margin-bottom: .25rem;
-    }
-
-    .beneficio small {
+    .map-placeholder {
+      border-radius: 28px;
+      border: 1px dashed rgba(185,138,50,.45);
+      background: rgba(255,255,255,.45);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 2rem;
+      min-height: 260px;
       color: var(--gris);
-      line-height: 1.45;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    footer {
+      background: var(--negro);
+      color: rgba(255,255,255,.72);
+      padding: 2rem clamp(1rem, 4vw, 2rem);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .footer-inner {
+      width: min(1220px, 100%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    footer strong {
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .whatsapp-float {
@@ -647,466 +590,399 @@
       z-index: 80;
       width: 62px;
       height: 62px;
+      border-radius: 999px;
       display: grid;
       place-items: center;
-      border-radius: 999px;
       background: #25d366;
-      color: white;
+      color: #fff;
       text-decoration: none;
-      box-shadow: 0 14px 34px rgba(37,211,102,.38);
-      font-size: 0;
+      font-size: 1.75rem;
+      box-shadow: 0 14px 32px rgba(37,211,102,.34);
     }
-
-    .whatsapp-float::before {
-      content: "☏";
-      font-size: 1.9rem;
-      font-weight: 900;
-    }
-
-    footer {
-      background: var(--negro);
-      color: rgba(255,255,255,.70);
-      padding: 2.8rem 1rem;
-      text-align: center;
-      border-top: 1px solid var(--linea-oscura);
-    }
-
-    footer h4 {
-      margin: 0 0 .4rem;
-      color: var(--champagne2);
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.45rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    footer p { margin: .35rem 0; }
 
     .mensaje {
-      padding: 1.1rem;
-      border-radius: 16px;
-      background: rgba(255,255,255,.76);
-      border: 1px solid var(--linea);
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,.6);
       color: var(--gris);
-      text-align: center;
-      grid-column: 1 / -1;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    @media (max-width: 980px) {
-      nav { display: none; }
-      .hero-grid, .about-panel, .contact-grid { grid-template-columns: 1fr; }
-      .editorial-card { justify-self: start; }
-      .categorias { grid-template-columns: repeat(3, 1fr); }
-      .productos { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 900px) {
+      .header-inner {
+        grid-template-columns: 1fr;
+      }
+      nav, .header-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-visual { min-height: 420px; }
+      .trust-inner { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: 0; }
+      .about, .brands, .location {
+        grid-template-columns: 1fr;
+      }
+      .categorias {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
-    @media (max-width: 640px) {
-      .top-strip { font-size: .66rem; letter-spacing: 1.5px; }
-      .header-inner { min-height: 76px; }
-      .brand-logo { width: 46px; height: 46px; font-size: 1.08rem; }
-      .brand-text strong { white-space: normal; font-size: 1.05rem; letter-spacing: 1.4px; }
-      .brand-text small { font-size: .6rem; letter-spacing: 1.5px; }
-      .social-top { display: none; }
-      .social-mobile { display: flex; gap: .55rem; margin-top: 1.2rem; }
-      .hero, .hero-grid { min-height: auto; }
-      .hero-grid { padding: 3.2rem 0; }
-      .hero h1 { font-size: clamp(2.9rem, 17vw, 4.3rem); }
-      .editorial-card { display: none; }
-      main { padding-top: 2.6rem; }
-      section { margin-bottom: 3rem; }
-      .section-head { align-items: flex-start; flex-direction: column; }
-      .about-signature { min-height: 240px; }
-      .categorias { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .7rem; }
-      .categoria-card { min-width: 168px; scroll-snap-align: start; }
-      .productos { grid-template-columns: 1fr 1fr; gap: .85rem; }
-      .producto-media { height: 190px; }
-      .producto-info { padding: .85rem; }
-      .producto-info h3 { font-size: .78rem; min-height: 38px; }
-      .precio { font-size: .98rem; }
-      .producto-info .button { font-size: .68rem; padding-left: .3rem; padding-right: .3rem; }
-      .beneficios { grid-template-columns: 1fr; }
-      .whatsapp-float { width: 58px; height: 58px; right: 14px; bottom: 14px; }
+    @media (max-width: 560px) {
+      .topbar { font-size: .62rem; letter-spacing: 1.5px; }
+      nav {
+        gap: .82rem;
+        font-size: .66rem;
+      }
+      .brand { min-width: 0; }
+      .hero {
+        padding-top: 1.7rem;
+      }
+      .hero h1 {
+        font-size: clamp(3rem, 15vw, 4.2rem);
+      }
+      .look-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .look-main { min-height: 260px; }
+      .look-stack { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+      .look-small { min-height: 150px; }
+      .trust-inner {
+        grid-template-columns: 1fr;
+      }
+      .trust-item {
+        border-right: 0;
+        border-bottom: 1px solid var(--linea);
+      }
+      .trust-item:last-child { border-bottom: 0; }
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+      .categorias {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: .5rem;
+      }
+      .categoria-card {
+        min-width: 155px;
+        scroll-snap-align: start;
+      }
+      .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .productos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .producto-media { height: 170px; }
+      .producto-info { padding: .78rem; }
+      .producto-info h3 { font-size: .75rem; }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="topbar">Quevedo · Boutique masculina · Ropa de marca</div>
 
-<div class="top-strip">Quevedo · Boutique masculina · Ropa de marca</div>
+  <header>
+    <div class="header-inner">
+      <nav aria-label="Menú principal">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#categorias">Categorías</a>
+        <a href="catalogo.html">Catálogo</a>
+      </nav>
 
-<header>
-  <div class="header-inner">
-    <a class="brand" href="#inicio" aria-label="Joseph Albert Boutique">
-      <div class="brand-logo">
-        <img src="imagenes/logo-joseph-albert.png" alt="JA" onerror="this.style.display='none'; this.parentElement.textContent='JA';">
+      <a class="brand" href="index.html" aria-label="Joseph Albert Boutique">
+        <div class="brand-mark">JA</div>
+        <div class="brand-name">Joseph Albert</div>
+        <div class="brand-sub">Boutique</div>
+      </a>
+
+      <div class="header-actions">
+        <a class="social" href="#" title="Instagram">◎</a>
+        <a class="social" href="#" title="TikTok">♪</a>
+        <a class="social" href="#" title="Facebook">f</a>
+        <a class="button button-light" href="#contacto">Contacto</a>
       </div>
-      <div class="brand-text">
-        <strong>Joseph Albert</strong>
-        <small>Boutique</small>
-      </div>
-    </a>
-
-    <nav aria-label="Menú principal">
-      <a href="#nosotros">Nosotros</a>
-      <a href="#categorias">Categorías</a>
-      <a href="catalogo.html">Catálogo</a>
-      <a href="#ubicacion">Ubicación</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-
-    <div class="social-top" aria-label="Redes sociales">
-      <a class="instagram" href="#" title="Instagram"><span>Instagram</span></a>
-      <a class="tiktok" href="#" title="TikTok"><span>TikTok</span></a>
-      <a class="facebook" href="#" title="Facebook"><span>Facebook</span></a>
     </div>
-  </div>
-</header>
+  </header>
 
-<section class="hero" id="inicio">
-  <div class="hero-grid">
+  <section class="hero">
     <div class="hero-copy">
-      <div class="eyebrow">La elegancia del buen vestir</div>
-      <h1>Distinción para <span>cada ocasión.</span></h1>
-      <p>
-        Moda masculina premium, prendas seleccionadas, calzado, relojes, perfumes y accesorios para proyectar seguridad, estilo y elegancia.
-      </p>
-      <div class="hero-actions">
-        <a href="catalogo.html" class="button button-gold">Ver catálogo ›</a>
-        <a id="btnHeroWhatsapp" href="#contacto" class="button button-outline">Consultar disponibilidad</a>
-      </div>
-      <div class="social-mobile" aria-label="Redes sociales móvil">
-        <a class="instagram" href="#" title="Instagram"><span>Instagram</span></a>
-        <a class="tiktok" href="#" title="TikTok"><span>TikTok</span></a>
-        <a class="facebook" href="#" title="Facebook"><span>Facebook</span></a>
+      <div class="hero-kicker">La elegancia del buen vestir</div>
+      <h1>Distinción <span>para cada ocasión.</span></h1>
+      <p>Moda masculina premium, prendas seleccionadas, calzado, relojes, perfumes y accesorios para proyectar seguridad, estilo y elegancia.</p>
+      <div class="hero-buttons">
+        <a class="button" href="catalogo.html">Descubrir colección</a>
+        <a id="btnHeroWhatsapp" class="button button-light" href="#">Consultar por WhatsApp</a>
       </div>
     </div>
 
-    <aside class="editorial-card">
-      <div class="editorial-photo" aria-label="Imagen editorial Joseph Albert"></div>
-      <h3>Look completo</h3>
-      <p>Ropa de marca, detalles sobrios y accesorios que completan una imagen elegante.</p>
-    </aside>
-  </div>
-</section>
-
-<div class="brand-strip">
-  <div class="brand-marquee">
-    <span>Tommy Hilfiger</span>
-    <span>Calvin Klein</span>
-    <span>Hugo Boss</span>
-    <span>Levi's</span>
-    <span>Armani Exchange</span>
-    <span>Ralph Lauren</span>
-  </div>
-</div>
-
-<main>
-  <section id="nosotros">
-    <div class="about-panel">
-      <div class="about-signature">
-        <small>Joseph Albert Boutique</small>
-        <strong>Elegancia masculina con carácter.</strong>
-        <small>Quevedo · Ecuador</small>
+    <div class="hero-visual" aria-label="Look completo Joseph Albert">
+      <div class="look-card">
+        <div class="look-main">
+          <img src="camisetas.jpg" alt="Prendas Joseph Albert" loading="eager" onerror="this.style.display='none'">
+          <div class="look-label">Look completo</div>
+        </div>
+        <div class="look-stack">
+          <div class="look-small">
+            <img src="jeans.jpg" alt="Jeans Joseph Albert" loading="lazy" onerror="this.style.display='none'">
+            <div class="look-label">Jeans</div>
+          </div>
+          <div class="look-small">
+            <img src="calzado.jpg" alt="Calzado Joseph Albert" loading="lazy" onerror="this.style.display='none'">
+            <div class="look-label">Calzado</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <div class="section-kicker">Sobre la boutique</div>
+    </div>
+  </section>
+
+  <div class="trust-row">
+    <div class="trust-inner">
+      <div class="trust-item"><strong>Marcas originales</strong><small>Prendas seleccionadas</small></div>
+      <div class="trust-item"><strong>Atención personalizada</strong><small>Asesoría directa</small></div>
+      <div class="trust-item"><strong>Estilo masculino</strong><small>Casual y elegante</small></div>
+      <div class="trust-item"><strong>Quevedo</strong><small>Ecuador</small></div>
+    </div>
+  </div>
+
+  <main>
+    <section id="nosotros" class="about">
+      <div class="about-card about-dark">
+        <div>
+          <div class="eyebrow">Joseph Albert Boutique</div>
+          <h2>Elegancia masculina con carácter.</h2>
+        </div>
+        <p>Una boutique pensada para hombres que buscan vestir con personalidad, confianza y buen gusto.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="eyebrow">Sobre la boutique</div>
         <h2>Una propuesta distinta para el caballero actual.</h2>
-        <p class="lead">
-          Joseph Albert Boutique reúne prendas, calzado y accesorios de marca para hombres que buscan vestir bien sin perder comodidad. La selección está pensada para oficina, eventos, reuniones, viajes y momentos casuales con estilo.
-        </p>
+        <p>Joseph Albert Boutique reúne prendas, calzado y accesorios de marca para hombres que valoran la presentación personal. La selección está pensada para oficina, eventos, reuniones, viajes y momentos casuales con estilo.</p>
       </div>
-    </div>
-  </section>
-
-  <section id="categorias">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Selección principal</div>
-        <h2>Categorías</h2>
-      </div>
-      <a href="catalogo.html" class="see-all">Ver catálogo ›</a>
-    </div>
-    <div class="categorias" id="contenedorCategorias">
-      <div class="mensaje">Cargando categorías...</div>
-    </div>
-  </section>
-
-  <section id="catalogo">
-    <div class="section-head">
-      <div>
-        <div class="section-kicker">Productos seleccionados</div>
-        <h2>Destacados</h2>
-      </div>
-      <a href="catalogo.html" class="see-all">Ver todos ›</a>
-    </div>
-    <div class="productos" id="contenedorDestacados">
-      <div class="mensaje">Cargando productos destacados...</div>
-    </div>
-  </section>
-
-  <div class="contact-grid">
-    <section id="contacto">
-      <div class="section-kicker">Atención personalizada</div>
-      <h2>Contacto</h2>
-      <p>Para pedidos, consultas o disponibilidad de prendas, deje listo el acceso de WhatsApp. El número se puede colocar después.</p>
-      <a id="btnContacto" href="#" class="button">WhatsApp pendiente</a>
     </section>
 
-    <section id="ubicacion">
-      <div class="section-kicker">Ubicación</div>
-      <h2>Visítenos</h2>
-      <p>El mapa de Joseph Albert debe colocarse con la ubicación real de la boutique. Por ahora queda desactivado para no mostrar la ubicación de otra tienda.</p>
-      <a class="button" href="#">Google Maps pendiente</a>
+    <section id="categorias">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Selección principal</div>
+          <h2>Categorías</h2>
+        </div>
+        <a class="see-all" href="catalogo.html">Ver catálogo ›</a>
+      </div>
+
+      <div class="categorias">
+        <a class="categoria-card" href="catalogo.html">
+          <div class="categoria-media"><img src="camisetas.jpg" alt="Camisetas" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="categoria-title">Camisetas</div>
+        </a>
+        <a class="categoria-card" href="catalogo.html">
+          <div class="categoria-media"><img src="pantalones.jpg" alt="Pantalones" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="categoria-title">Pantalones</div>
+        </a>
+        <a class="categoria-card" href="catalogo.html">
+          <div class="categoria-media"><img src="calzado.jpg" alt="Calzado" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="categoria-title">Calzado</div>
+        </a>
+        <a class="categoria-card" href="catalogo.html">
+          <div class="categoria-media"><img src="relojes.jpg" alt="Relojes" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="categoria-title">Relojes</div>
+        </a>
+        <a class="categoria-card" href="catalogo.html">
+          <div class="categoria-media"><img src="accesorios.jpg" alt="Accesorios" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="categoria-title">Accesorios</div>
+        </a>
+        <a class="categoria-card" href="catalogo.html">
+          <div class="categoria-media"><img src="perfumes.jpg" alt="Perfumes" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="categoria-title">Perfumes</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="brands">
+      <div>
+        <div class="eyebrow">Marcas originales</div>
+        <h2>Importadas</h2>
+        <p style="font-family:Arial,Helvetica,sans-serif;color:var(--gris);line-height:1.65;">Calidad, presencia y exclusividad en cada detalle.</p>
+      </div>
+      <div class="brand-grid">
+        <div class="brand-pill">Tommy Hilfiger</div>
+        <div class="brand-pill">Calvin Klein</div>
+        <div class="brand-pill">Levi's</div>
+        <div class="brand-pill">Boss</div>
+        <div class="brand-pill">Columbia</div>
+        <div class="brand-pill">Nautica</div>
+        <div class="brand-pill">Ralph Lauren</div>
+        <div class="brand-pill">Armani Exchange</div>
+      </div>
+    </section>
+
+    <section id="destacados">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Productos seleccionados</div>
+          <h2>Destacados</h2>
+        </div>
+        <a class="see-all" href="catalogo.html">Ver todos ›</a>
+      </div>
+      <div class="productos" id="contenedorDestacados">
+        <div class="mensaje">Cargando productos destacados...</div>
+      </div>
+    </section>
+
+    <section id="contacto" class="location">
+      <div class="location-box">
+        <div class="eyebrow">Contacto</div>
+        <h2>Atención directa.</h2>
+        <p>El número de WhatsApp y las redes sociales quedan preparados para colocar los enlaces definitivos.</p>
+        <a id="btnContacto" class="button" href="#">WhatsApp pendiente</a>
+      </div>
       <div class="map-placeholder">
-        Aquí irá el mapa real de Joseph Albert Boutique cuando tenga el enlace de Google Maps.
+        <div>
+          <strong>Ubicación pendiente</strong><br><br>
+          Aquí se colocará el mapa real de Joseph Albert Boutique cuando se tenga la dirección exacta o el enlace de Google Maps.
+        </div>
       </div>
     </section>
-  </div>
-</main>
+  </main>
 
-<div class="beneficios">
-  <div class="beneficio">
-    <span class="ico">◇</span>
-    <strong>Ropa de marca</strong>
-    <small>Prendas seleccionadas para un estilo elegante y actual.</small>
-  </div>
-  <div class="beneficio">
-    <span class="ico">▣</span>
-    <strong>Look completo</strong>
-    <small>Camisetas, pantalones, calzado, relojes, accesorios y perfumes.</small>
-  </div>
-  <div class="beneficio">
-    <span class="ico">☏</span>
-    <strong>Atención directa</strong>
-    <small>WhatsApp quedará listo para conectar el número definitivo.</small>
-  </div>
-</div>
+  <a id="whatsappFloat" class="whatsapp-float" href="#" aria-label="WhatsApp">☏</a>
 
-<a id="whatsappFloat" href="#" class="whatsapp-float">WhatsApp</a>
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>Joseph Albert Boutique</strong><br>
+        <span>La elegancia del buen vestir · Quevedo, Ecuador</span>
+      </div>
+      <div>© 2026 Joseph Albert Boutique</div>
+    </div>
+  </footer>
 
-<footer>
-  <h4 id="footerNombre">Joseph Albert Boutique</h4>
-  <p id="sloganHeader">La elegancia del buen vestir</p>
-  <p id="footerSlogan">Ropa de marca, calzado, relojes, perfumes y accesorios para caballero.</p>
-  <p>&copy; 2026 Joseph Albert Boutique. Todos los derechos reservados.</p>
-</footer>
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbwFRRW69sdGzUudNh9SK23v2Fj-5FW5w1MNK62QKWDydbFTb0g_gKEmypBp1oWBl-CI/exec";
+    const IMAGEN_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Crect width='600' height='600' fill='%23f1e7d7'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23b98a32' font-family='Arial' font-size='24'%3EJoseph Albert%3C/text%3E%3C/svg%3E";
 
-<script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbwFRRW69sdGzUudNh9SK23v2Fj-5FW5w1MNK62QKWDydbFTb0g_gKEmypBp1oWBl-CI/exec";
+    let configuracion = {};
 
-  const IMAGEN_PLACEHOLDER = "https://via.placeholder.com/500x650/f2eee7/111111?text=Joseph+Albert";
-
-  const CATEGORIAS_FIJAS = [
-    { nombre: "Camisetas", imagen_url: "imagenes/categoria-camisetas.jpg" },
-    { nombre: "Pantalones", imagen_url: "imagenes/categoria-pantalones.jpg" },
-    { nombre: "Calzado", imagen_url: "imagenes/categoria-calzado.jpg" },
-    { nombre: "Relojes", imagen_url: "imagenes/categoria-relojes.jpg" },
-    { nombre: "Accesorios", imagen_url: "imagenes/categoria-accesorios.jpg" },
-    { nombre: "Perfumes", imagen_url: "imagenes/categoria-perfumes.jpg" }
-  ];
-
-  let configuracion = {
-    whatsapp: "",
-    mensaje_whatsapp: "Hola, deseo información sobre Joseph Albert Boutique.",
-    nombre_tienda: "Joseph Albert Boutique",
-    slogan: "La elegancia del buen vestir"
-  };
-
-  async function iniciarIndex() {
-    await cargarConfiguracion();
-    aplicarConfiguracion();
-    await cargarCategorias();
-    await cargarDestacados();
-  }
-
-  async function cargarConfiguracion() {
-    try {
-      const res = await fetch(API_URL + "?accion=configuracion");
-      const json = await res.json();
-
-      if (json.ok && json.data) {
-        configuracion = {
-          ...configuracion,
-          ...json.data,
-          nombre_tienda: "Joseph Albert Boutique",
-          slogan: "La elegancia del buen vestir",
-          mensaje_whatsapp: "Hola, deseo información sobre Joseph Albert Boutique."
-        };
-      }
-    } catch (error) {
-      console.error("Error configuración:", error);
+    async function iniciarIndex() {
+      await cargarConfiguracion();
+      await cargarDestacados();
+      aplicarConfiguracion();
     }
-  }
 
-  async function cargarCategorias() {
-    const contenedor = document.getElementById("contenedorCategorias");
-
-    try {
-      const res = await fetch(API_URL + "?accion=categorias");
-      const json = await res.json();
-      let categorias = json.data || [];
-
-      if (!categorias || categorias.length === 0) {
-        categorias = CATEGORIAS_FIJAS;
+    async function cargarConfiguracion() {
+      try {
+        const res = await fetch(API_URL + "?accion=configuracion");
+        const json = await res.json();
+        configuracion = json.data || {};
+      } catch (error) {
+        configuracion = {};
+        console.error("No se pudo cargar configuración:", error);
       }
-
-      renderizarCategorias(categorias.slice(0, 6));
-
-    } catch (error) {
-      renderizarCategorias(CATEGORIAS_FIJAS);
-      console.error("Error categorías:", error);
     }
-  }
 
-  function renderizarCategorias(categorias) {
-    const contenedor = document.getElementById("contenedorCategorias");
-    contenedor.innerHTML = "";
+    async function cargarDestacados() {
+      const contenedor = document.getElementById("contenedorDestacados");
+      contenedor.innerHTML = '<div class="mensaje">Cargando productos destacados...</div>';
 
-    categorias.forEach(cat => {
-      const imagenOriginal = cat.imagen_url || cat.imagen || cat.url_imagen || "";
-      const imagen = convertirImagenDrive(imagenOriginal);
+      try {
+        const res = await fetch(API_URL + "?accion=productos");
+        const json = await res.json();
+        const productos = (json.data || []).filter(p => String(p.destacado || "").toLowerCase() === "si").slice(0, 6);
 
-      const card = document.createElement("div");
-      card.className = "categoria-card";
-      card.innerHTML = `
-        <div class="categoria-media">
-          <img src="${imagen}" 
-               alt="${cat.nombre || 'Categoría'}" 
-               loading="lazy"
-               onerror="this.style.display='none';">
-        </div>
-        <div class="categoria-overlay">
-          <span class="categoria-icon">Colección</span>
-          <h3>${(cat.nombre || '').toUpperCase()}</h3>
-        </div>
-      `;
+        if (!productos.length) {
+          contenedor.innerHTML = '<div class="mensaje">Próximamente productos destacados.</div>';
+          return;
+        }
 
-      contenedor.appendChild(card);
-    });
-  }
+        contenedor.innerHTML = "";
 
-  async function cargarDestacados() {
-    const contenedor = document.getElementById("contenedorDestacados");
+        productos.forEach(producto => {
+          const nombre = producto.nombre || "Producto";
+          const imagen = convertirImagenDrive(producto.imagen_principal_url || obtenerImagenDesdeVariante(producto));
+          const precio = obtenerPrecioProducto(producto);
+          const mensaje = encodeURIComponent("Hola, deseo información sobre: " + nombre);
+          const whatsapp = configuracion.whatsapp ? `https://wa.me/${configuracion.whatsapp}?text=${mensaje}` : "#";
 
-    try {
-      const res = await fetch(API_URL + "?accion=productos");
-      const json = await res.json();
+          const card = document.createElement("div");
+          card.className = "producto-card";
+          card.innerHTML = `
+            <div class="producto-media">
+              <img src="${imagen}" alt="${nombre}" loading="lazy" onerror="this.onerror=null;this.src='${IMAGEN_PLACEHOLDER}';">
+            </div>
+            <div class="producto-info">
+              <h3>${nombre}</h3>
+              <p class="precio">${precio}</p>
+              <a class="button button-light" href="${whatsapp}" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          `;
 
-      const productos = (json.data || []).filter(p =>
-        String(p.destacado || "no").toLowerCase() === "si"
-      );
+          contenedor.appendChild(card);
+        });
+      } catch (error) {
+        contenedor.innerHTML = '<div class="mensaje">No se pudieron cargar los productos destacados.</div>';
+        console.error("Error destacados:", error);
+      }
+    }
 
-      contenedor.innerHTML = "";
+    function obtenerImagenDesdeVariante(producto) {
+      if (producto.variantes && producto.variantes.length > 0) {
+        return producto.variantes[0].imagen_url || "";
+      }
+      return "";
+    }
 
-      if (productos.length === 0) {
-        contenedor.innerHTML = '<div class="mensaje">Próximamente productos destacados.</div>';
-        return;
+    function obtenerPrecioProducto(producto) {
+      if (producto.variantes && producto.variantes.length > 0) {
+        const variante = producto.variantes[0];
+        const precio = variante.precio_oferta || variante.precio;
+        if (precio) return "$" + Number(precio).toFixed(2);
+      }
+      if (producto.precio) return "$" + Number(producto.precio).toFixed(2);
+      return "Consultar precio";
+    }
+
+    function convertirImagenDrive(url) {
+      if (!url) return IMAGEN_PLACEHOLDER;
+      const texto = String(url).trim();
+      let id = "";
+
+      if (texto.includes("/file/d/")) {
+        id = texto.split("/file/d/")[1].split("/")[0];
+      } else if (texto.includes("id=")) {
+        id = texto.split("id=")[1].split("&")[0];
+      } else if (texto.includes("/open?")) {
+        const params = new URLSearchParams(texto.split("?")[1]);
+        id = params.get("id") || "";
       }
 
-      productos.slice(0, 6).forEach(producto => {
-        const imagenOriginal =
-          producto.imagen_principal_url ||
-          producto.imagen_url ||
-          producto.imagen ||
-          producto.imagen_variante_url ||
-          obtenerImagenDesdeVariante(producto);
-
-        const imagen = convertirImagenDrive(imagenOriginal);
-        const precio = obtenerPrecioProducto(producto);
-        const nombre = producto.nombre || "Producto";
-        const linkWhatsapp = obtenerLinkWhatsapp(nombre);
-
-        const card = document.createElement("div");
-        card.className = "producto-card";
-        card.innerHTML = `
-          <div class="producto-media">
-            <img src="${imagen}" 
-                 alt="${nombre}" 
-                 loading="lazy"
-                 onerror="this.onerror=null;this.src='${IMAGEN_PLACEHOLDER}';">
-          </div>
-          <div class="producto-info">
-            <h3>${nombre}</h3>
-            <p class="precio">${precio}</p>
-            <a href="${linkWhatsapp}" class="button button-outline" target="_blank">Consultar</a>
-          </div>
-        `;
-
-        contenedor.appendChild(card);
-      });
-
-    } catch (error) {
-      contenedor.innerHTML = '<div class="mensaje">No se pudieron cargar los productos destacados.</div>';
-      console.error("Error destacados:", error);
-    }
-  }
-
-  function obtenerImagenDesdeVariante(producto) {
-    if (producto.variantes && producto.variantes.length > 0) {
-      return producto.variantes[0].imagen_url || "";
-    }
-    return "";
-  }
-
-  function obtenerPrecioProducto(producto) {
-    if (producto.variantes && producto.variantes.length > 0) {
-      const variante = producto.variantes[0];
-      const precio = variante.precio_oferta || variante.precio;
-      if (precio) return "$" + Number(precio).toFixed(2);
+      if (id) return `https://drive.google.com/thumbnail?id=${id}&sz=w700`;
+      return texto;
     }
 
-    if (producto.precio) return "$" + Number(producto.precio).toFixed(2);
-    return "Consultar precio";
-  }
+    function aplicarConfiguracion() {
+      const mensaje = encodeURIComponent(configuracion.mensaje_whatsapp || "Hola, deseo información sobre Joseph Albert Boutique.");
+      const whatsapp = configuracion.whatsapp ? `https://wa.me/${configuracion.whatsapp}?text=${mensaje}` : "#";
 
-  function convertirImagenDrive(url) {
-    if (!url) return IMAGEN_PLACEHOLDER;
+      document.getElementById("btnContacto").href = whatsapp;
+      document.getElementById("whatsappFloat").href = whatsapp;
 
-    const texto = String(url).trim();
-    let id = "";
-
-    if (texto.includes("/file/d/")) {
-      id = texto.split("/file/d/")[1].split("/")[0];
-    } else if (texto.includes("id=")) {
-      id = texto.split("id=")[1].split("&")[0];
-    } else if (texto.includes("/open?")) {
-      const params = new URLSearchParams(texto.split("?")[1]);
-      id = params.get("id") || "";
+      const heroWhatsapp = document.getElementById("btnHeroWhatsapp");
+      if (heroWhatsapp) heroWhatsapp.href = whatsapp;
     }
 
-    if (id) return `https://drive.google.com/thumbnail?id=${id}&sz=w900`;
-    return texto;
-  }
-
-  function obtenerLinkWhatsapp(nombreProducto) {
-    const whatsapp = String(configuracion.whatsapp || "").replace(/\D/g, "");
-    const mensaje = encodeURIComponent(`${configuracion.mensaje_whatsapp} ${nombreProducto || ''}`);
-
-    if (!whatsapp) return "#contacto";
-    return `https://wa.me/${whatsapp}?text=${mensaje}`;
-  }
-
-  function aplicarConfiguracion() {
-    const linkGeneral = obtenerLinkWhatsapp("");
-
-    const btnContacto = document.getElementById("btnContacto");
-    const whatsappFloat = document.getElementById("whatsappFloat");
-    const heroWhatsapp = document.getElementById("btnHeroWhatsapp");
-
-    if (btnContacto) btnContacto.href = linkGeneral;
-    if (whatsappFloat) whatsappFloat.href = linkGeneral;
-    if (heroWhatsapp) heroWhatsapp.href = linkGeneral;
-
-    const footerNombre = document.getElementById("footerNombre");
-    const footerSlogan = document.getElementById("footerSlogan");
-
-    if (footerNombre) footerNombre.innerText = "Joseph Albert Boutique";
-    if (footerSlogan) footerSlogan.innerText = "Ropa de marca, calzado, relojes, perfumes y accesorios para caballero.";
-  }
-
-  iniciarIndex();
-</script>
-
+    iniciarIndex();
+  </script>
 </body>
 </html>
