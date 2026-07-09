@@ -822,31 +822,8 @@
         <a class="see-all" href="catalogo.html">Ver catálogo ›</a>
       </div>
 
-      <div class="categorias">
-        <a class="categoria-card" href="catalogo.html">
-          <div class="categoria-media"><img src="camisetas.jpg" alt="Camisetas" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="categoria-title">Camisetas</div>
-        </a>
-        <a class="categoria-card" href="catalogo.html">
-          <div class="categoria-media"><img src="pantalones.jpg" alt="Pantalones" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="categoria-title">Pantalones</div>
-        </a>
-        <a class="categoria-card" href="catalogo.html">
-          <div class="categoria-media"><img src="calzado.jpg" alt="Calzado" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="categoria-title">Calzado</div>
-        </a>
-        <a class="categoria-card" href="catalogo.html">
-          <div class="categoria-media"><img src="relojes.jpg" alt="Relojes" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="categoria-title">Relojes</div>
-        </a>
-        <a class="categoria-card" href="catalogo.html">
-          <div class="categoria-media"><img src="accesorios.jpg" alt="Accesorios" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="categoria-title">Accesorios</div>
-        </a>
-        <a class="categoria-card" href="catalogo.html">
-          <div class="categoria-media"><img src="perfumes.jpg" alt="Perfumes" loading="lazy" onerror="this.style.display='none'"></div>
-          <div class="categoria-title">Perfumes</div>
-        </a>
+      <div class="categorias" id="contenedorCategorias">
+        <div class="mensaje">Cargando categorías...</div>
       </div>
     </section>
 
@@ -917,6 +894,7 @@
 
     async function iniciarIndex() {
       await cargarConfiguracion();
+      await cargarCategoriasIndex();
       await cargarDestacados();
       aplicarConfiguracion();
     }
@@ -929,6 +907,47 @@
       } catch (error) {
         configuracion = {};
         console.error("No se pudo cargar configuración:", error);
+      }
+    }
+
+    async function cargarCategoriasIndex() {
+      const contenedor = document.getElementById("contenedorCategorias");
+      if (!contenedor) return;
+
+      contenedor.innerHTML = '<div class="mensaje">Cargando categorías...</div>';
+
+      try {
+        const res = await fetch(API_URL + "?accion=categorias");
+        const json = await res.json();
+        const categorias = (json.data || [])
+          .filter(cat => String(cat.estado || "activo").toLowerCase() !== "oculto" && String(cat.estado || "activo").toLowerCase() !== "eliminado")
+          .sort((a, b) => Number(a.orden || 0) - Number(b.orden || 0))
+          .slice(0, 6);
+
+        if (!categorias.length) {
+          contenedor.innerHTML = '<div class="mensaje">Próximamente categorías disponibles.</div>';
+          return;
+        }
+
+        contenedor.innerHTML = "";
+
+        categorias.forEach(cat => {
+          const nombre = cat.nombre || "Categoría";
+          const imagen = convertirImagenDrive(cat.imagen_url || "");
+          const card = document.createElement("a");
+          card.className = "categoria-card";
+          card.href = "catalogo.html";
+          card.innerHTML = `
+            <div class="categoria-media">
+              <img src="${imagen}" alt="${nombre}" loading="lazy" onerror="this.onerror=null;this.src='${IMAGEN_PLACEHOLDER}';">
+            </div>
+            <div class="categoria-title">${nombre}</div>
+          `;
+          contenedor.appendChild(card);
+        });
+      } catch (error) {
+        contenedor.innerHTML = '<div class="mensaje">No se pudieron cargar las categorías.</div>';
+        console.error("Error categorías index:", error);
       }
     }
 
