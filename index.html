@@ -95,21 +95,13 @@
       min-width: 230px;
     }
 
-    .brand-mark {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      background: transparent;
-      overflow: hidden;
-    }
-
-    .brand-logo {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .logo-principal {
+      width: 78px;
+      height: auto;
       display: block;
+      margin: 0 auto .42rem;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.12));
     }
 
     .brand-name {
@@ -643,7 +635,7 @@
         font-size: .66rem;
       }
       .brand { min-width: 0; }
-      .brand-mark { width: 52px; height: 52px; }
+      .logo-principal { width: 68px; margin-bottom: .35rem; }
       .hero {
         padding-top: 1.7rem;
       }
@@ -708,9 +700,7 @@
       </nav>
 
       <a class="brand" href="index.html" aria-label="Joseph Albert Boutique">
-        <div class="brand-mark">
-          <img src="logotipo.png" alt="Isotipo Joseph Albert" class="brand-logo" loading="eager">
-        </div>
+        <img src="logotipo.png" class="logo-principal" alt="Joseph Albert Boutique" loading="eager">
         <div class="brand-name">Joseph Albert</div>
         <div class="brand-sub">Boutique</div>
       </a>
