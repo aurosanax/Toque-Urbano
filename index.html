@@ -36,86 +36,129 @@
     a { color: inherit; }
 
     .topbar {
-      background: var(--negro);
-      color: rgba(255,255,255,.78);
+      background: linear-gradient(90deg, #050505, #17110a, #050505);
+      color: rgba(255,255,255,.86);
       text-align: center;
-      padding: .55rem 1rem;
-      font: 700 .72rem Arial, Helvetica, sans-serif;
-      letter-spacing: 2.4px;
+      padding: .42rem 1rem;
+      font: 800 .66rem Arial, Helvetica, sans-serif;
+      letter-spacing: 3.2px;
       text-transform: uppercase;
+      border-bottom: 1px solid rgba(215,181,109,.28);
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255,250,241,.96);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--linea);
+      background:
+        linear-gradient(180deg, rgba(255,250,241,.98), rgba(247,242,232,.94));
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(185,138,50,.22);
+      box-shadow: 0 10px 30px rgba(25, 18, 10, .06);
+    }
+
+    header::after {
+      content: "";
+      display: block;
+      width: min(1220px, calc(100% - 2rem));
+      height: 1px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, rgba(185,138,50,.52), transparent);
     }
 
     .header-inner {
       width: min(1220px, 100%);
       margin: auto;
-      padding: .82rem clamp(1rem, 4vw, 2rem);
+      padding: .62rem clamp(1rem, 4vw, 2rem) .72rem;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     nav {
       display: flex;
-      gap: 1.15rem;
+      gap: 1.35rem;
       align-items: center;
-      font: 800 .72rem Arial, Helvetica, sans-serif;
+      font: 900 .68rem Arial, Helvetica, sans-serif;
       text-transform: uppercase;
-      letter-spacing: 1.3px;
+      letter-spacing: 2px;
     }
 
     nav a {
       text-decoration: none;
       color: var(--grafito);
       opacity: .82;
-      padding: .45rem 0;
+      padding: .5rem 0;
       border-bottom: 1px solid transparent;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: .18rem;
+      width: 0;
+      height: 1px;
+      background: var(--dorado);
+      transition: width .22s ease;
     }
 
     nav a:hover {
-      color: var(--dorado);
-      border-color: var(--dorado);
+      color: var(--negro);
+      opacity: 1;
+      border-color: transparent;
     }
+
+    nav a:hover::after { width: 100%; }
 
     .brand {
       text-align: center;
       text-decoration: none;
       display: grid;
       place-items: center;
-      gap: .14rem;
-      min-width: 230px;
+      gap: .10rem;
+      min-width: 250px;
+      padding: .18rem 1.15rem .35rem;
+      border-left: 1px solid rgba(185,138,50,.18);
+      border-right: 1px solid rgba(185,138,50,.18);
+      position: relative;
+    }
+
+    .brand::after {
+      content: "";
+      width: 92px;
+      height: 1px;
+      margin-top: .34rem;
+      background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+      opacity: .72;
     }
 
     .logo-principal {
-      width: 78px;
+      width: 92px;
       height: auto;
+      max-height: 72px;
       display: block;
-      margin: 0 auto .42rem;
+      margin: 0 auto .32rem;
       object-fit: contain;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.12));
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.13));
     }
 
     .brand-name {
-      font: 900 1.14rem Arial, Helvetica, sans-serif;
-      letter-spacing: 3px;
+      font: 900 1.2rem Arial, Helvetica, sans-serif;
+      letter-spacing: 3.6px;
       text-transform: uppercase;
       line-height: 1;
+      color: #252525;
     }
 
     .brand-sub {
       color: var(--dorado);
-      font-size: .78rem;
+      font-size: .82rem;
       font-style: italic;
       line-height: 1;
+      margin-top: .14rem;
     }
 
     .header-actions {
@@ -126,28 +169,30 @@
     }
 
     .social {
-      width: 34px;
-      height: 34px;
+      width: 35px;
+      height: 35px;
       border-radius: 999px;
-      border: 1px solid var(--linea);
+      border: 1px solid rgba(185,138,50,.24);
       display: grid;
       place-items: center;
       text-decoration: none;
-      font: 800 .85rem Arial, Helvetica, sans-serif;
-      background: #fff;
+      font: 900 .82rem Arial, Helvetica, sans-serif;
+      background: rgba(255,255,255,.64);
+      color: var(--grafito);
       transition: .2s ease;
     }
 
     .social:hover {
       border-color: var(--dorado);
-      color: var(--dorado);
+      background: var(--negro);
+      color: var(--dorado2);
       transform: translateY(-2px);
     }
 
     .hero {
       width: min(1220px, 100%);
       margin: auto;
-      padding: clamp(2.2rem, 5vw, 4.8rem) clamp(1rem, 4vw, 2rem) 2.3rem;
+      padding: clamp(1.8rem, 4.4vw, 4.1rem) clamp(1rem, 4vw, 2rem) 2.3rem;
       display: grid;
       grid-template-columns: .92fr 1.08fr;
       gap: clamp(1.4rem, 5vw, 4rem);
@@ -608,10 +653,18 @@
     @media (max-width: 900px) {
       .header-inner {
         grid-template-columns: 1fr;
+        padding-top: .75rem;
       }
       nav, .header-actions {
         justify-content: center;
         flex-wrap: wrap;
+      }
+      .brand {
+        order: -1;
+        border-left: 0;
+        border-right: 0;
+        padding-left: 0;
+        padding-right: 0;
       }
       .hero {
         grid-template-columns: 1fr;
@@ -635,7 +688,10 @@
         font-size: .66rem;
       }
       .brand { min-width: 0; }
-      .logo-principal { width: 68px; margin-bottom: .35rem; }
+      .logo-principal { width: 78px; max-height: 62px; margin-bottom: .3rem; }
+      .brand-name { font-size: 1rem; letter-spacing: 2.8px; }
+      .brand-sub { font-size: .76rem; }
+      .brand::after { width: 74px; }
       .hero {
         padding-top: 1.7rem;
       }
