@@ -3,126 +3,324 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo - Toque Urbano</title>
+  <title>Catálogo - Joseph Albert Boutique</title>
+  <meta name="description" content="Catálogo de Joseph Albert Boutique en Quevedo. Moda masculina premium, ropa de marca, calzado, relojes, perfumes y accesorios.">
 
   <style>
+    :root {
+      --marfil: #f7f2e8;
+      --marfil2: #fffaf1;
+      --negro: #0b0b0b;
+      --grafito: #171717;
+      --gris: #6d675f;
+      --dorado: #b98a32;
+      --dorado2: #d7b56d;
+      --linea: rgba(28, 23, 18, .12);
+      --sombra: 0 22px 55px rgba(30, 24, 18, .14);
+      --sombra2: 0 12px 28px rgba(30, 24, 18, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #ffffff;
-      color: #222;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(185,138,50,.10), transparent 30%),
+        linear-gradient(180deg, var(--marfil2) 0%, var(--marfil) 55%, #eee5d6 100%);
+      color: var(--negro);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      background: var(--negro);
+      color: rgba(255,255,255,.82);
+      text-align: center;
+      padding: .45rem 1rem;
+      font: 800 .68rem Arial, Helvetica, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(215,181,109,.22);
     }
 
     header {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,250,241,.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(185,138,50,.22);
+      box-shadow: 0 10px 32px rgba(30,24,18,.06);
     }
 
-    .logo-text {
-      font-size: 2.2rem;
-      letter-spacing: 7px;
-      font-weight: bold;
-      margin: 0;
-      color: #111;
-    }
-
-    .logo-sub {
-      font-size: 0.9rem;
-      letter-spacing: 4px;
-      color: #555;
-      margin-top: 5px;
+    .header-inner {
+      width: min(1240px, 100%);
+      margin: auto;
+      padding: .75rem clamp(1rem, 4vw, 2rem) .65rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1.2rem;
     }
 
     nav {
-      background: #111;
-      text-align: center;
-      padding: 12px 0;
+      display: flex;
+      gap: 1.35rem;
+      align-items: center;
+      font: 900 .72rem Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     nav a {
-      color: white;
       text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
+      color: var(--grafito);
+      opacity: .86;
+      padding: .5rem 0;
+      border-bottom: 1px solid transparent;
+      transition: .2s ease;
     }
 
     nav a:hover {
-      color: #c9a227;
+      color: var(--dorado);
+      border-color: var(--dorado);
+      transform: translateY(-1px);
+    }
+
+    .brand {
+      text-align: center;
+      text-decoration: none;
+      display: grid;
+      place-items: center;
+      gap: 0;
+      min-width: 230px;
+      line-height: 1;
+    }
+
+    .logo-principal {
+      width: 72px;
+      height: auto;
+      display: block;
+      margin: 0 auto .08rem;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 12px rgba(0,0,0,.10));
+    }
+
+    .brand-name {
+      font: 900 1.1rem Arial, Helvetica, sans-serif;
+      letter-spacing: 3.2px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-top: 0;
+    }
+
+    .brand-sub {
+      color: var(--dorado);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: .78rem;
+      font-style: italic;
+      line-height: 1;
+      margin-top: .18rem;
+    }
+
+    .header-actions {
+      justify-content: flex-end;
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+    }
+
+    .social {
+      width: 35px;
+      height: 35px;
+      border-radius: 999px;
+      border: 1px solid rgba(185,138,50,.26);
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font: 900 .85rem Arial, Helvetica, sans-serif;
+      background: rgba(255,255,255,.62);
+      transition: .2s ease;
+    }
+
+    .social:hover {
+      border-color: var(--dorado);
+      color: var(--dorado);
+      transform: translateY(-2px);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 43px;
+      padding: .82rem 1.15rem;
+      border-radius: 999px;
+      text-decoration: none;
+      background: var(--negro);
+      color: #fff;
+      border: 1px solid var(--negro);
+      font: 900 .75rem Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      transition: .2s ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--dorado);
+      border-color: var(--dorado);
+      color: var(--negro);
+    }
+
+    .button-light {
+      background: transparent;
+      color: var(--negro);
+      border-color: rgba(185,138,50,.55);
+    }
+
+    .catalog-hero {
+      width: min(1240px, 100%);
+      margin: auto;
+      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem) 1.8rem;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 1.5rem;
+      align-items: end;
+    }
+
+    .eyebrow {
+      color: var(--dorado);
+      font: 900 .68rem Arial, Helvetica, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: .55rem;
+    }
+
+    .catalog-title {
+      margin: 0;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: .88;
+      letter-spacing: -2px;
+      font-weight: 500;
+      color: var(--grafito);
+    }
+
+    .catalog-title span {
+      display: block;
+      color: var(--dorado);
+      font-style: italic;
+    }
+
+    .catalog-intro {
+      color: var(--gris);
+      line-height: 1.75;
+      margin: 0;
+      font-size: 1rem;
+      max-width: 430px;
     }
 
     main {
-      max-width: 1100px;
+      width: min(1240px, 100%);
       margin: auto;
-      padding: 2rem;
+      padding: 0 clamp(1rem, 4vw, 2rem) 3rem;
     }
 
-    h2 {
-      text-align: center;
-      border-bottom: 2px solid #c9a227;
-      padding-bottom: 8px;
+    .panel-catalogo {
+      border: 1px solid rgba(185,138,50,.22);
+      background: rgba(255,250,241,.72);
+      border-radius: 30px;
+      box-shadow: var(--sombra);
+      padding: clamp(1rem, 3vw, 1.5rem);
     }
 
     .filtros {
-      text-align: center;
-      margin: 2rem 0;
+      display: flex;
+      gap: .6rem;
+      overflow-x: auto;
+      padding: .25rem .1rem 1.1rem;
+      margin: 0 0 1.3rem;
+      border-bottom: 1px solid var(--linea);
     }
 
     .filtros button {
-      background: #111;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      margin: 5px;
-      border-radius: 6px;
+      flex: 0 0 auto;
+      background: #fffaf1;
+      color: var(--grafito);
+      border: 1px solid rgba(185,138,50,.24);
+      padding: .78rem 1rem;
+      border-radius: 999px;
       cursor: pointer;
-      font-weight: bold;
+      font: 900 .72rem Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+      transition: .2s ease;
     }
 
     .filtros button:hover,
     .filtros button.activo {
-      background: #c9a227;
-      color: #111;
+      background: var(--negro);
+      color: #fff;
+      border-color: var(--negro);
+      transform: translateY(-2px);
     }
 
     .productos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 1.05rem;
     }
 
     .producto {
       position: relative;
-      border: 1px solid #ddd;
-      border-radius: 14px;
-      padding: 1rem;
-      text-align: center;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      border: 1px solid rgba(28,23,18,.10);
+      border-radius: 24px;
+      padding: .85rem;
+      text-align: left;
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--sombra2);
+      overflow: hidden;
+      transition: .24s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra);
+      border-color: rgba(185,138,50,.28);
     }
 
     .etiqueta-destacado {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      background: #c9a227;
-      color: #111;
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: bold;
+      top: 1rem;
+      left: 1rem;
+      background: var(--negro);
+      color: var(--dorado2);
+      padding: .45rem .68rem;
+      border-radius: 999px;
+      font-size: .65rem;
+      font-weight: 900;
+      letter-spacing: 1px;
       z-index: 2;
+      border: 1px solid rgba(215,181,109,.42);
+      text-transform: uppercase;
     }
 
     .imagen-producto {
       width: 100%;
       height: 330px;
-      background: #f4f4f4;
-      border-radius: 10px;
+      background: linear-gradient(135deg, #efe3d1, #fffaf1);
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       margin-bottom: 1rem;
+      border: 1px solid rgba(185,138,50,.12);
     }
 
     .imagen-producto img {
@@ -131,157 +329,207 @@
       object-fit: contain;
       object-position: center;
       display: block;
+      padding: .65rem;
+      transition: .25s ease;
+    }
+
+    .producto:hover .imagen-producto img {
+      transform: scale(1.025);
     }
 
     .producto h3 {
-      color: #c9a227;
-      margin-bottom: 5px;
+      color: var(--grafito);
+      margin: 0 0 .45rem;
+      font-size: .94rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      min-height: 38px;
     }
 
     .categoria {
-      font-size: 0.85rem;
-      color: #777;
-      font-weight: bold;
+      font-size: .72rem;
+      color: var(--dorado);
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin: 0 0 .55rem;
     }
 
     .descripcion {
-      font-size: 0.9rem;
-      color: #444;
-      min-height: 40px;
+      font-size: .86rem;
+      color: var(--gris);
+      line-height: 1.5;
+      min-height: 42px;
+      margin: 0 0 .65rem;
     }
 
     .detalle-producto {
-      font-size: 0.88rem;
-      color: #333;
-      margin: 6px 0;
+      font-size: .82rem;
+      color: #3a342d;
+      margin: .35rem 0;
     }
 
     .precio {
-      font-weight: bold;
-      font-size: 1.2rem;
-      color: #111;
-      margin-top: 12px;
+      font-weight: 900;
+      font-size: 1.22rem;
+      color: var(--negro);
+      margin: .8rem 0 .45rem;
     }
 
     .precio-normal {
-      color: #888;
+      color: #8a8177;
       text-decoration: line-through;
-      font-size: 0.95rem;
-      margin-right: 6px;
+      font-size: .95rem;
+      margin-right: .45rem;
+      font-weight: 700;
     }
 
     .precio-oferta {
-      color: #c9a227;
-      font-weight: bold;
+      color: var(--dorado);
+      font-weight: 900;
       font-size: 1.25rem;
     }
 
     .stock {
-      font-size: 0.85rem;
-      font-weight: bold;
-      margin-top: 8px;
+      font-size: .78rem;
+      font-weight: 900;
+      margin: .5rem 0 .8rem;
+      text-transform: uppercase;
+      letter-spacing: .8px;
     }
 
-    .disponible {
-      color: #1b7f3a;
-    }
+    .disponible { color: #1b7f3a; }
+    .agotado { color: #b00020; }
 
-    .agotado {
-      color: #b00020;
-    }
-
-    .button {
-      display: inline-block;
-      background: #111;
-      color: white;
-      padding: 11px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    .button:hover {
-      background: #c9a227;
-      color: #111;
+    .producto .button {
+      width: 100%;
+      margin-top: .3rem;
+      min-height: 42px;
+      font-size: .7rem;
     }
 
     .button.disabled {
       background: #999;
+      border-color: #999;
       pointer-events: none;
       cursor: not-allowed;
+      color: #fff;
     }
 
     .mensaje {
       text-align: center;
       padding: 2rem;
-      color: #555;
+      color: var(--gris);
+      font-family: Arial, Helvetica, sans-serif;
+      background: rgba(255,255,255,.55);
+      border-radius: 18px;
+      border: 1px solid var(--linea);
     }
 
     footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
+      background: var(--negro);
+      color: rgba(255,255,255,.72);
+      padding: 2rem clamp(1rem, 4vw, 2rem);
+      font-family: Arial, Helvetica, sans-serif;
+      border-top: 1px solid rgba(215,181,109,.25);
     }
 
-    footer h4 {
-      color: #c9a227;
+    .footer-inner {
+      width: min(1240px, 100%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
     }
 
-    @media (max-width: 600px) {
-      main {
-        padding: 1rem;
-      }
+    footer strong {
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-      .logo-text {
-        font-size: 1.8rem;
-        letter-spacing: 5px;
-      }
+    footer span { color: var(--dorado2); }
 
-      nav a {
-        margin: 0 8px;
-        font-size: 0.9rem;
-      }
+    @media (max-width: 900px) {
+      .header-inner { grid-template-columns: 1fr; }
+      nav, .header-actions { justify-content: center; flex-wrap: wrap; }
+      .catalog-hero { grid-template-columns: 1fr; padding-top: 2rem; }
+      .catalog-intro { max-width: none; }
+    }
 
-      .imagen-producto {
-        height: 300px;
-      }
+    @media (max-width: 560px) {
+      .topbar { font-size: .6rem; letter-spacing: 1.7px; }
+      nav { gap: .78rem; font-size: .65rem; }
+      .brand { min-width: 0; }
+      .logo-principal { width: 64px; }
+      .brand-name { font-size: .98rem; letter-spacing: 2.4px; }
+      .productos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+      .panel-catalogo { padding: .75rem; border-radius: 22px; }
+      .imagen-producto { height: 185px; }
+      .producto { padding: .6rem; border-radius: 18px; }
+      .producto h3 { font-size: .72rem; min-height: 32px; }
+      .descripcion { font-size: .74rem; min-height: 38px; }
+      .catalog-title { font-size: clamp(2.7rem, 15vw, 4rem); }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
     }
   </style>
 </head>
 
 <body>
+  <div class="topbar">Quevedo · Boutique masculina · Ropa de marca</div>
 
-<header>
-  <h1 class="logo-text">TOQUE URBANO</h1>
-  <div class="logo-sub">BOUTIQUE</div>
-</header>
+  <header>
+    <div class="header-inner">
+      <nav aria-label="Menú principal">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#categorias">Categorías</a>
+        <a href="catalogo.html">Catálogo</a>
+      </nav>
 
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="catalogo.html">Catálogo</a>
-  <a href="index.html#contacto">Contacto</a>
-</nav>
+      <a class="brand" href="index.html" aria-label="Joseph Albert Boutique">
+        <img src="logotipo.png" class="logo-principal" alt="Joseph Albert Boutique" loading="eager">
+        <div class="brand-name">Joseph Albert</div>
+        <div class="brand-sub">Boutique</div>
+      </a>
 
-<main>
-  <h2>Catálogo de Productos</h2>
+      <div class="header-actions">
+        <a class="social" href="#" title="Instagram">◎</a>
+        <a class="social" href="#" title="TikTok">♪</a>
+        <a class="social" href="#" title="Facebook">f</a>
+        <a class="button button-light" href="index.html#contacto">Contacto</a>
+      </div>
+    </div>
+  </header>
 
-  <div class="filtros" id="filtros">
-    <button class="activo" onclick="filtrarProductos('todos', this)">Todos</button>
-  </div>
+  <section class="catalog-hero">
+    <div>
+      <div class="eyebrow">Selección Joseph Albert</div>
+      <h1 class="catalog-title">Catálogo <span>premium.</span></h1>
+    </div>
+    <p class="catalog-intro">Explora prendas, calzado y accesorios seleccionados para hombres que valoran la calidad, el estilo y los detalles que marcan la diferencia.</p>
+  </section>
 
-  <div class="productos" id="productos"></div>
+  <main>
+    <section class="panel-catalogo">
+      <div class="filtros" id="filtros">
+        <button class="activo" onclick="filtrarProductos('todos', this)">Todos</button>
+      </div>
 
-  <div class="mensaje" id="mensaje">Cargando catálogo...</div>
-</main>
+      <div class="productos" id="productos"></div>
+      <div class="mensaje" id="mensaje">Cargando catálogo...</div>
+    </section>
+  </main>
 
-<footer>
-  <h4>Toque Urbano Boutique</h4>
-  <p>Moda urbana, moderna y elegante.</p>
-  <p>&copy; 2026 Toque Urbano. Todos los derechos reservados.</p>
-</footer>
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>Joseph Albert Boutique</strong><br>
+        <span>La elegancia del buen vestir · Quevedo, Ecuador</span>
+      </div>
+      <div>© 2026 Joseph Albert Boutique</div>
+    </div>
+  </footer>
 
 <script>
   const API_URL = "https://script.google.com/macros/s/AKfycbwFRRW69sdGzUudNh9SK23v2Fj-5FW5w1MNK62QKWDydbFTb0g_gKEmypBp1oWBl-CI/exec";
@@ -327,7 +575,7 @@
 
   function convertirImagenDrive(url) {
     if (!url) {
-      return "https://via.placeholder.com/500x650?text=Toque+Urbano";
+      return "https://via.placeholder.com/500x650?text=Joseph+Albert";
     }
 
     let id = "";
@@ -405,7 +653,7 @@
       const variante = obtenerVariantePrincipal(producto);
 
       const imagen = convertirImagenDrive(producto.imagen_principal_url || variante.imagen_url);
-      const descripcion = producto.descripcion || "Producto disponible en Toque Urbano.";
+      const descripcion = producto.descripcion || "Producto disponible en Joseph Albert Boutique.";
       const categoria = producto.categoria || "General";
       const nombre = producto.nombre || "Producto";
       const color = variante.color || "";
@@ -414,7 +662,7 @@
       const stock = Number(variante.stock || 0);
 
       const whatsapp = configuracion.whatsapp || "593988951244";
-      const mensajeBase = configuracion.mensaje_whatsapp || "Hola, vengo de la página web de Toque Urbano. Me interesa este producto:";
+      const mensajeBase = configuracion.mensaje_whatsapp || "Hola, vengo de la página web de Joseph Albert Boutique. Me interesa este producto:";
       const textoWhatsapp = encodeURIComponent(`${mensajeBase} ${nombre}`);
       const linkWhatsapp = `https://wa.me/${whatsapp}?text=${textoWhatsapp}`;
 
